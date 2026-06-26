@@ -1,0 +1,3217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clube dos Aprovados | Materiais, Videoaulas e Estratégias para Concursos Públicos</title>
+  <meta name="description" content="Resumos, mapas mentais, questões comentadas, videoaulas e estratégias de quem já passou em concurso público. Junte-se ao Clube dos Aprovados!" />
+  <meta name="keywords" content="concurso público, aprovação, resumos, mapas mentais, questões comentadas, videoaulas gratuitas, cronograma de estudos, direito constitucional, português concurso" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────────── */
+    :root {
+      --black:   #000000;
+      --black-2: #0d0d0d;
+      --black-3: #141414;
+      --card-bg: #111111;
+      --border:  #1e1e1e;
+      --yellow:  #FFD700;
+      --yellow-d:#e6c200;
+      --white:   #ffffff;
+      --gray:    #a0a0a0;
+      --gray-d:  #666666;
+      --radius:  10px;
+      --font-d:  'Oswald', sans-serif;
+      --font-b:  'Inter', sans-serif;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-b);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── SCROLLBAR ───────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black-2); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+    /* ─── UTILITIES ──────────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .yellow { color: var(--yellow); }
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.25);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-d);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      color: var(--gray);
+      font-size: 16px;
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    /* ─── BUTTONS ─────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .22s ease;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: var(--yellow-d);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,215,0,0.25);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .btn-secondary:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+    .btn-sm { padding: 9px 18px; font-size: 13px; }
+
+    /* ─── NAVBAR ──────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      max-width: 1280px;
+      margin: 0 auto;
+      height: 64px;
+      gap: 12px;
+    }
+    .logo {
+      font-family: var(--font-d);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: var(--yellow);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+    .logo span { color: var(--yellow); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray);
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color .2s, background .2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .nav-cta {
+      background: var(--yellow) !important;
+      color: var(--black) !important;
+      font-weight: 600 !important;
+      padding: 7px 16px !important;
+    }
+    .nav-cta:hover { background: var(--yellow-d) !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--black-2);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      z-index: 999;
+    }
+    .mobile-menu.open { display: flex; flex-direction: column; gap: 8px; }
+    .mobile-menu a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gray);
+      padding: 12px 16px;
+      border-radius: 8px;
+      transition: all .2s;
+    }
+    .mobile-menu a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    /* ─── SEARCH BAR ──────────────────────────────────────────────── */
+    .search-trigger {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 13px; color: var(--gray);
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+      min-width: 180px;
+      max-width: 220px;
+      flex-shrink: 1;
+    }
+    .search-trigger:hover { border-color: rgba(255,215,0,0.35); color: var(--white); }
+    .search-trigger .st-icon { font-size: 14px; }
+    .search-trigger .st-kbd {
+      margin-left: auto; font-size: 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px; padding: 2px 6px;
+      color: var(--gray-d);
+    }
+
+    /* Overlay de pesquisa */
+    .search-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 5000;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 60px 20px 20px;
+      overflow-y: auto;
+    }
+    .search-overlay.open { display: block; animation: so-in .18s ease; }
+    @keyframes so-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .search-modal {
+      max-width: 760px; margin: 0 auto;
+    }
+    .search-input-wrap {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--card-bg);
+      border: 1.5px solid rgba(255,215,0,0.35);
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 40px rgba(255,215,0,0.08);
+    }
+    .search-input-wrap .si-icon { font-size: 20px; flex-shrink: 0; }
+    #searchInput {
+      flex: 1; background: none; border: none; outline: none;
+      font-size: 18px; color: var(--white); font-family: var(--font-b);
+    }
+    #searchInput::placeholder { color: var(--gray-d); }
+    .search-clear {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); border: none;
+      color: var(--gray); font-size: 14px; cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .18s;
+    }
+    .search-clear.show { display: flex; }
+    .search-clear:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+
+    /* Chips de filtro de tipo */
+    .search-type-filters {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .stf-chip {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+      cursor: pointer; border: 1px solid var(--border);
+      background: var(--card-bg); color: var(--gray);
+      transition: all .18s;
+    }
+    .stf-chip.active { background: var(--yellow); color: var(--black); border-color: var(--yellow); font-weight: 600; }
+    .stf-chip:hover:not(.active) { border-color: rgba(255,215,0,0.3); color: var(--white); }
+
+    /* Resultados */
+    .search-results-header {
+      font-size: 11px; font-weight: 700; color: var(--gray-d);
+      text-transform: uppercase; letter-spacing: .15em;
+      margin-bottom: 12px; padding: 0 2px;
+    }
+    .search-results { display: flex; flex-direction: column; gap: 8px; }
+    .sr-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 18px;
+      cursor: pointer; transition: all .18s;
+      text-decoration: none; color: inherit;
+    }
+    .sr-item:hover { border-color: rgba(255,215,0,0.35); background: rgba(255,215,0,0.03); transform: translateX(3px); }
+    .sr-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .sr-icon.tipo-video      { background: rgba(239,68,68,0.12); }
+    .sr-icon.tipo-resumo     { background: rgba(255,215,0,0.12); }
+    .sr-icon.tipo-questao    { background: rgba(34,197,94,0.12); }
+    .sr-icon.tipo-pdf        { background: rgba(59,130,246,0.12); }
+    .sr-icon.tipo-mapa       { background: rgba(139,92,246,0.12); }
+    .sr-icon.tipo-cronograma { background: rgba(245,158,11,0.12); }
+    .sr-body { flex: 1; min-width: 0; }
+    .sr-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; line-height: 1.35; }
+    .sr-title mark {
+      background: rgba(255,215,0,0.25); color: var(--yellow);
+      border-radius: 3px; padding: 0 2px;
+    }
+    .sr-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
+    .sr-desc mark { background: rgba(255,215,0,0.15); color: var(--yellow); border-radius: 2px; padding: 0 1px; }
+    .sr-badge {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; padding: 3px 9px; border-radius: 20px;
+      flex-shrink: 0; align-self: flex-start; margin-top: 2px;
+    }
+    .badge-video      { background: rgba(239,68,68,0.1);   color: #fca5a5; }
+    .badge-resumo     { background: rgba(255,215,0,0.1);   color: var(--yellow); }
+    .badge-questao    { background: rgba(34,197,94,0.1);   color: #86efac; }
+    .badge-pdf        { background: rgba(59,130,246,0.1);  color: #93c5fd; }
+    .badge-mapa       { background: rgba(139,92,246,0.1);  color: #c4b5fd; }
+    .badge-cronograma { background: rgba(245,158,11,0.1);  color: #fcd34d; }
+
+    /* Estado vazio e sugestões */
+    .search-empty {
+      text-align: center; padding: 48px 20px; color: var(--gray);
+    }
+    .search-empty .se-icon { font-size: 48px; margin-bottom: 14px; }
+    .search-empty h3 { font-family: var(--font-d); font-size: 20px; color: var(--white); margin-bottom: 8px; }
+    .search-empty p { font-size: 13px; }
+
+    .search-suggestions { margin-bottom: 24px; }
+    .ss-title { font-size: 11px; font-weight: 700; color: var(--gray-d); text-transform: uppercase; letter-spacing: .15em; margin-bottom: 12px; }
+    .ss-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ss-chip {
+      padding: 7px 14px; border-radius: 20px; font-size: 12px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--gray); cursor: pointer; transition: all .18s;
+    }
+    .ss-chip:hover { border-color: rgba(255,215,0,0.35); color: var(--yellow); }
+
+    .search-close-btn {
+      position: fixed; top: 16px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--gray); font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 5001; transition: all .2s;
+    }
+    .search-close-btn:hover { border-color: rgba(255,215,0,0.35); color: var(--white); }
+
+    /* ─── TICKER ─────────────────────────────────────────────────── */
+    .ticker-wrap {
+      background: var(--yellow);
+      overflow: hidden;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      margin-top: 64px;
+    }
+    .ticker-track {
+      display: flex;
+      animation: ticker-scroll 40s linear infinite;
+      white-space: nowrap;
+      gap: 0;
+    }
+    .ticker-track span {
+      font-family: var(--font-b);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0 32px;
+    }
+    .ticker-track span::before {
+      content: "★";
+      margin-right: 10px;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: calc(100vh - 100px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(255,215,0,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(255,215,0,0.04) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,215,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,215,0,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: var(--yellow);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before { content: "🏆"; font-size: 14px; }
+    h1.hero-title {
+      font-family: var(--font-d);
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+    }
+    h1.hero-title .accent {
+      color: var(--yellow);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--gray);
+      margin-bottom: 36px;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {}
+    .hero-stat-num {
+      font-family: var(--font-d);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+    .hero-stat-num sup { font-size: 18px; }
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+    .hero-float {
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 42%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .float-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      animation: float-in .6s ease both;
+    }
+    .float-card:nth-child(1) { animation-delay: 0.2s; margin-left: 40px; }
+    .float-card:nth-child(2) { animation-delay: 0.4s; }
+    .float-card:nth-child(3) { animation-delay: 0.6s; margin-left: 40px; }
+    @keyframes float-in {
+      from { opacity: 0; transform: translateX(40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .float-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,215,0,0.12);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .float-text { font-size: 13px; }
+    .float-text strong { font-size: 15px; display: block; margin-bottom: 2px; }
+    .float-text span { color: var(--gray); }
+
+    /* ─── FEATURES ────────────────────────────────────────────────── */
+    #features {
+      padding: 100px 0;
+      background: var(--black-2);
+      border-top: 1px solid var(--border);
+    }
+    .features-header { margin-bottom: 52px; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--yellow);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .feature-card:hover {
+      border-color: rgba(255,215,0,0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card:active { transform: translateY(-2px); }
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: rgba(255,215,0,0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      margin-bottom: 18px;
+      transition: background .25s, transform .25s;
+    }
+    .feature-card:hover .feature-icon {
+      background: rgba(255,215,0,0.18);
+      transform: scale(1.08);
+    }
+    .feature-card h3 {
+      font-family: var(--font-d);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature-card p { font-size: 13px; color: var(--gray); line-height: 1.65; margin-bottom: 18px; }
+    .feature-card-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; color: var(--yellow);
+      text-transform: uppercase; letter-spacing: .08em;
+      transition: gap .2s;
+    }
+    .feature-card:hover .feature-card-cta { gap: 10px; }
+    .feature-card-arrow {
+      font-size: 14px; transition: transform .2s;
+    }
+    .feature-card:hover .feature-card-arrow { transform: translateX(4px); }
+
+    /* ─── VIDEOAULAS ─────────────────────────────────────────────── */
+    #videoaulas {
+      padding: 100px 0;
+      background: var(--black);
+    }
+
+    /* Filtros de matéria */
+    .video-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .vf-btn {
+      display: flex; align-items: center; gap: 7px;
+      padding: 9px 18px;
+      border-radius: 24px;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--gray);
+      transition: all .2s;
+    }
+    .vf-btn .vf-icon { font-size: 15px; }
+    .vf-btn.active, .vf-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+      font-weight: 600;
+    }
+
+    /* Player modal */
+    .yt-modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .yt-modal-overlay.open { display: flex; }
+    .yt-modal {
+      background: var(--black-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%; max-width: 900px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+      animation: modal-in .25s ease;
+    }
+    @keyframes modal-in {
+      from { opacity: 0; transform: scale(0.96) translateY(16px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .yt-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .yt-modal-title {
+      font-family: var(--font-d);
+      font-size: 17px; font-weight: 600;
+    }
+    .yt-modal-meta { font-size: 12px; color: var(--yellow); margin-top: 2px; }
+    .yt-modal-close {
+      width: 36px; height: 36px;
+      border-radius: 50%; background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; cursor: pointer; color: var(--gray);
+      transition: all .2s; flex-shrink: 0;
+    }
+    .yt-modal-close:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+    .yt-iframe-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #000;
+    }
+    .yt-iframe-wrap iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .yt-modal-playlist {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    .yt-pl-item {
+      background: var(--card-bg);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: background .18s;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .yt-pl-item:hover { background: rgba(255,255,255,0.04); }
+    .yt-pl-item.active { background: rgba(255,215,0,0.08); border-left: 3px solid var(--yellow); }
+    .yt-pl-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+      color: var(--gray);
+    }
+    .yt-pl-item.active .yt-pl-num { background: var(--yellow); color: var(--black); }
+    .yt-pl-info { min-width: 0; }
+    .yt-pl-info strong { font-size: 12px; display: block; line-height: 1.4; color: var(--white); }
+    .yt-pl-info span { font-size: 11px; color: var(--gray-d); }
+
+    /* Cards de matéria (novo layout) */
+    .materia-section { display: none; }
+    .materia-section.active { display: block; }
+    .materia-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px;
+    }
+    .materia-icon-big {
+      width: 52px; height: 52px;
+      background: rgba(255,215,0,0.1);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; flex-shrink: 0;
+    }
+    .materia-info h3 { font-family: var(--font-d); font-size: 24px; font-weight: 700; margin-bottom: 2px; }
+    .materia-info p { font-size: 13px; color: var(--gray); }
+    .video-grid-new {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .video-card-new {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .22s, border-color .22s, box-shadow .22s;
+      position: relative;
+    }
+    .video-card-new:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,215,0,0.4);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .vc-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+    .vc-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s;
+    }
+    .video-card-new:hover .vc-thumb img { transform: scale(1.04); }
+    .vc-thumb-fallback {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px;
+      background: linear-gradient(135deg, #0d0d0d, #1c1c1c);
+    }
+    .vc-play-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background .2s;
+    }
+    .video-card-new:hover .vc-play-overlay { background: rgba(0,0,0,0.2); }
+    .vc-play-btn {
+      width: 54px; height: 54px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--black);
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(255,215,0,0.35);
+    }
+    .video-card-new:hover .vc-play-btn {
+      transform: scale(1.12);
+      box-shadow: 0 6px 28px rgba(255,215,0,0.55);
+    }
+    .vc-tag {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--yellow); color: var(--black);
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 3px 8px; border-radius: 4px;
+    }
+    .vc-duration {
+      position: absolute; bottom: 8px; right: 8px;
+      background: rgba(0,0,0,0.82);
+      color: var(--white); font-size: 11px; font-weight: 600;
+      padding: 3px 7px; border-radius: 4px;
+    }
+    .vc-body { padding: 14px 16px 16px; }
+    .vc-body h4 { font-family: var(--font-d); font-size: 15px; font-weight: 600; margin-bottom: 4px; line-height: 1.35; }
+    .vc-body p { font-size: 12px; color: var(--gray); margin-bottom: 10px; line-height: 1.5; }
+    .vc-meta { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--gray-d); }
+    .vc-channel { font-size: 11px; color: var(--yellow); font-weight: 600; }
+
+    /* ─── PDFs ───────────────────────────────────────────────────── */
+    #pdfs {
+      padding: 100px 0;
+      background: var(--black-2);
+      border-top: 1px solid var(--border);
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+    .filter-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--gray);
+      transition: all .2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+    }
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .pdf-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .25s, transform .25s;
+    }
+    .pdf-card:hover {
+      border-color: rgba(255,215,0,0.3);
+      transform: translateY(-3px);
+    }
+    .pdf-header { display: flex; align-items: flex-start; gap: 14px; }
+    .pdf-icon {
+      width: 46px; height: 46px;
+      background: rgba(255,215,0,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .pdf-info h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .pdf-info span { font-size: 11px; color: var(--yellow); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .pdf-desc { font-size: 13px; color: var(--gray); line-height: 1.6; flex: 1; }
+    .pdf-footer { display: flex; align-items: center; justify-content: space-between; }
+    .pdf-pages { font-size: 11px; color: var(--gray-d); }
+
+    /* ─── MAPAS MENTAIS ──────────────────────────────────────────── */
+    #mapas {
+      padding: 100px 0;
+      background: var(--black);
+    }
+    .mapas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .mapa-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .25s, border-color .25s;
+    }
+    .mapa-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,215,0,0.35);
+    }
+    .mapa-preview {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+    .mapa-svg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.7;
+    }
+    .mapa-body { padding: 16px 18px; }
+    .mapa-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .mapa-body span { font-size: 12px; color: var(--gray); }
+
+    /* ─── CRONOGRAMA ─────────────────────────────────────────────── */
+    #cronograma {
+      padding: 100px 0;
+      background: var(--black-2);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Seletor de perfil */
+    .crono-perfil-bar {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 48px;
+    }
+    .cp-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 22px; border-radius: 12px; cursor: pointer;
+      border: 1.5px solid var(--border); background: var(--card-bg);
+      transition: all .2s; text-align: left;
+    }
+    .cp-btn:hover { border-color: rgba(255,215,0,.3); }
+    .cp-btn.active { border-color: var(--yellow); background: rgba(255,215,0,.06); }
+    .cp-icon { font-size: 24px; flex-shrink: 0; }
+    .cp-info strong { display: block; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+    .cp-info span { font-size: 12px; color: var(--gray); }
+
+    /* Plano de cronograma */
+    .crono-plan { display: none; }
+    .crono-plan.active { display: block; animation: fadeUp .35s ease; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Grade semanal */
+    .crono-section-title {
+      font-family: var(--font-d); font-size: 20px; font-weight: 700;
+      margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+    }
+    .crono-section-title .ct-badge {
+      font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 6px;
+      background: rgba(255,215,0,.12); color: var(--yellow); font-family: var(--font-b);
+    }
+
+    .grade-wrap { overflow-x: auto; margin-bottom: 40px; }
+    .grade-table {
+      width: 100%; border-collapse: collapse;
+      min-width: 680px; font-size: 12.5px;
+    }
+    .grade-table th {
+      padding: 10px 12px; text-align: center;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--gray-d);
+      border-bottom: 1px solid var(--border);
+    }
+    .grade-table th.dia-hoje { color: var(--yellow); }
+    .grade-table td {
+      padding: 9px 10px; border: 1px solid rgba(255,255,255,.04);
+      vertical-align: top; line-height: 1.4;
+    }
+    .grade-table td.hora-col {
+      font-size: 11px; font-weight: 700; color: var(--gray-d);
+      white-space: nowrap; padding: 9px 14px; background: rgba(255,255,255,.02);
+      border-right: 1px solid var(--border);
+    }
+    .slot {
+      border-radius: 7px; padding: 7px 9px; font-size: 12px;
+      line-height: 1.45; font-weight: 500;
+    }
+    .slot strong { display: block; font-size: 12px; font-weight: 700; margin-bottom: 1px; }
+    .slot span { font-size: 11px; opacity: .8; }
+    .slot.dc   { background: rgba(59,130,246,.12);  color: #93c5fd; border-left: 3px solid #3b82f6; }
+    .slot.da   { background: rgba(139,92,246,.12);  color: #c4b5fd; border-left: 3px solid #8b5cf6; }
+    .slot.pt   { background: rgba(34,197,94,.12);   color: #86efac; border-left: 3px solid #22c55e; }
+    .slot.rl   { background: rgba(245,158,11,.12);  color: #fcd34d; border-left: 3px solid #f59e0b; }
+    .slot.mt   { background: rgba(236,72,153,.12);  color: #f9a8d4; border-left: 3px solid #ec4899; }
+    .slot.ti   { background: rgba(20,184,166,.12);  color: #5eead4; border-left: 3px solid #14b8a6; }
+    .slot.rev  { background: rgba(255,215,0,.12);   color: var(--yellow); border-left: 3px solid var(--yellow); }
+    .slot.sim  { background: rgba(239,68,68,.12);   color: #fca5a5; border-left: 3px solid #ef4444; }
+    .slot.leg  { background: rgba(168,85,247,.12);  color: #d8b4fe; border-left: 3px solid #a855f7; }
+    .slot.folga{ background: rgba(255,255,255,.03); color: var(--gray-d); border-left: 3px solid var(--border); font-style: italic; font-size: 11px; text-align: center; padding: 12px 4px; }
+    .slot.quest{ background: rgba(16,185,129,.12);  color: #6ee7b7; border-left: 3px solid #10b981; }
+
+    /* Legenda */
+    .crono-legend {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px;
+    }
+    .leg-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--gray);
+    }
+    .leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    /* Plano 12 semanas */
+    .semanas-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px; margin-bottom: 40px;
+    }
+    .semana-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 20px;
+      transition: border-color .2s;
+    }
+    .semana-card:hover { border-color: rgba(255,215,0,.25); }
+    .semana-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .semana-num {
+      font-family: var(--font-d); font-size: 13px; font-weight: 700;
+      color: var(--yellow); text-transform: uppercase; letter-spacing: .08em;
+    }
+    .semana-fase {
+      font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+      text-transform: uppercase; letter-spacing: .07em;
+    }
+    .fase-base     { background: rgba(59,130,246,.12); color: #93c5fd; }
+    .fase-fixacao  { background: rgba(34,197,94,.12);  color: #86efac; }
+    .fase-revisao  { background: rgba(255,215,0,.12);  color: var(--yellow); }
+    .fase-simulado { background: rgba(239,68,68,.12);  color: #fca5a5; }
+    .semana-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .semana-metas { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .semana-metas li {
+      font-size: 12px; color: var(--gray); display: flex; align-items: flex-start; gap: 7px;
+    }
+    .semana-metas li::before { content: "→"; color: var(--yellow); flex-shrink: 0; font-size: 11px; margin-top: 1px; }
+
+    /* Dicas estratégicas */
+    .crono-dicas-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px; margin-bottom: 16px;
+    }
+    .crono-dica {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 18px;
+      display: flex; gap: 12px;
+    }
+    .crono-dica .cd-icon { font-size: 22px; flex-shrink: 0; }
+    .crono-dica strong { display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .crono-dica p { font-size: 12px; color: var(--gray); line-height: 1.6; }
+
+    /* Form seletor de horas e concurso */
+    .crono-config {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 40px;
+    }
+    .crono-config label { display: block; font-size: 12px; color: var(--gray); margin-bottom: 6px; font-weight: 500; }
+    .crono-config select, .crono-config input {
+      width: 100%; background: var(--black-2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--white);
+      font-family: var(--font-b); -webkit-appearance: none; transition: border-color .2s;
+    }
+    .crono-config select:focus, .crono-config input:focus { outline: none; border-color: var(--yellow); }
+    .crono-config select option { background: #1a1a1a; }
+
+    @media (max-width: 700px) {
+      .crono-config { grid-template-columns: 1fr; }
+      .crono-perfil-bar { flex-direction: column; }
+    }
+    .crono-form { display: none; } /* esconde o form antigo */
+    .crono-form { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--gray); margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--white);
+      font-family: var(--font-b);
+      transition: border-color .2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--yellow);
+    }
+    .form-group select option { background: #1a1a1a; }
+
+    /* ─── DICAS / DEPOIMENTOS ────────────────────────────────────── */
+    #dicas {
+      padding: 100px 0;
+      background: var(--black);
+    }
+    .dicas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .dica-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color .25s;
+    }
+    .dica-card:hover { border-color: rgba(255,215,0,0.25); }
+    .dica-quote {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+      position: relative;
+      padding-left: 16px;
+    }
+    .dica-quote::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--yellow);
+      border-radius: 2px;
+    }
+    .dica-author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .dica-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      background: rgba(255,215,0,0.1);
+      border: 2px solid rgba(255,215,0,0.2);
+    }
+    .dica-author-info strong { font-size: 14px; display: block; }
+    .dica-author-info span { font-size: 12px; color: var(--yellow); }
+    .stars { color: var(--yellow); font-size: 13px; letter-spacing: 2px; }
+
+    /* ─── CTA BANNER ─────────────────────────────────────────────── */
+    #cta {
+      padding: 80px 0;
+      background: var(--yellow);
+      text-align: center;
+    }
+    #cta h2 {
+      font-family: var(--font-d);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+    #cta p { font-size: 17px; color: rgba(0,0,0,0.65); margin-bottom: 32px; }
+    .btn-dark {
+      background: var(--black);
+      color: var(--yellow);
+    }
+    .btn-dark:hover {
+      background: #1a1a1a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--black-2);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo { margin-bottom: 14px; }
+    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+    .social-links { display: flex; gap: 10px; }
+    .social-link {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      transition: border-color .2s, transform .2s;
+    }
+    .social-link:hover { border-color: var(--yellow); transform: translateY(-2px); }
+    .footer-col h4 {
+      font-family: var(--font-d);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { font-size: 13px; color: var(--gray); transition: color .2s; }
+    .footer-col ul a:hover { color: var(--yellow); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 12px; color: var(--gray-d); }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-float { display: none; }
+      .crono-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .search-trigger { min-width: unset; }
+      .search-trigger .st-kbd { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hero-stats { gap: 24px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🏆</div>
+      Clube dos <span>Aprovados</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">Início</a></li>
+      <li><a href="#videoaulas">Videoaulas</a></li>
+      <li><a href="#pdfs">PDFs</a></li>
+      <li><a href="#mapas">Mapas Mentais</a></li>
+      <li><a href="#cronograma">Cronograma</a></li>
+      <li><a href="#dicas">Dicas</a></li>
+      <li><a href="#" class="nav-cta">Entrar</a></li>
+    </ul>
+    <div class="search-trigger" onclick="openSearch()" id="searchTrigger">
+      <span class="st-icon">🔍</span>
+      Buscar materiais...
+      <span class="st-kbd">Ctrl K</span>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ SEARCH OVERLAY ═══════════════════════════════════════════ -->
+<div class="search-overlay" id="searchOverlay">
+  <button class="search-close-btn" onclick="closeSearch()" title="Fechar (Esc)">✕</button>
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <span class="si-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Buscar resumos, vídeos, questões, PDFs..." autocomplete="off" />
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="search-type-filters" id="typeFilters">
+      <div class="stf-chip active" data-tipo="todos" onclick="setTipo('todos',this)">📚 Todos</div>
+      <div class="stf-chip" data-tipo="video" onclick="setTipo('video',this)">🎥 Videoaulas</div>
+      <div class="stf-chip" data-tipo="resumo" onclick="setTipo('resumo',this)">📋 Resumos</div>
+      <div class="stf-chip" data-tipo="questao" onclick="setTipo('questao',this)">✏️ Questões</div>
+      <div class="stf-chip" data-tipo="pdf" onclick="setTipo('pdf',this)">📄 PDFs</div>
+      <div class="stf-chip" data-tipo="mapa" onclick="setTipo('mapa',this)">🗺️ Mapas Mentais</div>
+    </div>
+    <div id="searchResultsWrap"></div>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="toggleMenu(); openSearch();" style="color:var(--yellow); font-weight:600;">🔍 Buscar materiais</a>
+  <a href="#hero" onclick="toggleMenu()">Início</a>
+  <a href="#features" onclick="toggleMenu()">Materiais</a>
+  <a href="#videoaulas" onclick="toggleMenu()">Videoaulas</a>
+  <a href="#pdfs" onclick="toggleMenu()">PDFs</a>
+  <a href="#mapas" onclick="toggleMenu()">Mapas Mentais</a>
+  <a href="#cronograma" onclick="toggleMenu()">Cronograma</a>
+  <a href="#dicas" onclick="toggleMenu()">Dicas</a>
+  <a href="#">Entrar</a>
+</div>
+
+<!-- ═══ TICKER ════════════════════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker">
+    <span>INSS</span><span>TRT</span><span>Receita Federal</span><span>IBGE</span>
+    <span>Câmara dos Deputados</span><span>Banco Central</span><span>Ministério Público</span>
+    <span>TCU</span><span>Petrobras</span><span>Correios</span><span>Caixa Econômica</span>
+    <span>Polícia Federal</span><span>PRF</span><span>ANATEL</span><span>BACEN</span>
+    <span>INSS</span><span>TRT</span><span>Receita Federal</span><span>IBGE</span>
+    <span>Câmara dos Deputados</span><span>Banco Central</span><span>Ministério Público</span>
+    <span>TCU</span><span>Petrobras</span><span>Correios</span><span>Caixa Econômica</span>
+    <span>Polícia Federal</span><span>PRF</span><span>ANATEL</span><span>BACEN</span>
+  </div>
+</div>
+
+<!-- ═══ HERO ══════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">+47.000 concurseiros já estão aqui</div>
+      <h1 class="hero-title">
+        O Clube que te leva<br>
+        da reprovação à<br>
+        <span class="accent">Aprovação</span>
+      </h1>
+      <p class="hero-sub">
+        Resumos objetivos, mapas mentais, questões comentadas, videoaulas e estratégias reais de quem já passou. Tudo num só lugar.
+      </p>
+      <div class="hero-btns">
+        <a href="#features" class="btn btn-primary" style="font-size:16px; padding:16px 32px;">🚀 Quero ser Aprovado</a>
+        <a href="#pdfs" class="btn btn-secondary">Ver Materiais Grátis</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="47000">0<sup>+</sup></div>
+          <div class="hero-stat-label">Concurseiros ativos</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="1200">0<sup>+</sup></div>
+          <div class="hero-stat-label">Materiais gratuitos</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="98">0<sup>%</sup></div>
+          <div class="hero-stat-label">Aprovação de membros</div>
+        </div>
+      </div>
+    </div>
+    <!-- Float cards -->
+    <div class="hero-float">
+      <div class="float-card">
+        <div class="float-icon">📚</div>
+        <div class="float-text">
+          <strong>Novo resumo disponível</strong>
+          <span>Direito Constitucional — Arts. 1 ao 17</span>
+        </div>
+      </div>
+      <div class="float-card">
+        <div class="float-icon">🎯</div>
+        <div class="float-text">
+          <strong>Questão comentada</strong>
+          <span>Raciocínio Lógico · CESPE 2024</span>
+        </div>
+      </div>
+      <div class="float-card">
+        <div class="float-icon">✅</div>
+        <div class="float-text">
+          <strong>Maria S. foi APROVADA!</strong>
+          <span>INSS · 1ª tentativa · 87 pontos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ══════════════════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
+    <div class="features-header reveal">
+      <div class="section-label">Por que o Clube?</div>
+      <h2 class="section-title">O que você encontra no<br><span class="yellow">Clube dos Aprovados</span></h2>
+      <p class="section-sub">Tudo o que você precisa para passar, organizado por quem já passou.</p>
+    </div>
+    <div class="features-grid">
+
+      <a class="feature-card reveal" href="resumos-portugues.html" target="_blank">
+        <div class="feature-icon">📋</div>
+        <h3>Resumos Objetivos</h3>
+        <p>As matérias mais cobradas em concursos resumidas de forma direta, sem enrolação. Foque no que cai de verdade.</p>
+        <div class="feature-card-cta">Acessar Resumos <span class="feature-card-arrow">→</span></div>
+      </a>
+
+      <a class="feature-card reveal" href="questoes-comentadas.html" target="_blank">
+        <div class="feature-icon">🔍</div>
+        <h3>Questões Comentadas</h3>
+        <p>Banco com questões de provas anteriores (CESPE, FGV, FCC, Vunesp) com gabarito explicado passo a passo.</p>
+        <div class="feature-card-cta">Resolver Questões <span class="feature-card-arrow">→</span></div>
+      </a>
+
+      <a class="feature-card reveal" href="#mapas" onclick="document.getElementById('mapas').scrollIntoView({behavior:'smooth'}); return false;">
+        <div class="feature-icon">🗺️</div>
+        <h3>Mapas Mentais</h3>
+        <p>Síntese visual das matérias para revisão rápida. Perfeito para a semana antes da prova.</p>
+        <div class="feature-card-cta">Ver Mapas Mentais <span class="feature-card-arrow">→</span></div>
+      </a>
+
+      <a class="feature-card reveal" href="#cronograma" onclick="document.getElementById('cronograma').scrollIntoView({behavior:'smooth'}); return false;">
+        <div class="feature-icon">📅</div>
+        <h3>Cronograma de Estudos</h3>
+        <p>Grade semanal completa e plano de 12 semanas — iniciante, intermediário e avançado. Pronto para usar.</p>
+        <div class="feature-card-cta">Ver Cronograma <span class="feature-card-arrow">→</span></div>
+      </a>
+
+      <a class="feature-card reveal" href="#dicas" onclick="document.getElementById('dicas').scrollIntoView({behavior:'smooth'}); return false;">
+        <div class="feature-icon">💡</div>
+        <h3>Dicas de Aprovados</h3>
+        <p>Estratégias exclusivas de quem já passou em INSS, Receita Federal, Polícia Federal e outros grandes concursos.</p>
+        <div class="feature-card-cta">Ver Depoimentos <span class="feature-card-arrow">→</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODAL PLAYER ══════════════════════════════════════════════ -->
+<div class="yt-modal-overlay" id="ytModalOverlay" onclick="closeModal(event)">
+  <div class="yt-modal" id="ytModal">
+    <div class="yt-modal-header">
+      <div>
+        <div class="yt-modal-title" id="modalTitle">Carregando...</div>
+        <div class="yt-modal-meta" id="modalMeta"></div>
+      </div>
+      <button class="yt-modal-close" onclick="closeModalBtn()">✕</button>
+    </div>
+    <div class="yt-iframe-wrap">
+      <iframe id="ytIframe" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+    <div class="yt-modal-playlist" id="modalPlaylist"></div>
+  </div>
+</div>
+
+<!-- ═══ VIDEOAULAS ════════════════════════════════════════════════ -->
+<section id="videoaulas">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:36px;">
+      <div class="section-label">Videoaulas Gratuitas</div>
+      <h2 class="section-title">Aulas das <span class="yellow">principais matérias</span></h2>
+      <p class="section-sub">4 aulas reais por matéria — clique e assista direto aqui, sem sair do site.</p>
+    </div>
+
+    <!-- Filtros de matéria -->
+    <div class="video-filter-bar reveal">
+      <button class="vf-btn active" onclick="showMateria('dc', this)"><span class="vf-icon">⚖️</span> Dir. Constitucional</button>
+      <button class="vf-btn" onclick="showMateria('da', this)"><span class="vf-icon">🏛️</span> Dir. Administrativo</button>
+      <button class="vf-btn" onclick="showMateria('pt', this)"><span class="vf-icon">✍️</span> Português</button>
+      <button class="vf-btn" onclick="showMateria('rl', this)"><span class="vf-icon">🧠</span> Raciocínio Lógico</button>
+      <button class="vf-btn" onclick="showMateria('mt', this)"><span class="vf-icon">🔢</span> Matemática</button>
+      <button class="vf-btn" onclick="showMateria('ti', this)"><span class="vf-icon">💻</span> Informática</button>
+    </div>
+
+    <!-- ── DIREITO CONSTITUCIONAL ── -->
+    <div class="materia-section active reveal" id="mat-dc">
+      <div class="materia-header">
+        <div class="materia-icon-big">⚖️</div>
+        <div class="materia-info">
+          <h3>Direito Constitucional</h3>
+          <p>4 aulas selecionadas · AlfaCon, Estratégia Concursos · Do zero ao avançado</p>
+        </div>
+      </div>
+      <div class="video-grid-new">
+        <div class="video-card-new" onclick="openModal('hG5TACMZhSw','Direito Constitucional para Concursos 2024 — Aula 1','AlfaCon Concursos','⚖️ Dir. Constitucional', 'dc', 0)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/hG5TACMZhSw/mqdefault.jpg" alt="Aula 1 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">⚖️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 1/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Princípios Fundamentais da CF/88</h4>
+            <p>Fundamentos, objetivos e princípios da República — Arts. 1º ao 4º</p>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('e_KFS87Ydsw','Curso Completo Dir. Constitucional — Aula 1','Estratégia Concursos','⚖️ Dir. Constitucional', 'dc', 1)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/e_KFS87Ydsw/mqdefault.jpg" alt="Aula 2 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">⚖️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 2/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Direitos e Garantias Fundamentais</h4>
+            <p>Art. 5º completo — os direitos mais cobrados em todos os concursos</p>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>Prof. João Trindade</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('1ZMIAVX-abI','Curso Completo Dir. Constitucional — Direto ao Ponto','Estratégia Concursos','⚖️ Dir. Constitucional', 'dc', 2)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/1ZMIAVX-abI/mqdefault.jpg" alt="Aula 3 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">⚖️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 3/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Organização do Estado e Poderes</h4>
+            <p>Legislativo, Executivo e Judiciário — estrutura e atribuições</p>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>Prof. Adriane Fauth</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('6aycB7guHjQ','O que mais cai em Dir. Constitucional','Estratégia Concursos','⚖️ Dir. Constitucional', 'dc', 3)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/6aycB7guHjQ/mqdefault.jpg" alt="Aula 4 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">⚖️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 4/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>O que MAIS CAI em Concursos</h4>
+            <p>Assuntos com maior incidência — estratégia focada em aprovação</p>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DIREITO ADMINISTRATIVO ── -->
+    <div class="materia-section reveal" id="mat-da">
+      <div class="materia-header">
+        <div class="materia-icon-big">🏛️</div>
+        <div class="materia-info">
+          <h3>Direito Administrativo</h3>
+          <p>4 aulas selecionadas · AlfaCon, Estratégia Concursos · Do zero ao avançado</p>
+        </div>
+      </div>
+      <div class="video-grid-new">
+        <div class="video-card-new" onclick="openModal('hDRIv5modxY','Dir. Administrativo para Concursos 2024 — Aula 1','AlfaCon Concursos','🏛️ Dir. Administrativo', 'da', 0)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/hDRIv5modxY/mqdefault.jpg" alt="Aula 1 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🏛️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 1/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Princípios e Atos Administrativos</h4>
+            <p>LIMPE, princípios gerais e atos administrativos — base de tudo</p>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('53pQJERXK78','Dir. Administrativo do Zero — Prof. Herbert Almeida','Estratégia Concursos','🏛️ Dir. Administrativo', 'da', 1)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/53pQJERXK78/mqdefault.jpg" alt="Aula 2 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🏛️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 2/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Dir. Administrativo do Zero</h4>
+            <p>Conceito, fontes, poderes e organização da Administração Pública</p>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>Prof. Herbert Almeida</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('z7e5sLoJ-zE','Curso Completo Dir. Administrativo','Estratégia Concursos','🏛️ Dir. Administrativo', 'da', 2)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/z7e5sLoJ-zE/mqdefault.jpg" alt="Aula 3 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🏛️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 3/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Licitações e Contratos (Lei 14.133)</h4>
+            <p>Nova lei de licitações — modalidades, fases e pontos mais cobrados</p>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>Prof. Herbert Almeida</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('q8jk6i6tgKw','Dir. Administrativo para Concursos 2024 — Aula 2','AlfaCon Concursos','🏛️ Dir. Administrativo', 'da', 3)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/q8jk6i6tgKw/mqdefault.jpg" alt="Aula 4 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🏛️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 4/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Servidores Públicos — Lei 8.112</h4>
+            <p>Estatuto dos servidores federais — direitos, deveres e responsabilidades</p>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PORTUGUÊS ── -->
+    <div class="materia-section reveal" id="mat-pt">
+      <div class="materia-header">
+        <div class="materia-icon-big">✍️</div>
+        <div class="materia-info">
+          <h3>Língua Portuguesa</h3>
+          <p>4 aulas selecionadas · AlfaCon, Direção Concursos · Gramática e interpretação</p>
+        </div>
+      </div>
+      <div class="video-grid-new">
+        <div class="video-card-new" onclick="openModal('UQn3lWudBdM','Língua Portuguesa para Concursos — Aula 1','AlfaCon Concursos','✍️ Português', 'pt', 0)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/UQn3lWudBdM/mqdefault.jpg" alt="PT Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">✍️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 1/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Interpretação de Texto</h4>
+            <p>Estratégias para gabaritar questões de interpretação em qualquer banca</p>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('RjTHVYF69oo','Língua Portuguesa para Concursos — Aula 2','AlfaCon Concursos','✍️ Português', 'pt', 1)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/RjTHVYF69oo/mqdefault.jpg" alt="PT Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">✍️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 2/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Concordância e Regência</h4>
+            <p>As regras que mais caem — concordância verbal, nominal e regência</p>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('ksfhSgZ6nbI','Português para Concurso — Direção Concursos','Direção Concursos','✍️ Português', 'pt', 2)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/ksfhSgZ6nbI/mqdefault.jpg" alt="PT Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">✍️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 3/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Crase, Pontuação e Colocação</h4>
+            <p>Os tópicos que mais reprovam — crase, vírgula e colocação pronominal</p>
+            <div class="vc-meta"><span class="vc-channel">Direção Concursos</span><span>·</span><span>Prof. José Maria</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('zd8_NUqoZH4','Português do Zero para Concursos','Português com Letícia','✍️ Português', 'pt', 3)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/zd8_NUqoZH4/mqdefault.jpg" alt="PT Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">✍️</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 4/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Português do Zero ao Avançado</h4>
+            <p>Roteiro completo de estudo para quem está começando do zero</p>
+            <div class="vc-meta"><span class="vc-channel">Português com Letícia</span><span>·</span><span>2021</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RACIOCÍNIO LÓGICO ── -->
+    <div class="materia-section reveal" id="mat-rl">
+      <div class="materia-header">
+        <div class="materia-icon-big">🧠</div>
+        <div class="materia-info">
+          <h3>Raciocínio Lógico</h3>
+          <p>4 aulas selecionadas · Estratégia Concursos, AlfaCon · Lógica e matemática</p>
+        </div>
+      </div>
+      <div class="video-grid-new">
+        <div class="video-card-new" onclick="openModal('7a9ve2MEOWc','Raciocínio Lógico para Concursos — Parte 1','JC Concursos','🧠 Raciocínio Lógico', 'rl', 0)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/7a9ve2MEOWc/mqdefault.jpg" alt="RL Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🧠</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 1/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Proposições Lógicas</h4>
+            <p>Conectivos, negação e tabelas-verdade — base do raciocínio lógico</p>
+            <div class="vc-meta"><span class="vc-channel">JC Concursos</span><span>·</span><span>2022</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('Q-6-lJhawNA','Raciocínio Lógico — Prof. Brunno Lima','Estratégia Concursos','🧠 Raciocínio Lógico', 'rl', 1)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/Q-6-lJhawNA/mqdefault.jpg" alt="RL Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🧠</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 2/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Lógica Dedutiva e Silogismo</h4>
+            <p>Inferências válidas, silogismos e raciocínio dedutivo para provas</p>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>Prof. Brunno Lima</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('6NK_Cg9q_aQ','Raciocínio Lógico Matemático para Concursos','Direção Concursos','🧠 Raciocínio Lógico', 'rl', 2)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/6NK_Cg9q_aQ/mqdefault.jpg" alt="RL Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🧠</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 3/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Conjuntos e Diagramas</h4>
+            <p>Teoria dos conjuntos, diagramas de Venn e questões comentadas</p>
+            <div class="vc-meta"><span class="vc-channel">Direção Concursos</span><span>·</span><span>Prof. Renato Oliveira</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('hBMzFbbOpH0','Matemática e Raciocínio Lógico do Zero — Aula 1','Prep Concursos','🧠 Raciocínio Lógico', 'rl', 3)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/hBMzFbbOpH0/mqdefault.jpg" alt="RL Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🧠</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 4/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>RLM do Zero — Sequências e Padrões</h4>
+            <p>Sequências numéricas, padrões e problemas de raciocínio combinado</p>
+            <div class="vc-meta"><span class="vc-channel">Prep Concursos</span><span>·</span><span>Prof. Felippe Loureiro</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MATEMÁTICA ── -->
+    <div class="materia-section reveal" id="mat-mt">
+      <div class="materia-header">
+        <div class="materia-icon-big">🔢</div>
+        <div class="materia-info">
+          <h3>Matemática / Estatística</h3>
+          <p>4 aulas selecionadas · AlfaCon, Estratégia Concursos · Porcentagem, juros e estatística</p>
+        </div>
+      </div>
+      <div class="video-grid-new">
+        <div class="video-card-new" onclick="openModal('QeMmwOmc2i0','Matemática para Concursos 2024 — Aula 1','AlfaCon Concursos','🔢 Matemática', 'mt', 0)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/QeMmwOmc2i0/mqdefault.jpg" alt="MT Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🔢</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 1/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Porcentagem e Juros</h4>
+            <p>Regras de três, porcentagem, juros simples e compostos para provas</p>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('3UwD3tt90T8','Matemática para Concursos — Aula 1','JC Concursos','🔢 Matemática', 'mt', 1)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/3UwD3tt90T8/mqdefault.jpg" alt="MT Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🔢</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 2/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Probabilidade e Combinatória</h4>
+            <p>Análise combinatória, permutações e probabilidade básica</p>
+            <div class="vc-meta"><span class="vc-channel">JC Concursos</span><span>·</span><span>2020</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('4seOA19rtBE','O Segredo da Matemática para Concursos 2024','Direção Concursos','🔢 Matemática', 'mt', 2)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/4seOA19rtBE/mqdefault.jpg" alt="MT Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🔢</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 3/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>O Segredo da Matemática em 2024</h4>
+            <p>Estratégia e método para gabaritar matemática em qualquer concurso</p>
+            <div class="vc-meta"><span class="vc-channel">Direção Concursos</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('2j3kjH5m4M4','Estatística para Concursos — Saindo do Zero','Estratégia Concursos','🔢 Matemática', 'mt', 3)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/2j3kjH5m4M4/mqdefault.jpg" alt="MT Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">🔢</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 4/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Estatística — Saindo do Zero</h4>
+            <p>Média, mediana, moda, variância e desvio padrão para concursos</p>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>Prof. Jhoni Zini</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── INFORMÁTICA ── -->
+    <div class="materia-section reveal" id="mat-ti">
+      <div class="materia-header">
+        <div class="materia-icon-big">💻</div>
+        <div class="materia-info">
+          <h3>Informática</h3>
+          <p>4 aulas selecionadas · AlfaCon, Cursos do Portal · Windows, Office e Segurança</p>
+        </div>
+      </div>
+      <div class="video-grid-new">
+        <div class="video-card-new" onclick="openModal('T6vOSAqQKwc','Informática para Concursos 2024 — Aula 1','AlfaCon Concursos','💻 Informática', 'ti', 0)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/T6vOSAqQKwc/mqdefault.jpg" alt="TI Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">💻</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 1/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Windows e Conceitos Básicos</h4>
+            <p>Hardware, software, sistemas operacionais e Windows 10/11</p>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('zFzGuD1AnCQ','Informática para Concursos 2024 — Cursos do Portal','Cursos do Portal','💻 Informática', 'ti', 1)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/zFzGuD1AnCQ/mqdefault.jpg" alt="TI Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">💻</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 2/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Microsoft Office — Word e Excel</h4>
+            <p>Word, Excel e PowerPoint — funções mais cobradas nas provas</p>
+            <div class="vc-meta"><span class="vc-channel">Cursos do Portal</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('e-w07JpTYvo','Noções de Informática — Aula Gratuita','Direção Concursos','💻 Informática', 'ti', 2)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/e-w07JpTYvo/mqdefault.jpg" alt="TI Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">💻</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 3/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Internet, Redes e Segurança</h4>
+            <p>Navegadores, e-mail, redes, firewall e segurança da informação</p>
+            <div class="vc-meta"><span class="vc-channel">Direção Concursos</span><span>·</span><span>Prof. César Vianna</span></div>
+          </div>
+        </div>
+
+        <div class="video-card-new" onclick="openModal('KHkSTnK1sCw','Informática para Concursos 2024 — Conceitos Básicos Aula 1','Rodrigo Schaeffer','💻 Informática', 'ti', 3)">
+          <div class="vc-thumb">
+            <img src="https://img.youtube.com/vi/KHkSTnK1sCw/mqdefault.jpg" alt="TI Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="vc-thumb-fallback" style="display:none">💻</div>
+            <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
+            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-duration">Aula 4/4</div>
+          </div>
+          <div class="vc-body">
+            <h4>Banco de Dados e Cloud</h4>
+            <p>Conceitos de BD, armazenamento em nuvem e questões comentadas</p>
+            <div class="vc-meta"><span class="vc-channel">Rodrigo Schaeffer</span><span>·</span><span>2024</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PDFs ══════════════════════════════════════════════════════ -->
+<section id="pdfs">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:36px;">
+      <div class="section-label">Domínio Público</div>
+      <h2 class="section-title">Materiais Gratuitos em <span class="yellow">PDF</span></h2>
+      <p class="section-sub">Apostilas e resumos selecionados de fontes públicas e educacionais confiáveis.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" onclick="filterPDF(this,'all')">Todos</button>
+      <button class="filter-btn" onclick="filterPDF(this,'direito')">Direito</button>
+      <button class="filter-btn" onclick="filterPDF(this,'exatas')">Exatas</button>
+      <button class="filter-btn" onclick="filterPDF(this,'lingua')">Línguas</button>
+      <button class="filter-btn" onclick="filterPDF(this,'outros')">Outros</button>
+    </div>
+    <div class="pdf-grid">
+
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info"><h3>Constituição Federal Anotada</h3><span>Direito Constitucional</span></div>
+        </div>
+        <p class="pdf-desc">CF/88 completa com anotações doutrinárias e artigos mais cobrados em provas destacados.</p>
+        <div class="pdf-footer">
+          <span class="pdf-pages">📄 198 páginas</span>
+          <a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
+        </div>
+      </div>
+
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info"><h3>Lei 8.112/90 Comentada</h3><span>Direito Administrativo</span></div>
+        </div>
+        <p class="pdf-desc">Estatuto dos servidores públicos federais com comentários artigo a artigo e jurisprudência.</p>
+        <div class="pdf-footer">
+          <span class="pdf-pages">📄 86 páginas</span>
+          <a href="https://www.planalto.gov.br/ccivil_03/leis/l8112cons.htm" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
+        </div>
+      </div>
+
+      <div class="pdf-card reveal" data-cat="exatas">
+        <div class="pdf-header">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info"><h3>Raciocínio Lógico Essencial</h3><span>Exatas</span></div>
+        </div>
+        <p class="pdf-desc">Apostila completa de lógica proposicional, conjuntos, probabilidade e combinatória para concursos.</p>
+        <div class="pdf-footer">
+          <span class="pdf-pages">📄 112 páginas</span>
+          <a href="https://www.estrategiaconcursos.com.br" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
+        </div>
+      </div>
+
+      <div class="pdf-card reveal" data-cat="lingua">
+        <div class="pdf-header">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info"><h3>Gramática Resumida</h3><span>Língua Portuguesa</span></div>
+        </div>
+        <p class="pdf-desc">Resumo de todos os tópicos de gramática que mais aparecem em provas: concordância, regência e crase.</p>
+        <div class="pdf-footer">
+          <span class="pdf-pages">📄 74 páginas</span>
+          <a href="https://www.qconcursos.com" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
+        </div>
+      </div>
+
+      <div class="pdf-card reveal" data-cat="outros">
+        <div class="pdf-header">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info"><h3>Manual de Redação Oficial</h3><span>Redação Oficial</span></div>
+        </div>
+        <p class="pdf-desc">Manual da Presidência da República atualizado — indispensável para qualquer concurso federal.</p>
+        <div class="pdf-footer">
+          <span class="pdf-pages">📄 97 páginas</span>
+          <a href="https://www.planalto.gov.br/ccivil_03/manual/manual.htm" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
+        </div>
+      </div>
+
+      <div class="pdf-card reveal" data-cat="exatas">
+        <div class="pdf-header">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info"><h3>Informática para Concursos</h3><span>Exatas / TI</span></div>
+        </div>
+        <p class="pdf-desc">Windows, MS Office, Internet, segurança da informação, redes e questões comentadas das bancas.</p>
+        <div class="pdf-footer">
+          <span class="pdf-pages">📄 120 páginas</span>
+          <a href="https://www.grancursosonline.com.br" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MAPAS MENTAIS ══════════════════════════════════════════════ -->
+<section id="mapas">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:48px;">
+      <div class="section-label">Revisão Visual</div>
+      <h2 class="section-title">Mapas Mentais para <span class="yellow">Revisão Rápida</span></h2>
+      <p class="section-sub">Visualize as matérias antes da prova. Download gratuito.</p>
+    </div>
+    <div class="mapas-grid">
+
+      <div class="mapa-card reveal">
+        <div class="mapa-preview" style="background:#0d0d0d;">
+          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="150" cy="112" r="28" fill="rgba(255,215,0,0.2)" stroke="#FFD700" stroke-width="1.5"/>
+            <text x="150" y="117" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">CF/88</text>
+            <line x1="150" y1="84" x2="150" y2="42" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+            <circle cx="150" cy="34" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="150" y="38" text-anchor="middle" fill="#aaa" font-size="7">Art. 1-4</text>
+            <line x1="122" y1="102" x2="78" y2="78" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+            <circle cx="66" cy="72" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="66" y="76" text-anchor="middle" fill="#aaa" font-size="7">Dir. Fund.</text>
+            <line x1="122" y1="122" x2="76" y2="148" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+            <circle cx="64" cy="156" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="64" y="160" text-anchor="middle" fill="#aaa" font-size="7">Poderes</text>
+            <line x1="178" y1="102" x2="222" y2="78" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+            <circle cx="234" cy="72" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="234" y="76" text-anchor="middle" fill="#aaa" font-size="7">Org. Estado</text>
+            <line x1="178" y1="122" x2="224" y2="148" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+            <circle cx="236" cy="156" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="236" y="160" text-anchor="middle" fill="#aaa" font-size="7">Trib. Contas</text>
+          </svg>
+        </div>
+        <div class="mapa-body">
+          <h3>Direito Constitucional</h3>
+          <span>Estrutura da CF/88 · 1 página</span>
+        </div>
+      </div>
+
+      <div class="mapa-card reveal">
+        <div class="mapa-preview" style="background:#0a0a0a;">
+          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="110" y="96" width="80" height="36" rx="8" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
+            <text x="150" y="119" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">Adm. Pública</text>
+            <rect x="20" y="40" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="55" y="58" text-anchor="middle" fill="#aaa" font-size="8">Atos Adm.</text>
+            <line x1="90" y1="54" x2="110" y2="100" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <rect x="20" y="156" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="55" y="174" text-anchor="middle" fill="#aaa" font-size="8">Licitação</text>
+            <line x1="90" y1="170" x2="110" y2="128" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <rect x="210" y="40" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="245" y="58" text-anchor="middle" fill="#aaa" font-size="8">Servidores</text>
+            <line x1="210" y1="54" x2="190" y2="100" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <rect x="210" y="156" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="245" y="174" text-anchor="middle" fill="#aaa" font-size="8">Controle</text>
+            <line x1="210" y1="170" x2="190" y2="128" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="mapa-body">
+          <h3>Direito Administrativo</h3>
+          <span>Tópicos principais · 1 página</span>
+        </div>
+      </div>
+
+      <div class="mapa-card reveal">
+        <div class="mapa-preview" style="background:#080808;">
+          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="150" cy="112" rx="36" ry="22" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
+            <text x="150" y="117" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">Lógica</text>
+            <line x1="150" y1="90" x2="80" y2="52" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
+            <ellipse cx="62" cy="44" rx="28" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="62" y="48" text-anchor="middle" fill="#aaa" font-size="8">Proposições</text>
+            <line x1="150" y1="90" x2="220" y2="52" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
+            <ellipse cx="238" cy="44" rx="28" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="238" y="48" text-anchor="middle" fill="#aaa" font-size="8">Conectivos</text>
+            <line x1="114" y1="120" x2="60" y2="170" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
+            <ellipse cx="46" cy="178" rx="30" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="46" y="182" text-anchor="middle" fill="#aaa" font-size="8">Conjuntos</text>
+            <line x1="186" y1="120" x2="240" y2="170" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
+            <ellipse cx="254" cy="178" rx="30" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <text x="254" y="182" text-anchor="middle" fill="#aaa" font-size="8">Probabilidade</text>
+          </svg>
+        </div>
+        <div class="mapa-body">
+          <h3>Raciocínio Lógico</h3>
+          <span>Conectivos e conjuntos · 1 página</span>
+        </div>
+      </div>
+
+      <div class="mapa-card reveal">
+        <div class="mapa-preview" style="background:#0d0a00;">
+          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="116" y="98" width="68" height="28" rx="8" fill="rgba(255,215,0,0.2)" stroke="#FFD700" stroke-width="1.5"/>
+            <text x="150" y="117" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">Português</text>
+            <line x1="116" y1="108" x2="76" y2="62" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <rect x="30" y="44" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
+            <text x="64" y="62" text-anchor="middle" fill="#aaa" font-size="8">Concordância</text>
+            <line x1="184" y1="108" x2="224" y2="62" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <rect x="202" y="44" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
+            <text x="236" y="62" text-anchor="middle" fill="#aaa" font-size="8">Regência</text>
+            <line x1="116" y1="118" x2="76" y2="162" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <rect x="30" y="156" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
+            <text x="64" y="174" text-anchor="middle" fill="#aaa" font-size="8">Crase</text>
+            <line x1="184" y1="118" x2="224" y2="162" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <rect x="202" y="156" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
+            <text x="236" y="174" text-anchor="middle" fill="#aaa" font-size="8">Interpretação</text>
+          </svg>
+        </div>
+        <div class="mapa-body">
+          <h3>Língua Portuguesa</h3>
+          <span>Gramática essencial · 1 página</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CRONOGRAMA ════════════════════════════════════════════════ -->
+<section id="cronograma">
+  <div class="container">
+
+    <div class="reveal" style="margin-bottom:40px;">
+      <div class="section-label">Planejamento</div>
+      <h2 class="section-title">Cronograma Completo de <span class="yellow">Estudos</span></h2>
+      <p class="section-sub">Escolha seu perfil, visualize a grade semanal e o plano de 12 semanas. Tudo pronto para imprimir ou adaptar.</p>
+    </div>
+
+    <!-- Config rápida -->
+    <div class="crono-config reveal">
+      <div>
+        <label>Seu concurso alvo</label>
+        <select id="cfConcurso">
+          <option>INSS — Técnico do Seguro Social</option>
+          <option>Receita Federal — Auditor Fiscal</option>
+          <option>Polícia Federal — Agente</option>
+          <option>PRF — Policial Rodoviário Federal</option>
+          <option>TRT / TRF — Analista Judiciário</option>
+          <option>Banco do Brasil / CEF</option>
+          <option>Concurso Municipal / Estadual</option>
+        </select>
+      </div>
+      <div>
+        <label>Horas disponíveis por dia</label>
+        <select id="cfHoras" onchange="atualizarPerfil()">
+          <option value="ini">1 a 2 horas (Iniciante)</option>
+          <option value="int" selected>2 a 4 horas (Intermediário)</option>
+          <option value="ava">4 a 6 horas (Avançado)</option>
+          <option value="ava">6+ horas (Intensivo)</option>
+        </select>
+      </div>
+      <div>
+        <label>Meses até a prova</label>
+        <select id="cfMeses">
+          <option>3 meses</option>
+          <option selected>6 meses</option>
+          <option>9 meses</option>
+          <option>12 meses</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Seletor de perfil -->
+    <div class="crono-perfil-bar reveal">
+      <div class="cp-btn" onclick="setPerfil('ini',this)">
+        <div class="cp-icon">🌱</div>
+        <div class="cp-info">
+          <strong>Iniciante</strong>
+          <span>1–2h por dia · Do zero</span>
+        </div>
+      </div>
+      <div class="cp-btn active" onclick="setPerfil('int',this)">
+        <div class="cp-icon">📚</div>
+        <div class="cp-info">
+          <strong>Intermediário</strong>
+          <span>2–4h por dia · Já estudei</span>
+        </div>
+      </div>
+      <div class="cp-btn" onclick="setPerfil('ava',this)">
+        <div class="cp-icon">🚀</div>
+        <div class="cp-info">
+          <strong>Avançado</strong>
+          <span>4–6h por dia · Reta final</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PLANO INICIANTE ═══ -->
+    <div class="crono-plan" id="plan-ini">
+
+      <div class="crono-section-title reveal">
+        📅 Grade Semanal — Iniciante <span class="ct-badge">1–2h/dia · 6 dias</span>
+      </div>
+
+      <div class="crono-legend reveal">
+        <div class="leg-item"><div class="leg-dot" style="background:#3b82f6"></div>Dir. Constitucional</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#22c55e"></div>Português</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#f59e0b"></div>Raciocínio Lógico</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#ec4899"></div>Matemática</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#FFD700"></div>Revisão</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#6b7280"></div>Folga</div>
+      </div>
+
+      <div class="grade-wrap reveal">
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th style="width:80px">Horário</th>
+              <th>Segunda</th><th>Terça</th><th>Quarta</th>
+              <th>Quinta</th><th>Sexta</th><th>Sábado</th><th>Domingo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hora-col">19h – 19h30</td>
+              <td><div class="slot dc"><strong>Dir. Constitucional</strong><span>Princípios Fundamentais</span></div></td>
+              <td><div class="slot pt"><strong>Português</strong><span>Interpretação de Texto</span></div></td>
+              <td><div class="slot dc"><strong>Dir. Constitucional</strong><span>Direitos Fundamentais</span></div></td>
+              <td><div class="slot rl"><strong>Raciocínio Lógico</strong><span>Proposições Lógicas</span></div></td>
+              <td><div class="slot pt"><strong>Português</strong><span>Gramática Essencial</span></div></td>
+              <td><div class="slot rev"><strong>Revisão Semanal</strong><span>Flashcards + Resumo</span></div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">19h30 – 20h</td>
+              <td><div class="slot dc"><strong>Questões</strong><span>5 questões CESPE</span></div></td>
+              <td><div class="slot pt"><strong>Questões</strong><span>5 questões FCC</span></div></td>
+              <td><div class="slot dc"><strong>Questões</strong><span>5 questões CESPE</span></div></td>
+              <td><div class="slot rl"><strong>Questões</strong><span>5 questões FGV</span></div></td>
+              <td><div class="slot mt"><strong>Matemática</strong><span>Porcentagem e Juros</span></div></td>
+              <td><div class="slot rev"><strong>Mapa Mental</strong><span>Construir 1 mapa</span></div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">20h – 20h30</td>
+              <td><div class="slot folga">Intervalo livre</div></td>
+              <td><div class="slot folga">Intervalo livre</div></td>
+              <td><div class="slot folga">Intervalo livre</div></td>
+              <td><div class="slot folga">Intervalo livre</div></td>
+              <td><div class="slot folga">Intervalo livre</div></td>
+              <td><div class="slot sim"><strong>Mini-simulado</strong><span>10 questões mistas</span></div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="crono-section-title reveal">📆 Plano de 12 Semanas — Iniciante</div>
+      <div class="semanas-grid reveal">
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 1–2</span><span class="semana-fase fase-base">Base</span></div>
+          <div class="semana-title">Leitura e primeiros contatos</div>
+          <ul class="semana-metas">
+            <li>Ler o edital do concurso do zero ao fim</li>
+            <li>Instalar timer Pomodoro (25min + 5min)</li>
+            <li>Estudar CF/88 Arts. 1º ao 4º</li>
+            <li>Começar interpretação de texto (1 texto/dia)</li>
+            <li>Meta: 10 questões semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 3–4</span><span class="semana-fase fase-base">Base</span></div>
+          <div class="semana-title">Direitos Fundamentais + Gramática</div>
+          <ul class="semana-metas">
+            <li>CF/88 Art. 5º completo (direitos individuais)</li>
+            <li>Concordância verbal e nominal</li>
+            <li>Proposições lógicas — conectivos</li>
+            <li>Meta: 20 questões semanais</li>
+            <li>Fazer 1 mapa mental por matéria</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 5–6</span><span class="semana-fase fase-base">Base</span></div>
+          <div class="semana-title">Organização do Estado + Crase e Regência</div>
+          <ul class="semana-metas">
+            <li>Poderes da República — Legislativo, Executivo</li>
+            <li>Crase: regras e macetes</li>
+            <li>Conjuntos e diagramas de Venn</li>
+            <li>Porcentagem e regra de três</li>
+            <li>Meta: 25 questões semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 7–8</span><span class="semana-fase fase-fixacao">Fixação</span></div>
+          <div class="semana-title">Revisão + Questões em série</div>
+          <ul class="semana-metas">
+            <li>Rever todo Dir. Constitucional estudado</li>
+            <li>Reler mapas mentais criados</li>
+            <li>30 questões por semana</li>
+            <li>Identificar pontos fracos e focar neles</li>
+            <li>1 mini-simulado no sábado (20 questões)</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 9–10</span><span class="semana-fase fase-fixacao">Fixação</span></div>
+          <div class="semana-title">Novas matérias + Resolução intensa</div>
+          <ul class="semana-metas">
+            <li>Dir. Administrativo: princípios e atos</li>
+            <li>Colocação pronominal e pontuação</li>
+            <li>Raciocínio lógico: silogismo e sequências</li>
+            <li>40 questões semanais</li>
+            <li>Marcar erros para revisão de véspera</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 11–12</span><span class="semana-fase fase-revisao">Revisão</span></div>
+          <div class="semana-title">Revisão geral + Simulados</div>
+          <ul class="semana-metas">
+            <li>Reler TODOS os mapas mentais</li>
+            <li>Refazer questões que errou</li>
+            <li>2 simulados completos (30 questões)</li>
+            <li>Priorizar descanso na semana da prova</li>
+            <li>Revisão rápida nas 48h anteriores</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PLANO INTERMEDIÁRIO ═══ -->
+    <div class="crono-plan active" id="plan-int">
+
+      <div class="crono-section-title reveal">
+        📅 Grade Semanal — Intermediário <span class="ct-badge">2–4h/dia · 6 dias</span>
+      </div>
+
+      <div class="crono-legend reveal">
+        <div class="leg-item"><div class="leg-dot" style="background:#3b82f6"></div>Dir. Constitucional</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#8b5cf6"></div>Dir. Administrativo</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#22c55e"></div>Português</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#f59e0b"></div>Raciocínio Lógico</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#ec4899"></div>Matemática</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#14b8a6"></div>Informática</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#FFD700"></div>Revisão/Simulado</div>
+      </div>
+
+      <div class="grade-wrap reveal">
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th style="width:90px">Horário</th>
+              <th>Segunda</th><th>Terça</th><th>Quarta</th>
+              <th>Quinta</th><th>Sexta</th><th>Sábado</th><th>Domingo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hora-col">18h – 19h</td>
+              <td><div class="slot dc"><strong>Dir. Constitucional</strong><span>Teoria 45min</span></div></td>
+              <td><div class="slot da"><strong>Dir. Administrativo</strong><span>Teoria 45min</span></div></td>
+              <td><div class="slot pt"><strong>Português</strong><span>Gramática 45min</span></div></td>
+              <td><div class="slot rl"><strong>Raciocínio Lógico</strong><span>Teoria 45min</span></div></td>
+              <td><div class="slot mt"><strong>Matemática</strong><span>Teoria 45min</span></div></td>
+              <td><div class="slot rev"><strong>Revisão Geral</strong><span>Mapas Mentais</span></div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">19h – 19h15</td>
+              <td colspan="5" style="text-align:center; color:var(--gray-d); font-size:12px; border:1px solid rgba(255,255,255,.04);">— Pausa —</td>
+              <td><div class="slot folga">Pausa</div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">19h15 – 20h15</td>
+              <td><div class="slot dc"><strong>Questões DC</strong><span>15 questões CESPE</span></div></td>
+              <td><div class="slot da"><strong>Questões DA</strong><span>15 questões FCC</span></div></td>
+              <td><div class="slot pt"><strong>Questões Port.</strong><span>15 questões FGV</span></div></td>
+              <td><div class="slot rl"><strong>Questões RL</strong><span>15 questões VUNESP</span></div></td>
+              <td><div class="slot ti"><strong>Informática</strong><span>Teoria + 10 questões</span></div></td>
+              <td><div class="slot sim"><strong>Simulado</strong><span>40 questões · 2h</span></div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">20h15 – 21h</td>
+              <td><div class="slot pt"><strong>Português</strong><span>Interpretação texto</span></div></td>
+              <td><div class="slot dc"><strong>Dir. Constitucional</strong><span>Tópico avançado</span></div></td>
+              <td><div class="slot da"><strong>Dir. Administrativo</strong><span>Licitações / Lei 14.133</span></div></td>
+              <td><div class="slot mt"><strong>Matemática</strong><span>Exercícios variados</span></div></td>
+              <td><div class="slot rev"><strong>Revisão do dia</strong><span>Erros + Flashcards</span></div></td>
+              <td><div class="slot rev"><strong>Correção simulado</strong><span>Análise dos erros</span></div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="crono-section-title reveal">📆 Plano de 12 Semanas — Intermediário</div>
+      <div class="semanas-grid reveal">
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 1–2</span><span class="semana-fase fase-base">Base</span></div>
+          <div class="semana-title">Diagnóstico e organização</div>
+          <ul class="semana-metas">
+            <li>Fazer um simulado diagnóstico (50 questões)</li>
+            <li>Mapear pontos fortes e fracos</li>
+            <li>Ler o edital e marcar os pesos de cada matéria</li>
+            <li>Montar pasta de resumos e organizar materiais</li>
+            <li>Meta: 50 questões semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 3–4</span><span class="semana-fase fase-base">Base</span></div>
+          <div class="semana-title">Direito Constitucional — Bloco 1</div>
+          <ul class="semana-metas">
+            <li>CF/88: Arts. 1º ao 17 (princípios e dir. fundamentais)</li>
+            <li>Remédios constitucionais: HC, HD, MS, MI, AP</li>
+            <li>Português: concordância + regência + crase</li>
+            <li>Raciocínio Lógico: proposições + tabela-verdade</li>
+            <li>Meta: 70 questões semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 5–6</span><span class="semana-fase fase-base">Base</span></div>
+          <div class="semana-title">Dir. Administrativo — Bloco 1</div>
+          <ul class="semana-metas">
+            <li>Princípios LIMPE + Atos Administrativos</li>
+            <li>Poderes da Administração</li>
+            <li>Português: colocação pronominal + pontuação</li>
+            <li>Matemática: porcentagem, juros, regra de três</li>
+            <li>Meta: 80 questões semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 7–8</span><span class="semana-fase fase-fixacao">Fixação</span></div>
+          <div class="semana-title">Licitações, Contratos e Servidores</div>
+          <ul class="semana-metas">
+            <li>Lei 14.133/2021 (Nova Lei de Licitações)</li>
+            <li>Lei 8.112/90 (Servidores Públicos Federais)</li>
+            <li>Responsabilidade Civil do Estado</li>
+            <li>RL: conjuntos, silogismo e sequências</li>
+            <li>Meta: 90 questões semanais + 1 simulado</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 9–10</span><span class="semana-fase fase-fixacao">Fixação</span></div>
+          <div class="semana-title">Organização do Estado + Informática</div>
+          <ul class="semana-metas">
+            <li>CF/88: Poderes Legislativo, Executivo, Judiciário</li>
+            <li>Controle da Administração e TCU</li>
+            <li>Informática: Windows, Office, Internet, Segurança</li>
+            <li>Matemática: probabilidade e estatística</li>
+            <li>Meta: 100 questões semanais + 1 simulado</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 11–12</span><span class="semana-fase fase-revisao">Revisão Final</span></div>
+          <div class="semana-title">Revisão total + Simulados intensivos</div>
+          <ul class="semana-metas">
+            <li>Revisão com mapas mentais de todas as matérias</li>
+            <li>Refazer todos os erros dos simulados anteriores</li>
+            <li>3 simulados completos (80 questões · 4h cada)</li>
+            <li>Descanso nas 48h antes da prova</li>
+            <li>Revisão expressa no dia anterior (só mapas)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PLANO AVANÇADO ═══ -->
+    <div class="crono-plan" id="plan-ava">
+
+      <div class="crono-section-title reveal">
+        📅 Grade Semanal — Avançado <span class="ct-badge">4–6h/dia · 6 dias</span>
+      </div>
+
+      <div class="crono-legend reveal">
+        <div class="leg-item"><div class="leg-dot" style="background:#3b82f6"></div>Dir. Constitucional</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#8b5cf6"></div>Dir. Administrativo</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#22c55e"></div>Português</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#f59e0b"></div>Raciocínio Lógico</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#ec4899"></div>Matemática</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#14b8a6"></div>Informática / Leg.</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#a855f7"></div>Legislação Específica</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#ef4444"></div>Simulado</div>
+      </div>
+
+      <div class="grade-wrap reveal">
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th style="width:90px">Horário</th>
+              <th>Segunda</th><th>Terça</th><th>Quarta</th>
+              <th>Quinta</th><th>Sexta</th><th>Sábado</th><th>Domingo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hora-col">06h – 07h30</td>
+              <td><div class="slot dc"><strong>Dir. Constitucional</strong><span>Teoria aprofundada</span></div></td>
+              <td><div class="slot da"><strong>Dir. Administrativo</strong><span>Teoria aprofundada</span></div></td>
+              <td><div class="slot pt"><strong>Português</strong><span>Gramática + Texto</span></div></td>
+              <td><div class="slot rl"><strong>Raciocínio Lógico</strong><span>Teoria + exercícios</span></div></td>
+              <td><div class="slot mt"><strong>Matemática</strong><span>Teoria + exercícios</span></div></td>
+              <td><div class="slot sim"><strong>Simulado Completo</strong><span>100 questões · 5h</span></div></td>
+              <td><div class="slot rev"><strong>Revisão semanal</strong><span>Mapas + Flashcards</span></div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">07h30 – 08h</td>
+              <td colspan="5" style="text-align:center;color:var(--gray-d);font-size:12px;border:1px solid rgba(255,255,255,.04);">— Pausa / Café —</td>
+              <td style="border:1px solid rgba(255,255,255,.04);"></td>
+              <td><div class="slot folga">Pausa</div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">08h – 09h30</td>
+              <td><div class="slot dc"><strong>Questões DC</strong><span>25 questões CESPE</span></div></td>
+              <td><div class="slot da"><strong>Questões DA</strong><span>25 questões mistas</span></div></td>
+              <td><div class="slot da"><strong>Licitações</strong><span>Lei 14.133 + questões</span></div></td>
+              <td><div class="slot rl"><strong>Questões RL</strong><span>25 questões FGV</span></div></td>
+              <td><div class="slot ti"><strong>Informática</strong><span>20 questões + teoria</span></div></td>
+              <td><div class="slot sim"><strong>Simulado (cont.)</strong><span>Continuação</span></div></td>
+              <td><div class="slot rev"><strong>Correção erros</strong><span>Análise dos erros</span></div></td>
+            </tr>
+            <tr>
+              <td class="hora-col">19h – 20h30</td>
+              <td><div class="slot leg"><strong>Leg. Específica</strong><span>Lei do concurso</span></div></td>
+              <td><div class="slot pt"><strong>Português</strong><span>Questões + redação</span></div></td>
+              <td><div class="slot dc"><strong>Jurisprudência</strong><span>STF / STJ recente</span></div></td>
+              <td><div class="slot mt"><strong>Estatística</strong><span>Média, mediana, moda</span></div></td>
+              <td><div class="slot rev"><strong>Revisão semanal</strong><span>Todos os erros</span></div></td>
+              <td><div class="slot sim"><strong>Gabarito simulado</strong><span>Correção + análise</span></div></td>
+              <td><div class="slot folga">Folga / Descanso</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="crono-section-title reveal">📆 Plano de 12 Semanas — Avançado</div>
+      <div class="semanas-grid reveal">
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 1–2</span><span class="semana-fase fase-base">Base Intensiva</span></div>
+          <div class="semana-title">Revisão diagnóstica + Organização</div>
+          <ul class="semana-metas">
+            <li>Simulado diagnóstico (100 questões)</li>
+            <li>Mapear pontos fracos com precisão</li>
+            <li>Criar planilha de acompanhamento de erros</li>
+            <li>Ler edital e mapear pesos específicos</li>
+            <li>Meta: 120 questões semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 3–4</span><span class="semana-fase fase-base">Base Intensiva</span></div>
+          <div class="semana-title">Dir. Constitucional completo</div>
+          <ul class="semana-metas">
+            <li>CF/88 completa — Arts. 1º ao 135</li>
+            <li>Controle de constitucionalidade (ADI, ADC, ADPF)</li>
+            <li>Jurisprudência STF recente</li>
+            <li>Português: todos os tópicos de gramática</li>
+            <li>Meta: 150 questões semanais + 1 simulado</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 5–6</span><span class="semana-fase fase-base">Base Intensiva</span></div>
+          <div class="semana-title">Dir. Administrativo completo</div>
+          <ul class="semana-metas">
+            <li>Lei 14.133 (licitações) — artigo por artigo</li>
+            <li>Lei 8.112 (servidores) — artigo por artigo</li>
+            <li>Improbidade administrativa (Lei 8.429)</li>
+            <li>RL: todo o conteúdo + questões em série</li>
+            <li>Meta: 160 questões semanais + 1 simulado</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 7–8</span><span class="semana-fase fase-fixacao">Fixação</span></div>
+          <div class="semana-title">Legislação específica + Estatística</div>
+          <ul class="semana-metas">
+            <li>Lei específica do cargo/órgão do concurso</li>
+            <li>Estatística: distribuição, probabilidade, inferência</li>
+            <li>Informática: segurança, redes, BD e cloud</li>
+            <li>Revisão de português com foco em erros</li>
+            <li>Meta: 180 questões + 2 simulados semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 9–10</span><span class="semana-fase fase-revisao">Revisão</span></div>
+          <div class="semana-title">Revisão por blocos temáticos</div>
+          <ul class="semana-metas">
+            <li>Refazer todas as questões erradas anteriores</li>
+            <li>Revisão com mapas mentais de cada matéria</li>
+            <li>Focar nas bancas do concurso específico</li>
+            <li>3 simulados completos nessas 2 semanas</li>
+            <li>Meta: 200 questões semanais</li>
+          </ul>
+        </div>
+        <div class="semana-card">
+          <div class="semana-header"><span class="semana-num">Semanas 11–12</span><span class="semana-fase fase-simulado">Reta Final</span></div>
+          <div class="semana-title">Reta final — Só revisão e simulados</div>
+          <ul class="semana-metas">
+            <li>Apenas revisão — zero conteúdo novo</li>
+            <li>2 simulados na semana 11 (condição de prova)</li>
+            <li>Semana 12: só mapas mentais e questões certas</li>
+            <li>48h antes: descanso e revisão leve</li>
+            <li>Véspera: só mapas + boa noite de sono</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dicas estratégicas -->
+    <div class="crono-section-title reveal" style="margin-top:48px;">
+      💡 Regras de Ouro do Estudo
+    </div>
+    <div class="crono-dicas-grid reveal">
+      <div class="crono-dica">
+        <div class="cd-icon">⏱️</div>
+        <div>
+          <strong>Técnica Pomodoro</strong>
+          <p>Estude 25 minutos sem interrupção, pause 5 minutos. A cada 4 ciclos, pause 20 minutos. Aumenta o foco e reduz a fadiga mental.</p>
+        </div>
+      </div>
+      <div class="crono-dica">
+        <div class="cd-icon">📊</div>
+        <div>
+          <strong>Lei de Pareto (80/20)</strong>
+          <p>20% do conteúdo resolve 80% das questões. Priorize o que mais cai: identifique os tópicos quentes antes de estudar os raros.</p>
+        </div>
+      </div>
+      <div class="crono-dica">
+        <div class="cd-icon">🔁</div>
+        <div>
+          <strong>Repetição Espaçada</strong>
+          <p>Revise o conteúdo após 1 dia, depois 3 dias, 7 dias e 21 dias. A curva do esquecimento de Ebbinghaus mostra que isso fixa em até 90%.</p>
+        </div>
+      </div>
+      <div class="crono-dica">
+        <div class="cd-icon">✏️</div>
+        <div>
+          <strong>Questões todos os dias</strong>
+          <p>Mesmo que seja 5 questões, resolva diariamente. Quem resolve 2.000 questões antes da prova tem taxa de aprovação 3x maior.</p>
+        </div>
+      </div>
+      <div class="crono-dica">
+        <div class="cd-icon">😴</div>
+        <div>
+          <strong>Sono é estudo</strong>
+          <p>Durante o sono o cérebro consolida a memória. Dormir menos de 7h reduz a retenção em até 40%. Nunca sacrifique o sono pelo estudo.</p>
+        </div>
+      </div>
+      <div class="crono-dica">
+        <div class="cd-icon">🎯</div>
+        <div>
+          <strong>Simule o dia da prova</strong>
+          <p>Faça simulados no mesmo horário da prova real, no mesmo ambiente (silêncio, mesa, sem celular). O cérebro aprende pelo contexto.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ DICAS / DEPOIMENTOS ═══════════════════════════════════════ -->
+<section id="dicas">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:52px;">
+      <div class="section-label">Quem já passou conta</div>
+      <h2 class="section-title">Dicas de <span class="yellow">Aprovados</span></h2>
+      <p class="section-sub">Estratégias reais de quem conquistou a vaga dos sonhos.</p>
+    </div>
+    <div class="dicas-grid">
+
+      <div class="dica-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="dica-quote">
+          Estudei 4 horas por dia durante 8 meses focando nas matérias que mais caem. O mapa mental de Constitucional que baixei aqui foi essencial na reta final — revisei em menos de 30 minutos.
+        </p>
+        <div class="dica-author">
+          <div class="dica-avatar">👩</div>
+          <div class="dica-author-info">
+            <strong>Maria Fernanda S.</strong>
+            <span>Aprovada no INSS 2024 · 89 pontos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dica-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="dica-quote">
+          O segredo foi fazer questões todos os dias. Errei muito no começo, mas os comentários explicados me fizeram entender o raciocínio das bancas. Na 3ª tentativa passei na Receita Federal.
+        </p>
+        <div class="dica-author">
+          <div class="dica-avatar">👨</div>
+          <div class="dica-author-info">
+            <strong>Carlos Eduardo M.</strong>
+            <span>Auditor Fiscal — Receita Federal 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dica-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="dica-quote">
+          Não terceirize seu planejamento. Adapte o cronograma à sua realidade. Eu estudava só 2h por dia, mas com consistência e método. Em 11 meses passei na PRF sem pagar cursinho.
+        </p>
+        <div class="dica-author">
+          <div class="dica-avatar">👨‍💼</div>
+          <div class="dica-author-info">
+            <strong>Roberto A. Lima</strong>
+            <span>Policial Rodoviário Federal — PRF 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dica-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="dica-quote">
+          Português foi meu calcanhar de Aquiles. Resolvi mais de 800 questões comentadas e meu índice de acerto saiu de 40% para 78%. Os resumos de gramática daqui foram meu guia.
+        </p>
+        <div class="dica-author">
+          <div class="dica-avatar">👩‍💻</div>
+          <div class="dica-author-info">
+            <strong>Juliana Torres B.</strong>
+            <span>TRT 2ª Região · Analista Judiciário 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dica-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="dica-quote">
+          Dica de ouro: leia o edital do zero e monte seu cronograma pelas matérias com maior peso. Muita gente estuda igual pra todos os concursos. Eu personalizei e acertei na primeira tentativa.
+        </p>
+        <div class="dica-author">
+          <div class="dica-avatar">👨‍🎓</div>
+          <div class="dica-author-info">
+            <strong>Diego Fonseca N.</strong>
+            <span>TCU · Analista de Controle 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dica-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="dica-quote">
+          A comunidade do Clube foi fundamental. Sempre que eu travava num assunto, alguém já tinha passado pelo mesmo problema. Aprendi mais trocando com outros concurseiros do que em vídeos.
+        </p>
+        <div class="dica-author">
+          <div class="dica-avatar">👩‍⚖️</div>
+          <div class="dica-author-info">
+            <strong>Aline Cristina P.</strong>
+            <span>Defensoria Pública — Defensor Público 2024</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BANNER ════════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="container">
+    <h2>Sua aprovação começa hoje.</h2>
+    <p>Junte-se a +47.000 concurseiros que escolheram o caminho certo.</p>
+    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+      <a href="#features" class="btn btn-dark" style="font-size:17px; padding:18px 36px;">🚀 Quero ser Aprovado — Grátis</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">🏆</div>
+          Clube dos <span>Aprovados</span>
+        </div>
+        <p>A maior plataforma gratuita de estudos para concursos públicos do Brasil. Materiais, estratégias e comunidade para te levar à aprovação.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" class="social-link" aria-label="Telegram">✈️</a>
+          <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Materiais</h4>
+        <ul>
+          <li><a href="#videoaulas">Videoaulas</a></li>
+          <li><a href="#pdfs">PDFs Gratuitos</a></li>
+          <li><a href="#mapas">Mapas Mentais</a></li>
+          <li><a href="#cronograma">Cronograma</a></li>
+          <li><a href="#features">Questões</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Matérias</h4>
+        <ul>
+          <li><a href="#videoaulas">Dir. Constitucional</a></li>
+          <li><a href="#videoaulas">Dir. Administrativo</a></li>
+          <li><a href="#videoaulas">Português</a></li>
+          <li><a href="#videoaulas">Raciocínio Lógico</a></li>
+          <li><a href="#videoaulas">Informática</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Concursos</h4>
+        <ul>
+          <li><a href="#">INSS</a></li>
+          <li><a href="#">Receita Federal</a></li>
+          <li><a href="#">Polícia Federal</a></li>
+          <li><a href="#">TRT / TRF</a></li>
+          <li><a href="#">Banco Central</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Clube dos Aprovados. Todos os direitos reservados.</p>
+      <p>Links para materiais de domínio público e fontes externas. Este site não tem vínculo com bancas ou órgãos governamentais.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══════════════════════════════════════════════════ -->
+<script>
+  /* ── Videoaulas — dados das playlists ────────────────────── */
+  const PLAYLISTS = {
+    dc: [
+      { id: 'hG5TACMZhSw', title: 'Princípios Fundamentais da CF/88', ch: 'AlfaCon' },
+      { id: 'e_KFS87Ydsw', title: 'Direitos e Garantias Fundamentais', ch: 'Estratégia Concursos' },
+      { id: '1ZMIAVX-abI', title: 'Organização do Estado e Poderes', ch: 'Estratégia Concursos' },
+      { id: '6aycB7guHjQ', title: 'O que MAIS CAI em Concursos', ch: 'Estratégia Concursos' },
+    ],
+    da: [
+      { id: 'hDRIv5modxY', title: 'Princípios e Atos Administrativos', ch: 'AlfaCon' },
+      { id: '53pQJERXK78', title: 'Dir. Administrativo do Zero', ch: 'Estratégia Concursos' },
+      { id: 'z7e5sLoJ-zE', title: 'Licitações e Contratos (Lei 14.133)', ch: 'Estratégia Concursos' },
+      { id: 'q8jk6i6tgKw', title: 'Servidores Públicos — Lei 8.112', ch: 'AlfaCon' },
+    ],
+    pt: [
+      { id: 'UQn3lWudBdM', title: 'Interpretação de Texto', ch: 'AlfaCon' },
+      { id: 'RjTHVYF69oo', title: 'Concordância e Regência', ch: 'AlfaCon' },
+      { id: 'ksfhSgZ6nbI', title: 'Crase, Pontuação e Colocação', ch: 'Direção Concursos' },
+      { id: 'zd8_NUqoZH4', title: 'Português do Zero ao Avançado', ch: 'Português com Letícia' },
+    ],
+    rl: [
+      { id: '7a9ve2MEOWc', title: 'Proposições Lógicas', ch: 'JC Concursos' },
+      { id: 'Q-6-lJhawNA', title: 'Lógica Dedutiva e Silogismo', ch: 'Estratégia Concursos' },
+      { id: '6NK_Cg9q_aQ', title: 'Conjuntos e Diagramas', ch: 'Direção Concursos' },
+      { id: 'hBMzFbbOpH0', title: 'RLM do Zero — Sequências e Padrões', ch: 'Prep Concursos' },
+    ],
+    mt: [
+      { id: 'QeMmwOmc2i0', title: 'Porcentagem e Juros', ch: 'AlfaCon' },
+      { id: '3UwD3tt90T8', title: 'Probabilidade e Combinatória', ch: 'JC Concursos' },
+      { id: '4seOA19rtBE', title: 'O Segredo da Matemática em 2024', ch: 'Direção Concursos' },
+      { id: '2j3kjH5m4M4', title: 'Estatística — Saindo do Zero', ch: 'Estratégia Concursos' },
+    ],
+    ti: [
+      { id: 'T6vOSAqQKwc', title: 'Windows e Conceitos Básicos', ch: 'AlfaCon' },
+      { id: 'zFzGuD1AnCQ', title: 'Microsoft Office — Word e Excel', ch: 'Cursos do Portal' },
+      { id: 'e-w07JpTYvo', title: 'Internet, Redes e Segurança', ch: 'Direção Concursos' },
+      { id: 'KHkSTnK1sCw', title: 'Banco de Dados e Cloud', ch: 'Rodrigo Schaeffer' },
+    ],
+  };
+
+  let currentMateria = 'dc';
+  let currentVideoIdx = 0;
+
+  function showMateria(id, btn) {
+    document.querySelectorAll('.materia-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.vf-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('mat-' + id).classList.add('active');
+    btn.classList.add('active');
+    currentMateria = id;
+  }
+
+  function openModal(videoId, title, channel, matLabel, materiaKey, idx) {
+    currentMateria = materiaKey;
+    currentVideoIdx = idx;
+    const overlay = document.getElementById('ytModalOverlay');
+    const iframe  = document.getElementById('ytIframe');
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalMeta').textContent = channel + ' · ' + matLabel;
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    buildPlaylist(materiaKey, idx);
+  }
+
+  function buildPlaylist(materiaKey, activeIdx) {
+    const list = document.getElementById('modalPlaylist');
+    const vids  = PLAYLISTS[materiaKey] || [];
+    list.innerHTML = vids.map((v, i) => `
+      <div class="yt-pl-item ${i === activeIdx ? 'active' : ''}" onclick="switchVideo('${v.id}','${v.title}','${v.ch}','${materiaKey}',${i})">
+        <div class="yt-pl-num">${i + 1}</div>
+        <div class="yt-pl-info">
+          <strong>${v.title}</strong>
+          <span>${v.ch}</span>
+        </div>
+      </div>`).join('');
+  }
+
+  function switchVideo(videoId, title, channel, materiaKey, idx) {
+    currentVideoIdx = idx;
+    document.getElementById('ytIframe').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalMeta').textContent = channel;
+    document.querySelectorAll('.yt-pl-item').forEach((el, i) => {
+      el.classList.toggle('active', i === idx);
+    });
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('ytModalOverlay')) closeModalBtn();
+  }
+  function closeModalBtn() {
+    document.getElementById('ytModalOverlay').classList.remove('open');
+    document.getElementById('ytIframe').src = '';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+  /* ── SEARCH ENGINE ────────────────────────────────────────── */
+  const SEARCH_DB = [
+    // ── VIDEOAULAS ────────────────────────────────────────────
+    { tipo:'video', titulo:'Princípios Fundamentais da CF/88', desc:'Aula AlfaCon 2024 · Direito Constitucional do zero', tags:['direito','constitucional','art 1','fundamentos','república','federativa','democrático'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('dc', document.querySelector('.vf-btn')); openModal('hG5TACMZhSw','Princípios Fundamentais da CF/88','AlfaCon','⚖️ Dir. Constitucional','dc',0); },400); } },
+    { tipo:'video', titulo:'Direitos e Garantias Fundamentais', desc:'Estratégia Concursos · Art. 5º da CF/88 completo', tags:['direito','constitucional','art 5','habeas corpus','mandado','garantias','fundamentais'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('e_KFS87Ydsw','Direitos e Garantias Fundamentais','Estratégia','⚖️ Dir. Constitucional','dc',1); },400); } },
+    { tipo:'video', titulo:'Organização do Estado e Poderes', desc:'Estratégia Concursos · Legislativo, Executivo e Judiciário', tags:['direito','constitucional','poderes','estado','legislativo','executivo','judiciário'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('1ZMIAVX-abI','Organização do Estado e Poderes','Estratégia','⚖️ Dir. Constitucional','dc',2); },400); } },
+    { tipo:'video', titulo:'Princípios e Atos Administrativos', desc:'AlfaCon 2024 · LIMPE e atos administrativos', tags:['direito','administrativo','limpe','legalidade','impessoalidade','moralidade','atos'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('da', document.querySelectorAll('.vf-btn')[1]); openModal('hDRIv5modxY','Princípios e Atos Administrativos','AlfaCon','🏛️ Dir. Administrativo','da',0); },400); } },
+    { tipo:'video', titulo:'Dir. Administrativo do Zero', desc:'Estratégia Concursos · Prof. Herbert Almeida', tags:['direito','administrativo','zero','iniciante','organização','administração','pública'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('53pQJERXK78','Dir. Administrativo do Zero','Estratégia','🏛️ Dir. Administrativo','da',1); },400); } },
+    { tipo:'video', titulo:'Licitações e Contratos — Lei 14.133', desc:'Estratégia Concursos · Nova lei de licitações', tags:['licitação','contrato','14133','lei','administrativo','pregão','concorrência','modalidades'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('z7e5sLoJ-zE','Licitações e Contratos','Estratégia','🏛️ Dir. Administrativo','da',2); },400); } },
+    { tipo:'video', titulo:'Interpretação de Texto', desc:'AlfaCon 2024 · Estratégia para gabaritar Português', tags:['português','interpretação','texto','leitura','inferência','cespe','concurso'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('pt', document.querySelectorAll('.vf-btn')[2]); openModal('UQn3lWudBdM','Interpretação de Texto','AlfaCon','✍️ Português','pt',0); },400); } },
+    { tipo:'video', titulo:'Concordância e Regência Verbal', desc:'AlfaCon 2024 · Gramática para concursos', tags:['português','concordância','regência','verbal','nominal','gramática','verbo'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('RjTHVYF69oo','Concordância e Regência','AlfaCon','✍️ Português','pt',1); },400); } },
+    { tipo:'video', titulo:'Proposições Lógicas', desc:'JC Concursos 2022 · Base do Raciocínio Lógico', tags:['raciocínio','lógico','proposição','conectivo','tabela verdade','lógica'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('rl', document.querySelectorAll('.vf-btn')[3]); openModal('7a9ve2MEOWc','Proposições Lógicas','JC Concursos','🧠 Raciocínio Lógico','rl',0); },400); } },
+    { tipo:'video', titulo:'Porcentagem e Juros', desc:'AlfaCon 2024 · Matemática para concursos', tags:['matemática','porcentagem','juros','simples','composto','regra de três','proporção'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('mt', document.querySelectorAll('.vf-btn')[4]); openModal('QeMmwOmc2i0','Porcentagem e Juros','AlfaCon','🔢 Matemática','mt',0); },400); } },
+    { tipo:'video', titulo:'Estatística — Saindo do Zero', desc:'Estratégia Concursos · Prof. Jhoni Zini', tags:['matemática','estatística','média','mediana','moda','variância','desvio padrão'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('2j3kjH5m4M4','Estatística do Zero','Estratégia','🔢 Matemática','mt',3); },400); } },
+    { tipo:'video', titulo:'Windows e Conceitos Básicos', desc:'AlfaCon 2024 · Informática para concursos', tags:['informática','windows','hardware','software','sistema operacional','computador'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('ti', document.querySelectorAll('.vf-btn')[5]); openModal('T6vOSAqQKwc','Windows e Conceitos Básicos','AlfaCon','💻 Informática','ti',0); },400); } },
+    { tipo:'video', titulo:'Internet, Redes e Segurança', desc:'Direção Concursos · Prof. César Vianna', tags:['informática','internet','redes','segurança','firewall','antivírus','protocolo','http','https'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('e-w07JpTYvo','Internet, Redes e Segurança','Direção','💻 Informática','ti',2); },400); } },
+
+    // ── RESUMOS ───────────────────────────────────────────────
+    { tipo:'resumo', titulo:'Resumo Completo — Língua Portuguesa', desc:'11 tópicos: concordância, crase, regência, interpretação, figuras de linguagem...', tags:['português','resumo','gramática','concordância','crase','regência','colocação','morfologia','acentuação','pontuação','figuras'], acao:()=>{ window.open('resumos-portugues.html','_blank'); } },
+    { tipo:'resumo', titulo:'Concordância Verbal e Nominal', desc:'Regras, casos especiais, exemplos certo/errado e macetes', tags:['concordância','verbal','nominal','sujeito','verbo','haver','fazer','impessoal','maioria'], acao:()=>{ window.open('resumos-portugues.html#concordancia','_blank'); } },
+    { tipo:'resumo', titulo:'Crase — Regras e Macetes', desc:'Quando usar, quando não usar, casos facultativos e o macete da substituição', tags:['crase','acento','grave','preposição','artigo','feminino','macete'], acao:()=>{ window.open('resumos-portugues.html#crase','_blank'); } },
+    { tipo:'resumo', titulo:'Interpretação de Texto', desc:'Tipos de questão, estratégias, pegadinhas das bancas e macete dos conectivos', tags:['interpretação','texto','leitura','inferência','literal','implícita','conectivos','macete'], acao:()=>{ window.open('resumos-portugues.html#interpretacao','_blank'); } },
+    { tipo:'resumo', titulo:'Colocação Pronominal', desc:'Próclise, ênclise e mesóclise com regras e exemplos práticos', tags:['pronome','colocação','próclise','ênclise','mesóclise','oblíquo','átono'], acao:()=>{ window.open('resumos-portugues.html#colocacao','_blank'); } },
+    { tipo:'resumo', titulo:'Regência Verbal e Nominal', desc:'Verbos de dupla regência: aspirar, assistir, visar, preferir e mais', tags:['regência','verbal','nominal','preposição','aspirar','assistir','visar','preferir','obedecer'], acao:()=>{ window.open('resumos-portugues.html#regencia','_blank'); } },
+    { tipo:'resumo', titulo:'Figuras de Linguagem', desc:'Metáfora, metonímia, hipérbole, ironia, antítese e mais 6 figuras', tags:['figuras','linguagem','metáfora','metonímia','hipérbole','ironia','antítese','pleonasmo','anáfora'], acao:()=>{ window.open('resumos-portugues.html#figuras','_blank'); } },
+    { tipo:'resumo', titulo:'Acentuação Gráfica', desc:'Proparoxítonas, paroxítonas, oxítonas e mudanças do Acordo Ortográfico 2009', tags:['acentuação','gráfica','acento','proparoxítona','paroxítona','oxítona','acordo ortográfico'], acao:()=>{ window.open('resumos-portugues.html#acentuacao','_blank'); } },
+    { tipo:'resumo', titulo:'Morfologia — Classes de Palavras', desc:'As 10 classes gramaticais e formação de palavras (derivação e composição)', tags:['morfologia','classes','palavras','substantivo','adjetivo','verbo','advérbio','pronome','derivação','composição'], acao:()=>{ window.open('resumos-portugues.html#morfologia','_blank'); } },
+
+    // ── QUESTÕES ──────────────────────────────────────────────
+    { tipo:'questao', titulo:'Questões de Direito Constitucional', desc:'5 questões comentadas — CESPE, FGV, FCC com gabarito explicado', tags:['questões','constitucional','cespe','fgv','exercício','simulado','gabarito'], acao:()=>{ window.open('questoes-comentadas.html','_blank'); } },
+    { tipo:'questao', titulo:'Questões de Direito Administrativo', desc:'5 questões comentadas — atos, licitações, responsabilidade civil, servidores', tags:['questões','administrativo','cespe','fgv','fcc','atos','licitação','servidores','responsabilidade'], acao:()=>{ window.open('questoes-comentadas.html','_blank'); } },
+    { tipo:'questao', titulo:'Questões de Língua Portuguesa', desc:'5 questões comentadas — crase, concordância, colocação, interpretação', tags:['questões','português','cespe','fcc','crase','concordância','colocação','interpretação','gramática'], acao:()=>{ window.open('questoes-comentadas.html','_blank'); } },
+    { tipo:'questao', titulo:'Questões de Raciocínio Lógico', desc:'5 questões comentadas — conjuntos, proposições, sequências, silogismo', tags:['questões','lógica','raciocínio','conjuntos','proposição','sequência','silogismo','cespe'], acao:()=>{ window.open('questoes-comentadas.html','_blank'); } },
+    { tipo:'questao', titulo:'Questões de Informática', desc:'5 questões comentadas — phishing, Excel, redes, Windows, backup', tags:['questões','informática','phishing','excel','procv','backup','windows','redes','protocolos'], acao:()=>{ window.open('questoes-comentadas.html','_blank'); } },
+    { tipo:'questao', titulo:'Simulado Completo (25 questões)', desc:'Todas as matérias — com timer de 20 min, pontuação e gabarito comentado', tags:['simulado','questões','todas','matérias','timer','pontuação','gabarito','prova'], acao:()=>{ window.open('questoes-comentadas.html','_blank'); } },
+
+    // ── PDFs ──────────────────────────────────────────────────
+    { tipo:'pdf', titulo:'Constituição Federal Anotada', desc:'CF/88 completa com artigos mais cobrados destacados · 198 páginas', tags:['pdf','constituição','federal','cf88','direito','constitucional','art 5','fundamentos'], acao:()=>{ irPara('pdfs'); } },
+    { tipo:'pdf', titulo:'Lei 8.112/90 Comentada', desc:'Estatuto dos servidores públicos federais · 86 páginas', tags:['pdf','lei','8112','servidores','públicos','federais','estatuto','administrativo'], acao:()=>{ irPara('pdfs'); } },
+    { tipo:'pdf', titulo:'Raciocínio Lógico Essencial', desc:'Lógica, conjuntos, probabilidade e combinatória · 112 páginas', tags:['pdf','raciocínio','lógico','conjuntos','probabilidade','combinatória','matemática'], acao:()=>{ irPara('pdfs'); } },
+    { tipo:'pdf', titulo:'Gramática Resumida — Português', desc:'Concordância, regência, crase e pontuação · 74 páginas', tags:['pdf','gramática','português','resumo','concordância','regência','crase','pontuação'], acao:()=>{ irPara('pdfs'); } },
+    { tipo:'pdf', titulo:'Manual de Redação Oficial', desc:'Manual da Presidência da República atualizado · 97 páginas', tags:['pdf','redação','oficial','manual','presidência','república','ofício','memorando'], acao:()=>{ irPara('pdfs'); } },
+    { tipo:'pdf', titulo:'Informática para Concursos', desc:'Windows, Office, Internet, redes e segurança · 120 páginas', tags:['pdf','informática','windows','office','internet','redes','segurança','hardware','software'], acao:()=>{ irPara('pdfs'); } },
+
+    // ── MAPAS MENTAIS ─────────────────────────────────────────
+    { tipo:'mapa', titulo:'Mapa Mental — Direito Constitucional', desc:'Estrutura da CF/88 em mapa visual · revisão rápida', tags:['mapa','mental','constitucional','cf88','revisão','visual','estrutura'], acao:()=>{ irPara('mapas'); } },
+    { tipo:'mapa', titulo:'Mapa Mental — Direito Administrativo', desc:'Administração Pública, atos, servidores e licitações', tags:['mapa','mental','administrativo','atos','administração','pública','servidores','licitação'], acao:()=>{ irPara('mapas'); } },
+    { tipo:'mapa', titulo:'Mapa Mental — Raciocínio Lógico', desc:'Proposições, conectivos, conjuntos e probabilidade', tags:['mapa','mental','lógica','raciocínio','proposição','conectivo','conjuntos','probabilidade'], acao:()=>{ irPara('mapas'); } },
+    { tipo:'mapa', titulo:'Mapa Mental — Língua Portuguesa', desc:'Gramática essencial: concordância, regência, crase e mais', tags:['mapa','mental','português','gramática','concordância','regência','crase','morfologia'], acao:()=>{ irPara('mapas'); } },
+
+    // ── CRONOGRAMA ────────────────────────────────────────────
+    { tipo:'cronograma', titulo:'Cronograma de Estudos Personalizado', desc:'Monte seu plano de estudos baseado no seu concurso e horas disponíveis', tags:['cronograma','estudos','planejamento','plano','tempo','organização','semana'], acao:()=>{ irPara('cronograma'); } },
+  ];
+
+  const SUGESTOES = [
+    'Direito Constitucional', 'Concordância verbal', 'Crase',
+    'Questões CESPE', 'Raciocínio Lógico', 'Informática', 'PDF gratuito',
+    'Mapa mental', 'Interpretação de texto', 'Licitações', 'Servidores públicos',
+    'Simulado', 'Cronograma', 'Matemática', 'Estatística'
+  ];
+
+  let tipoAtivo = 'todos';
+  let searchTimeout;
+
+  function irPara(id) {
+    closeSearch();
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+  }
+
+  function openSearch() {
+    document.getElementById('searchOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => { document.getElementById('searchInput').focus(); }, 80);
+    renderSugestoes();
+  }
+
+  function closeSearch() {
+    document.getElementById('searchOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchClear').classList.remove('show');
+    renderSugestoes();
+    document.getElementById('searchInput').focus();
+  }
+
+  function setTipo(tipo, el) {
+    tipoAtivo = tipo;
+    document.querySelectorAll('.stf-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    const q = document.getElementById('searchInput').value.trim();
+    if (q) executarBusca(q);
+  }
+
+  function highlight(text, query) {
+    if (!query) return text;
+    const words = query.trim().split(/\s+/).filter(Boolean);
+    let result = text;
+    words.forEach(w => {
+      const re = new RegExp(`(${w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+      result = result.replace(re, '<mark>$1</mark>');
+    });
+    return result;
+  }
+
+  function executarBusca(query) {
+    const wrap = document.getElementById('searchResultsWrap');
+    const q = query.trim().toLowerCase();
+    document.getElementById('searchClear').classList.toggle('show', q.length > 0);
+
+    if (!q) { renderSugestoes(); return; }
+
+    const words = q.split(/\s+/).filter(Boolean);
+    let resultados = SEARCH_DB.filter(item => {
+      if (tipoAtivo !== 'todos' && item.tipo !== tipoAtivo) return false;
+      const haystack = [item.titulo, item.desc, ...item.tags].join(' ').toLowerCase();
+      return words.every(w => haystack.includes(w));
+    });
+
+    // Score por relevância (título match = mais peso)
+    resultados = resultados.map(item => {
+      let score = 0;
+      const tituloLow = item.titulo.toLowerCase();
+      words.forEach(w => {
+        if (tituloLow.includes(w)) score += 10;
+        if (item.tags.some(t => t.includes(w))) score += 4;
+        if (item.desc.toLowerCase().includes(w)) score += 2;
+      });
+      return { ...item, score };
+    }).sort((a, b) => b.score - a.score);
+
+    const tipoLabel = { video:'🎥 Videoaula', resumo:'📋 Resumo', questao:'✏️ Questões', pdf:'📄 PDF', mapa:'🗺️ Mapa Mental', cronograma:'📅 Cronograma' };
+    const tipoIcon  = { video:'🎥', resumo:'📋', questao:'✏️', pdf:'📄', mapa:'🗺️', cronograma:'📅' };
+
+    if (!resultados.length) {
+      wrap.innerHTML = `
+        <div class="search-empty">
+          <div class="se-icon">🔍</div>
+          <h3>Nenhum resultado para "${query}"</h3>
+          <p>Tente termos como "concordância", "licitação", "mapa mental" ou "simulado".</p>
+        </div>`;
+      return;
+    }
+
+    wrap.innerHTML = `
+      <div class="search-results-header">${resultados.length} resultado${resultados.length !== 1 ? 's' : ''} para "${query}"</div>
+      <div class="search-results">
+        ${resultados.map(item => `
+          <div class="sr-item" onclick="executarAcao(${SEARCH_DB.indexOf(item)})">
+            <div class="sr-icon tipo-${item.tipo}">${tipoIcon[item.tipo] || '📌'}</div>
+            <div class="sr-body">
+              <div class="sr-title">${highlight(item.titulo, query)}</div>
+              <div class="sr-desc">${highlight(item.desc, query)}</div>
+            </div>
+            <span class="sr-badge badge-${item.tipo}">${tipoLabel[item.tipo] || item.tipo}</span>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  function executarAcao(idx) {
+    SEARCH_DB[idx].acao();
+  }
+
+  function buscarSugestao(texto) {
+    document.getElementById('searchInput').value = texto;
+    document.getElementById('searchClear').classList.add('show');
+    executarBusca(texto);
+  }
+
+  function renderSugestoes() {
+    const wrap = document.getElementById('searchResultsWrap');
+    const destaques = SEARCH_DB.slice(0, 6);
+    const tipoIcon  = { video:'🎥', resumo:'📋', questao:'✏️', pdf:'📄', mapa:'🗺️', cronograma:'📅' };
+    const tipoLabel = { video:'Videoaula', resumo:'Resumo', questao:'Questões', pdf:'PDF', mapa:'Mapa Mental', cronograma:'Cronograma' };
+    wrap.innerHTML = `
+      <div class="search-suggestions">
+        <div class="ss-title">Buscas populares</div>
+        <div class="ss-chips">
+          ${SUGESTOES.map(s => `<div class="ss-chip" onclick="buscarSugestao('${s}')">${s}</div>`).join('')}
+        </div>
+      </div>
+      <div class="search-results-header">Destaques do clube</div>
+      <div class="search-results">
+        ${destaques.map((item, i) => `
+          <div class="sr-item" onclick="executarAcao(${i})">
+            <div class="sr-icon tipo-${item.tipo}">${tipoIcon[item.tipo]||'📌'}</div>
+            <div class="sr-body">
+              <div class="sr-title">${item.titulo}</div>
+              <div class="sr-desc">${item.desc}</div>
+            </div>
+            <span class="sr-badge badge-${item.tipo}">${tipoLabel[item.tipo]||item.tipo}</span>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  // Input listener com debounce
+  document.addEventListener('DOMContentLoaded', () => {
+    const inp = document.getElementById('searchInput');
+    if (inp) {
+      inp.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => executarBusca(inp.value), 180);
+      });
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeSearch();
+      });
+    }
+    // Ctrl+K / Cmd+K atalho global
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        const overlay = document.getElementById('searchOverlay');
+        if (overlay && overlay.classList.contains('open')) closeSearch();
+        else openSearch();
+      }
+      if (e.key === 'Escape') closeSearch();
+    });
+    // Click fora do modal fecha
+    document.getElementById('searchOverlay')?.addEventListener('click', e => {
+      if (e.target.id === 'searchOverlay') closeSearch();
+    });
+  });
+
+  /* ── Mobile Menu ──────────────────────────────────────────── */
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const ham  = document.querySelector('.hamburger');
+    if (!menu.contains(e.target) && !ham.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  /* ── Scroll Reveal ────────────────────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i % 4 * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  /* ── Counter Animation ────────────────────────────────────── */
+  const counters = document.querySelectorAll('[data-target]');
+  const cntObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const sup = el.querySelector('sup').outerHTML;
+        const step = Math.ceil(target / 60);
+        let current = 0;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.innerHTML = (target >= 1000
+            ? (current >= 1000 ? (current/1000).toFixed(1) + 'k' : current)
+            : current) + sup;
+          if (current >= target) clearInterval(timer);
+        }, 25);
+        cntObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => cntObserver.observe(c));
+
+  /* ── PDF Filter ───────────────────────────────────────────── */
+  function filterPDF(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.pdf-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? '' : 'none';
+    });
+  }
+
+  /* ── Cronograma — troca de perfil ────────────────────────── */
+  function setPerfil(id, btn) {
+    document.querySelectorAll('.cp-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.crono-plan').forEach(p => p.classList.remove('active'));
+    document.getElementById('plan-' + id).classList.add('active');
+    // Scroll suave para o início do plano
+    document.getElementById('plan-' + id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function atualizarPerfil() {
+    const val = document.getElementById('cfHoras').value;
+    const btn = document.querySelector(`.cp-btn[onclick*="${val}"]`);
+    const map = { ini: 0, int: 1, ava: 2 };
+    const btns = document.querySelectorAll('.cp-btn');
+    if (btns[map[val]]) setPerfil(val, btns[map[val]]);
+  }
+
+  /* ── Navbar shadow on scroll ──────────────────────────────── */
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.boxShadow = window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,0.5)' : '';
+  });
+</script>
+</body>
+</html>
