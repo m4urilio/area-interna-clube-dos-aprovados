@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clube dos Aprovados | Materiais, Videoaulas e Estratégias para Concursos Públicos</title>
   <meta name="description" content="Resumos, mapas mentais, questões comentadas, videoaulas e estratégias de quem já passou em concurso público. Junte-se ao Clube dos Aprovados!" />
-  <meta name="keywords" content="concurso público, aprovação, resumos, mapas mentais, questões comentadas, videoaulas gratuitas, cronograma de estudos, direito constitucional, português concurso" />
+  <meta name="keywords" content="concurso público, aprovação, resumos, mapas mentais, questões comentadas, videoaulas atualizadas, cronograma de estudos, direito constitucional, português concurso" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -898,8 +898,16 @@
       transform: translateY(-4px);
       border-color: rgba(255,215,0,0.35);
     }
+    .mapa-download {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px; padding: 8px 16px; border-radius: 8px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      background: var(--yellow); color: var(--black); border: none;
+      font-family: var(--font-b); transition: all .2s;
+    }
+    .mapa-download:hover { background: var(--yellow-d); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,215,0,0.3); }
     .mapa-preview {
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/10;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1228,6 +1236,276 @@
       transform: translateY(0);
     }
 
+    /* ─── DASHBOARD ─────────────────────────────────────────────── */
+    #dashboard {
+      padding: 80px 0 60px;
+      background: var(--black);
+      border-bottom: 1px solid var(--border);
+    }
+    .dash-greeting { margin-bottom: 32px; }
+    .dash-greeting h2 {
+      font-family: var(--font-d);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .dash-greeting p { font-size: 14px; color: var(--gray); }
+    .dash-top {
+      display: flex; align-items: center; gap: 36px;
+      flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .dash-ring-wrap {
+      position: relative; width: 120px; height: 120px; flex-shrink: 0;
+    }
+    .dash-ring-wrap svg {
+      transform: rotate(-90deg);
+      display: block; width: 100%; height: 100%;
+    }
+    .dash-ring-bg { fill: none; stroke: var(--border); stroke-width: 8; }
+    .dash-ring-fg {
+      fill: none; stroke: var(--yellow); stroke-width: 8;
+      stroke-linecap: round; transition: stroke-dashoffset .8s ease;
+    }
+    .dash-ring-text {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .dash-ring-pct {
+      font-family: var(--font-d); font-size: 28px; font-weight: 700;
+      color: var(--yellow); line-height: 1;
+    }
+    .dash-ring-label {
+      font-size: 10px; color: var(--gray); margin-top: 2px;
+      text-transform: uppercase; letter-spacing: .08em;
+    }
+    .dash-stats { display: flex; gap: 14px; flex-wrap: wrap; flex: 1; }
+    .dash-stat {
+      flex: 1; min-width: 130px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 16px;
+      display: flex; align-items: center; gap: 14px;
+      transition: border-color .2s;
+    }
+    .dash-stat:hover { border-color: rgba(255,215,0,0.25); }
+    .dash-stat-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .dash-stat-icon.streak { background: rgba(239,68,68,0.12); }
+    .dash-stat-icon.videos { background: rgba(59,130,246,0.12); }
+    .dash-stat-icon.materiais { background: rgba(34,197,94,0.12); }
+    .dash-stat-icon.questoes { background: rgba(139,92,246,0.12); }
+    .dash-stat-num {
+      font-family: var(--font-d); font-size: 22px; font-weight: 700; line-height: 1;
+    }
+    .dash-stat-label { font-size: 11px; color: var(--gray); margin-top: 2px; }
+    .dash-section-title {
+      font-family: var(--font-d); font-size: 18px; font-weight: 700;
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .dash-continue-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px; margin-bottom: 32px;
+    }
+    .dash-continue-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 18px;
+      display: flex; align-items: center; gap: 14px;
+      cursor: pointer; transition: border-color .2s, transform .2s;
+      text-decoration: none; color: inherit;
+    }
+    .dash-continue-card:hover {
+      border-color: rgba(255,215,0,0.35); transform: translateY(-2px);
+    }
+    .dash-continue-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .dash-continue-icon.t-video { background: rgba(239,68,68,0.12); }
+    .dash-continue-icon.t-pdf { background: rgba(59,130,246,0.12); }
+    .dash-continue-icon.t-mapa { background: rgba(139,92,246,0.12); }
+    .dash-continue-icon.t-resumo { background: rgba(255,215,0,0.12); }
+    .dash-continue-icon.t-questao { background: rgba(34,197,94,0.12); }
+    .dash-continue-icon.t-cronograma { background: rgba(245,158,11,0.12); }
+    .dash-continue-info { flex: 1; min-width: 0; }
+    .dash-continue-info strong {
+      font-size: 14px; font-weight: 600; display: block; margin-bottom: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .dash-continue-info span { font-size: 11px; color: var(--gray); }
+    .dash-continue-time { font-size: 10px; color: var(--gray-d); white-space: nowrap; }
+    .dash-empty {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px 24px;
+      text-align: center; color: var(--gray); font-size: 14px;
+    }
+    .dash-empty .de-icon { font-size: 32px; margin-bottom: 10px; }
+    .dash-quick { display: flex; gap: 10px; flex-wrap: wrap; }
+    .dash-quick a {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 18px; border-radius: 10px;
+      font-size: 13px; font-weight: 600;
+      background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--gray); transition: all .2s;
+    }
+    .dash-quick a:hover {
+      border-color: rgba(255,215,0,0.35); color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    /* ─── POMODORO ────────────────────────────────────────────────── */
+    #pomodoro {
+      padding: 100px 0;
+      background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+    .pomo-wrap {
+      display: flex; gap: 40px; align-items: flex-start;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .pomo-timer-box {
+      flex: 0 0 320px; max-width: 360px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 18px; padding: 36px 28px; text-align: center;
+    }
+    .pomo-mode-tabs {
+      display: flex; gap: 6px; margin-bottom: 28px;
+      background: rgba(255,255,255,0.04); border-radius: 10px; padding: 4px;
+    }
+    .pomo-tab {
+      flex: 1; padding: 8px 0; border-radius: 8px; border: none;
+      font-family: var(--font-b); font-size: 12px; font-weight: 600;
+      cursor: pointer; background: transparent; color: var(--gray);
+      transition: all .2s;
+    }
+    .pomo-tab.active { background: var(--yellow); color: var(--black); }
+    .pomo-tab:hover:not(.active) { color: var(--white); }
+    .pomo-ring-wrap {
+      position: relative; width: 200px; height: 200px; margin: 0 auto 24px;
+    }
+    .pomo-ring-wrap svg {
+      display: block; width: 100%; height: 100%; transform: rotate(-90deg);
+    }
+    .pomo-ring-bg { fill: none; stroke: var(--border); stroke-width: 6; }
+    .pomo-ring-fg {
+      fill: none; stroke-width: 6; stroke-linecap: round;
+      transition: stroke-dashoffset .4s ease, stroke .3s;
+    }
+    .pomo-ring-fg.estudo { stroke: var(--yellow); }
+    .pomo-ring-fg.pausa { stroke: #22c55e; }
+    .pomo-ring-fg.longa { stroke: #3b82f6; }
+    .pomo-time-display {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .pomo-time {
+      font-family: var(--font-d); font-size: 52px; font-weight: 700;
+      line-height: 1; letter-spacing: 2px;
+    }
+    .pomo-time.estudo { color: var(--yellow); }
+    .pomo-time.pausa { color: #86efac; }
+    .pomo-time.longa { color: #93c5fd; }
+    .pomo-label {
+      font-size: 12px; color: var(--gray); margin-top: 6px;
+      text-transform: uppercase; letter-spacing: .1em; font-weight: 600;
+    }
+    .pomo-controls {
+      display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;
+    }
+    .pomo-btn {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1.5px solid var(--border); background: var(--card-bg);
+      color: var(--white); font-size: 20px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .pomo-btn:hover { border-color: rgba(255,215,0,0.4); transform: scale(1.08); }
+    .pomo-btn.primary {
+      width: 64px; height: 64px; font-size: 24px;
+      background: var(--yellow); color: var(--black); border-color: var(--yellow);
+    }
+    .pomo-btn.primary:hover { background: var(--yellow-d); }
+    .pomo-cycles {
+      display: flex; gap: 8px; justify-content: center; margin-bottom: 16px;
+    }
+    .pomo-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); border: 1px solid var(--border);
+      transition: all .3s;
+    }
+    .pomo-dot.done { background: var(--yellow); border-color: var(--yellow); }
+    .pomo-dot.active {
+      border-color: var(--yellow); box-shadow: 0 0 8px rgba(255,215,0,0.4);
+    }
+    .pomo-session-count { font-size: 12px; color: var(--gray); }
+    /* Config panel */
+    .pomo-config {
+      flex: 1; min-width: 260px; max-width: 400px;
+    }
+    .pomo-config-title {
+      font-family: var(--font-d); font-size: 16px; font-weight: 700;
+      margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+    }
+    .pomo-config-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px; margin-bottom: 14px;
+    }
+    .pomo-field { margin-bottom: 16px; }
+    .pomo-field:last-child { margin-bottom: 0; }
+    .pomo-field label {
+      display: block; font-size: 12px; color: var(--gray);
+      margin-bottom: 6px; font-weight: 500;
+    }
+    .pomo-field-row {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .pomo-field input[type="range"] {
+      flex: 1; -webkit-appearance: none; height: 4px;
+      background: var(--border); border-radius: 2px; outline: none;
+    }
+    .pomo-field input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--yellow); cursor: pointer;
+      border: 2px solid var(--black);
+    }
+    .pomo-field-val {
+      font-family: var(--font-d); font-size: 16px; font-weight: 700;
+      color: var(--yellow); min-width: 40px; text-align: right;
+    }
+    .pomo-sound-toggle {
+      display: flex; align-items: center; gap: 10px;
+      cursor: pointer; font-size: 13px; color: var(--gray);
+    }
+    .pomo-sound-toggle input { display: none; }
+    .pomo-toggle-track {
+      width: 36px; height: 20px; border-radius: 10px;
+      background: var(--border); position: relative; transition: background .2s;
+      flex-shrink: 0;
+    }
+    .pomo-toggle-track::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--gray); transition: all .2s;
+    }
+    .pomo-sound-toggle input:checked + .pomo-toggle-track {
+      background: var(--yellow);
+    }
+    .pomo-sound-toggle input:checked + .pomo-toggle-track::after {
+      left: 18px; background: var(--black);
+    }
+    .pomo-tips {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .pomo-tip {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 12px; color: var(--gray); line-height: 1.5;
+    }
+    .pomo-tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
     /* ─── RESPONSIVE ─────────────────────────────────────────────── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -1235,14 +1513,40 @@
       .hero-float { display: none; }
       .crono-inner { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
-      .search-trigger { min-width: unset; }
+      .search-trigger { min-width: unset; max-width: unset; flex: 1; }
       .search-trigger .st-kbd { display: none; }
+      .logo { font-size: 15px; gap: 6px; white-space: nowrap; }
+      .logo-icon { width: 28px; height: 28px; font-size: 14px; border-radius: 6px; }
+      .nav-inner { padding: 0 12px; gap: 8px; }
+      .search-trigger { font-size: 12px; padding: 6px 10px; }
     }
     @media (max-width: 560px) {
+      .dash-top { gap: 20px; flex-direction: column; align-items: center; }
+      .dash-ring-wrap { width: 100px; height: 100px; margin: 0 auto; }
+      .dash-ring-pct { font-size: 22px; }
+      .dash-stats { width: 100%; }
+      .dash-stat { min-width: calc(50% - 7px); flex: 0 0 calc(50% - 7px); }
+      .dash-stat-icon { width: 36px; height: 36px; font-size: 18px; }
+      .dash-stat-num { font-size: 18px; }
+      .dash-stat-label { font-size: 10px; }
+      .dash-continue-grid { grid-template-columns: 1fr; }
+      .dash-quick { flex-direction: column; }
+      .dash-quick a { justify-content: center; }
+      .dash-greeting h2 { font-size: 22px; text-align: center; }
+      .dash-greeting p { text-align: center; }
+      .dash-section-title { font-size: 16px; }
       .hero-stats { gap: 24px; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .features-grid { grid-template-columns: 1fr; }
+      /* Pomodoro mobile */
+      #pomodoro { padding: 60px 0; }
+      .pomo-wrap { gap: 24px; }
+      .pomo-timer-box { flex: 1 1 100%; max-width: 100%; padding: 24px 16px; }
+      .pomo-ring-wrap { width: 160px; height: 160px; }
+      .pomo-time { font-size: 40px; }
+      .pomo-config { min-width: 100%; max-width: 100%; }
+      .pomo-tab { font-size: 11px; }
     }
   </style>
 </head>
@@ -1256,12 +1560,12 @@
       Clube dos <span>Aprovados</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#hero">Início</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
       <li><a href="#videoaulas">Videoaulas</a></li>
       <li><a href="#pdfs">PDFs</a></li>
       <li><a href="#mapas">Mapas Mentais</a></li>
       <li><a href="#cronograma">Cronograma</a></li>
-      <li><a href="#dicas">Dicas</a></li>
+      <li><a href="#pomodoro">Pomodoro</a></li>
       <li><a href="#" class="nav-cta">Entrar</a></li>
     </ul>
     <div class="search-trigger" onclick="openSearch()" id="searchTrigger">
@@ -1298,13 +1602,13 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#" onclick="toggleMenu(); openSearch();" style="color:var(--yellow); font-weight:600;">🔍 Buscar materiais</a>
-  <a href="#hero" onclick="toggleMenu()">Início</a>
+  <a href="#dashboard" onclick="toggleMenu()">Dashboard</a>
   <a href="#features" onclick="toggleMenu()">Materiais</a>
   <a href="#videoaulas" onclick="toggleMenu()">Videoaulas</a>
   <a href="#pdfs" onclick="toggleMenu()">PDFs</a>
   <a href="#mapas" onclick="toggleMenu()">Mapas Mentais</a>
   <a href="#cronograma" onclick="toggleMenu()">Cronograma</a>
-  <a href="#dicas" onclick="toggleMenu()">Dicas</a>
+  <a href="#pomodoro" onclick="toggleMenu()">Pomodoro</a>
   <a href="#">Entrar</a>
 </div>
 
@@ -1321,6 +1625,84 @@
     <span>Polícia Federal</span><span>PRF</span><span>ANATEL</span><span>BACEN</span>
   </div>
 </div>
+
+<!-- ═══ DASHBOARD ═════════════════════════════════════════════════ -->
+<section id="dashboard">
+  <div class="container">
+
+    <!-- Saudação -->
+    <div class="dash-greeting reveal">
+      <h2 id="dashGreeting">Bom dia, Concurseiro!</h2>
+      <p id="dashSub">Seu progresso está indo bem. Continue firme!</p>
+    </div>
+
+    <!-- Progresso geral + Stats -->
+    <div class="dash-top reveal">
+      <div class="dash-ring-wrap">
+        <svg viewBox="0 0 120 120">
+          <circle class="dash-ring-bg" cx="60" cy="60" r="52"/>
+          <circle class="dash-ring-fg" id="dashRing" cx="60" cy="60" r="52"
+            stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
+        </svg>
+        <div class="dash-ring-text">
+          <div class="dash-ring-pct" id="dashPct">0%</div>
+          <div class="dash-ring-label">Concluído</div>
+        </div>
+      </div>
+
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <div class="dash-stat-icon streak">🔥</div>
+          <div>
+            <div class="dash-stat-num" id="dashStreak">0</div>
+            <div class="dash-stat-label">Dias seguidos</div>
+          </div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-icon videos">🎥</div>
+          <div>
+            <div class="dash-stat-num" id="dashVideos">0</div>
+            <div class="dash-stat-label">Vídeos assistidos</div>
+          </div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-icon materiais">📄</div>
+          <div>
+            <div class="dash-stat-num" id="dashMateriais">0</div>
+            <div class="dash-stat-label">Materiais acessados</div>
+          </div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-icon questoes">✏️</div>
+          <div>
+            <div class="dash-stat-num" id="dashQuestoes">0</div>
+            <div class="dash-stat-label">Questões resolvidas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Continue de onde parou -->
+    <div class="dash-section-title reveal">📌 Continue de onde parou</div>
+    <div class="dash-continue-grid reveal" id="dashContinue">
+      <div class="dash-empty">
+        <div class="de-icon">📚</div>
+        Você ainda não acessou nenhum material.<br>Explore as seções abaixo para começar!
+      </div>
+    </div>
+
+    <!-- Acesso rápido -->
+    <div class="dash-section-title reveal">⚡ Acesso rápido</div>
+    <div class="dash-quick reveal">
+      <a href="#videoaulas">🎥 Videoaulas</a>
+      <a href="#pdfs">📄 PDFs Atualizados</a>
+      <a href="#mapas">🗺️ Mapas Mentais</a>
+      <a href="#cronograma">📅 Cronograma</a>
+      <a href="#pomodoro">⏱️ Pomodoro</a>
+    </div>
+
+  </div>
+</section>
 
 <!-- ═══ HERO ══════════════════════════════════════════════════════ -->
 <section id="hero">
@@ -1339,7 +1721,7 @@
       </p>
       <div class="hero-btns">
         <a href="#features" class="btn btn-primary" style="font-size:16px; padding:16px 32px;">🚀 Quero ser Aprovado</a>
-        <a href="#pdfs" class="btn btn-secondary">Ver Materiais Grátis</a>
+        <a href="#pdfs" class="btn btn-secondary">Ver Materiais Atualizados</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -1348,7 +1730,7 @@
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num" data-target="1200">0<sup>+</sup></div>
-          <div class="hero-stat-label">Materiais gratuitos</div>
+          <div class="hero-stat-label">Materiais atualizados</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num" data-target="98">0<sup>%</sup></div>
@@ -1369,7 +1751,7 @@
         <div class="float-icon">🎯</div>
         <div class="float-text">
           <strong>Questão comentada</strong>
-          <span>Raciocínio Lógico · CESPE 2024</span>
+          <span>Raciocínio Lógico · CESPE 2026</span>
         </div>
       </div>
       <div class="float-card">
@@ -1421,12 +1803,6 @@
         <div class="feature-card-cta">Ver Cronograma <span class="feature-card-arrow">→</span></div>
       </a>
 
-      <a class="feature-card reveal" href="#dicas" onclick="document.getElementById('dicas').scrollIntoView({behavior:'smooth'}); return false;">
-        <div class="feature-icon">💡</div>
-        <h3>Dicas de Aprovados</h3>
-        <p>Estratégias exclusivas de quem já passou em INSS, Receita Federal, Polícia Federal e outros grandes concursos.</p>
-        <div class="feature-card-cta">Ver Depoimentos <span class="feature-card-arrow">→</span></div>
-      </a>
 
     </div>
   </div>
@@ -1453,7 +1829,7 @@
 <section id="videoaulas">
   <div class="container">
     <div class="reveal" style="margin-bottom:36px;">
-      <div class="section-label">Videoaulas Gratuitas</div>
+      <div class="section-label">Videoaulas Atualizadas</div>
       <h2 class="section-title">Aulas das <span class="yellow">principais matérias</span></h2>
       <p class="section-sub">4 aulas reais por matéria — clique e assista direto aqui, sem sair do site.</p>
     </div>
@@ -1478,18 +1854,18 @@
         </div>
       </div>
       <div class="video-grid-new">
-        <div class="video-card-new" onclick="openModal('hG5TACMZhSw','Direito Constitucional para Concursos 2024 — Aula 1','AlfaCon Concursos','⚖️ Dir. Constitucional', 'dc', 0)">
+        <div class="video-card-new" onclick="openModal('hG5TACMZhSw','Direito Constitucional para Concursos 2026 — Aula 1','AlfaCon Concursos','⚖️ Dir. Constitucional', 'dc', 0)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/hG5TACMZhSw/mqdefault.jpg" alt="Aula 1 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">⚖️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 1/4</div>
           </div>
           <div class="vc-body">
             <h4>Princípios Fundamentais da CF/88</h4>
             <p>Fundamentos, objetivos e princípios da República — Arts. 1º ao 4º</p>
-            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1498,7 +1874,7 @@
             <img src="https://img.youtube.com/vi/e_KFS87Ydsw/mqdefault.jpg" alt="Aula 2 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">⚖️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 2/4</div>
           </div>
           <div class="vc-body">
@@ -1513,7 +1889,7 @@
             <img src="https://img.youtube.com/vi/1ZMIAVX-abI/mqdefault.jpg" alt="Aula 3 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">⚖️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 3/4</div>
           </div>
           <div class="vc-body">
@@ -1528,13 +1904,13 @@
             <img src="https://img.youtube.com/vi/6aycB7guHjQ/mqdefault.jpg" alt="Aula 4 Dir. Constitucional" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">⚖️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 4/4</div>
           </div>
           <div class="vc-body">
             <h4>O que MAIS CAI em Concursos</h4>
             <p>Assuntos com maior incidência — estratégia focada em aprovação</p>
-            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">Estratégia Concursos</span><span>·</span><span>2026</span></div>
           </div>
         </div>
       </div>
@@ -1550,18 +1926,18 @@
         </div>
       </div>
       <div class="video-grid-new">
-        <div class="video-card-new" onclick="openModal('hDRIv5modxY','Dir. Administrativo para Concursos 2024 — Aula 1','AlfaCon Concursos','🏛️ Dir. Administrativo', 'da', 0)">
+        <div class="video-card-new" onclick="openModal('hDRIv5modxY','Dir. Administrativo para Concursos 2026 — Aula 1','AlfaCon Concursos','🏛️ Dir. Administrativo', 'da', 0)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/hDRIv5modxY/mqdefault.jpg" alt="Aula 1 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🏛️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 1/4</div>
           </div>
           <div class="vc-body">
             <h4>Princípios e Atos Administrativos</h4>
             <p>LIMPE, princípios gerais e atos administrativos — base de tudo</p>
-            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1570,7 +1946,7 @@
             <img src="https://img.youtube.com/vi/53pQJERXK78/mqdefault.jpg" alt="Aula 2 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🏛️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 2/4</div>
           </div>
           <div class="vc-body">
@@ -1585,7 +1961,7 @@
             <img src="https://img.youtube.com/vi/z7e5sLoJ-zE/mqdefault.jpg" alt="Aula 3 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🏛️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 3/4</div>
           </div>
           <div class="vc-body">
@@ -1595,18 +1971,18 @@
           </div>
         </div>
 
-        <div class="video-card-new" onclick="openModal('q8jk6i6tgKw','Dir. Administrativo para Concursos 2024 — Aula 2','AlfaCon Concursos','🏛️ Dir. Administrativo', 'da', 3)">
+        <div class="video-card-new" onclick="openModal('q8jk6i6tgKw','Dir. Administrativo para Concursos 2026 — Aula 2','AlfaCon Concursos','🏛️ Dir. Administrativo', 'da', 3)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/q8jk6i6tgKw/mqdefault.jpg" alt="Aula 4 Dir. Adm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🏛️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 4/4</div>
           </div>
           <div class="vc-body">
             <h4>Servidores Públicos — Lei 8.112</h4>
             <p>Estatuto dos servidores federais — direitos, deveres e responsabilidades</p>
-            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2026</span></div>
           </div>
         </div>
       </div>
@@ -1627,13 +2003,13 @@
             <img src="https://img.youtube.com/vi/UQn3lWudBdM/mqdefault.jpg" alt="PT Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">✍️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 1/4</div>
           </div>
           <div class="vc-body">
             <h4>Interpretação de Texto</h4>
             <p>Estratégias para gabaritar questões de interpretação em qualquer banca</p>
-            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1642,13 +2018,13 @@
             <img src="https://img.youtube.com/vi/RjTHVYF69oo/mqdefault.jpg" alt="PT Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">✍️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 2/4</div>
           </div>
           <div class="vc-body">
             <h4>Concordância e Regência</h4>
             <p>As regras que mais caem — concordância verbal, nominal e regência</p>
-            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1657,7 +2033,7 @@
             <img src="https://img.youtube.com/vi/ksfhSgZ6nbI/mqdefault.jpg" alt="PT Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">✍️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 3/4</div>
           </div>
           <div class="vc-body">
@@ -1672,13 +2048,13 @@
             <img src="https://img.youtube.com/vi/zd8_NUqoZH4/mqdefault.jpg" alt="PT Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">✍️</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 4/4</div>
           </div>
           <div class="vc-body">
             <h4>Português do Zero ao Avançado</h4>
             <p>Roteiro completo de estudo para quem está começando do zero</p>
-            <div class="vc-meta"><span class="vc-channel">Português com Letícia</span><span>·</span><span>2021</span></div>
+            <div class="vc-meta"><span class="vc-channel">Português com Letícia</span><span>·</span><span>2026</span></div>
           </div>
         </div>
       </div>
@@ -1699,13 +2075,13 @@
             <img src="https://img.youtube.com/vi/7a9ve2MEOWc/mqdefault.jpg" alt="RL Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🧠</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 1/4</div>
           </div>
           <div class="vc-body">
             <h4>Proposições Lógicas</h4>
             <p>Conectivos, negação e tabelas-verdade — base do raciocínio lógico</p>
-            <div class="vc-meta"><span class="vc-channel">JC Concursos</span><span>·</span><span>2022</span></div>
+            <div class="vc-meta"><span class="vc-channel">JC Concursos</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1714,7 +2090,7 @@
             <img src="https://img.youtube.com/vi/Q-6-lJhawNA/mqdefault.jpg" alt="RL Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🧠</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 2/4</div>
           </div>
           <div class="vc-body">
@@ -1729,7 +2105,7 @@
             <img src="https://img.youtube.com/vi/6NK_Cg9q_aQ/mqdefault.jpg" alt="RL Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🧠</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 3/4</div>
           </div>
           <div class="vc-body">
@@ -1744,7 +2120,7 @@
             <img src="https://img.youtube.com/vi/hBMzFbbOpH0/mqdefault.jpg" alt="RL Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🧠</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 4/4</div>
           </div>
           <div class="vc-body">
@@ -1766,18 +2142,18 @@
         </div>
       </div>
       <div class="video-grid-new">
-        <div class="video-card-new" onclick="openModal('QeMmwOmc2i0','Matemática para Concursos 2024 — Aula 1','AlfaCon Concursos','🔢 Matemática', 'mt', 0)">
+        <div class="video-card-new" onclick="openModal('QeMmwOmc2i0','Matemática para Concursos 2026 — Aula 1','AlfaCon Concursos','🔢 Matemática', 'mt', 0)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/QeMmwOmc2i0/mqdefault.jpg" alt="MT Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🔢</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 1/4</div>
           </div>
           <div class="vc-body">
             <h4>Porcentagem e Juros</h4>
             <p>Regras de três, porcentagem, juros simples e compostos para provas</p>
-            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1786,28 +2162,28 @@
             <img src="https://img.youtube.com/vi/3UwD3tt90T8/mqdefault.jpg" alt="MT Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🔢</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 2/4</div>
           </div>
           <div class="vc-body">
             <h4>Probabilidade e Combinatória</h4>
             <p>Análise combinatória, permutações e probabilidade básica</p>
-            <div class="vc-meta"><span class="vc-channel">JC Concursos</span><span>·</span><span>2020</span></div>
+            <div class="vc-meta"><span class="vc-channel">JC Concursos</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
-        <div class="video-card-new" onclick="openModal('4seOA19rtBE','O Segredo da Matemática para Concursos 2024','Direção Concursos','🔢 Matemática', 'mt', 2)">
+        <div class="video-card-new" onclick="openModal('4seOA19rtBE','O Segredo da Matemática para Concursos 2026','Direção Concursos','🔢 Matemática', 'mt', 2)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/4seOA19rtBE/mqdefault.jpg" alt="MT Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🔢</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 3/4</div>
           </div>
           <div class="vc-body">
-            <h4>O Segredo da Matemática em 2024</h4>
+            <h4>O Segredo da Matemática em 2026</h4>
             <p>Estratégia e método para gabaritar matemática em qualquer concurso</p>
-            <div class="vc-meta"><span class="vc-channel">Direção Concursos</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">Direção Concursos</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1816,7 +2192,7 @@
             <img src="https://img.youtube.com/vi/2j3kjH5m4M4/mqdefault.jpg" alt="MT Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">🔢</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 4/4</div>
           </div>
           <div class="vc-body">
@@ -1838,33 +2214,33 @@
         </div>
       </div>
       <div class="video-grid-new">
-        <div class="video-card-new" onclick="openModal('T6vOSAqQKwc','Informática para Concursos 2024 — Aula 1','AlfaCon Concursos','💻 Informática', 'ti', 0)">
+        <div class="video-card-new" onclick="openModal('T6vOSAqQKwc','Informática para Concursos 2026 — Aula 1','AlfaCon Concursos','💻 Informática', 'ti', 0)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/T6vOSAqQKwc/mqdefault.jpg" alt="TI Aula 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">💻</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 1/4</div>
           </div>
           <div class="vc-body">
             <h4>Windows e Conceitos Básicos</h4>
             <p>Hardware, software, sistemas operacionais e Windows 10/11</p>
-            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">AlfaCon</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
-        <div class="video-card-new" onclick="openModal('zFzGuD1AnCQ','Informática para Concursos 2024 — Cursos do Portal','Cursos do Portal','💻 Informática', 'ti', 1)">
+        <div class="video-card-new" onclick="openModal('zFzGuD1AnCQ','Informática para Concursos 2026 — Cursos do Portal','Cursos do Portal','💻 Informática', 'ti', 1)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/zFzGuD1AnCQ/mqdefault.jpg" alt="TI Aula 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">💻</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 2/4</div>
           </div>
           <div class="vc-body">
             <h4>Microsoft Office — Word e Excel</h4>
             <p>Word, Excel e PowerPoint — funções mais cobradas nas provas</p>
-            <div class="vc-meta"><span class="vc-channel">Cursos do Portal</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">Cursos do Portal</span><span>·</span><span>2026</span></div>
           </div>
         </div>
 
@@ -1873,7 +2249,7 @@
             <img src="https://img.youtube.com/vi/e-w07JpTYvo/mqdefault.jpg" alt="TI Aula 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">💻</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 3/4</div>
           </div>
           <div class="vc-body">
@@ -1883,18 +2259,18 @@
           </div>
         </div>
 
-        <div class="video-card-new" onclick="openModal('KHkSTnK1sCw','Informática para Concursos 2024 — Conceitos Básicos Aula 1','Rodrigo Schaeffer','💻 Informática', 'ti', 3)">
+        <div class="video-card-new" onclick="openModal('KHkSTnK1sCw','Informática para Concursos 2026 — Conceitos Básicos Aula 1','Rodrigo Schaeffer','💻 Informática', 'ti', 3)">
           <div class="vc-thumb">
             <img src="https://img.youtube.com/vi/KHkSTnK1sCw/mqdefault.jpg" alt="TI Aula 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="vc-thumb-fallback" style="display:none">💻</div>
             <div class="vc-play-overlay"><div class="vc-play-btn">▶</div></div>
-            <div class="vc-tag">GRÁTIS</div>
+            <div class="vc-tag">ATUALIZADO</div>
             <div class="vc-duration">Aula 4/4</div>
           </div>
           <div class="vc-body">
             <h4>Banco de Dados e Cloud</h4>
             <p>Conceitos de BD, armazenamento em nuvem e questões comentadas</p>
-            <div class="vc-meta"><span class="vc-channel">Rodrigo Schaeffer</span><span>·</span><span>2024</span></div>
+            <div class="vc-meta"><span class="vc-channel">Rodrigo Schaeffer</span><span>·</span><span>2026</span></div>
           </div>
         </div>
       </div>
@@ -1908,8 +2284,8 @@
   <div class="container">
     <div class="reveal" style="margin-bottom:36px;">
       <div class="section-label">Domínio Público</div>
-      <h2 class="section-title">Materiais Gratuitos em <span class="yellow">PDF</span></h2>
-      <p class="section-sub">Apostilas e resumos selecionados de fontes públicas e educacionais confiáveis.</p>
+      <h2 class="section-title">Materiais Atualizados em <span class="yellow">PDF</span></h2>
+      <p class="section-sub">Apostilas e resumos selecionados e atualizados de fontes educacionais confiáveis.</p>
     </div>
     <div class="filter-bar reveal">
       <button class="filter-btn active" onclick="filterPDF(this,'all')">Todos</button>
@@ -2002,110 +2378,418 @@
     <div class="reveal" style="margin-bottom:48px;">
       <div class="section-label">Revisão Visual</div>
       <h2 class="section-title">Mapas Mentais para <span class="yellow">Revisão Rápida</span></h2>
-      <p class="section-sub">Visualize as matérias antes da prova. Download gratuito.</p>
+      <p class="section-sub">Visualize as matérias antes da prova. Download atualizado.</p>
     </div>
     <div class="mapas-grid">
 
+      <!-- ── MAPA 1: DIREITO CONSTITUCIONAL ── -->
       <div class="mapa-card reveal">
-        <div class="mapa-preview" style="background:#0d0d0d;">
-          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="150" cy="112" r="28" fill="rgba(255,215,0,0.2)" stroke="#FFD700" stroke-width="1.5"/>
-            <text x="150" y="117" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">CF/88</text>
-            <line x1="150" y1="84" x2="150" y2="42" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
-            <circle cx="150" cy="34" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="150" y="38" text-anchor="middle" fill="#aaa" font-size="7">Art. 1-4</text>
-            <line x1="122" y1="102" x2="78" y2="78" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
-            <circle cx="66" cy="72" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="66" y="76" text-anchor="middle" fill="#aaa" font-size="7">Dir. Fund.</text>
-            <line x1="122" y1="122" x2="76" y2="148" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
-            <circle cx="64" cy="156" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="64" y="160" text-anchor="middle" fill="#aaa" font-size="7">Poderes</text>
-            <line x1="178" y1="102" x2="222" y2="78" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
-            <circle cx="234" cy="72" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="234" y="76" text-anchor="middle" fill="#aaa" font-size="7">Org. Estado</text>
-            <line x1="178" y1="122" x2="224" y2="148" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
-            <circle cx="236" cy="156" r="16" fill="rgba(255,215,0,0.1)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="236" y="160" text-anchor="middle" fill="#aaa" font-size="7">Trib. Contas</text>
+        <div class="mapa-preview" style="background:#0a0a0a;">
+          <svg class="mapa-svg mapa-svg-detail" viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Linhas centro → ramos -->
+            <line x1="250" y1="175" x2="100" y2="65" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="175" x2="400" y2="65" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="175" x2="70" y2="200" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="175" x2="430" y2="200" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="175" x2="120" y2="320" stroke="rgba(236,72,153,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="175" x2="390" y2="320" stroke="rgba(239,68,68,0.4)" stroke-width="1.5"/>
+            <!-- Sub-linhas Princípios -->
+            <line x1="100" y1="65" x2="30" y2="25" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="100" y1="65" x2="100" y2="18" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="100" y1="65" x2="170" y2="25" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Dir. Fund. -->
+            <line x1="400" y1="65" x2="340" y2="20" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="400" y1="65" x2="400" y2="15" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="400" y1="65" x2="468" y2="22" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Org. Estado -->
+            <line x1="70" y1="200" x2="15" y2="160" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="70" y1="200" x2="15" y2="210" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="70" y1="200" x2="15" y2="250" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Poderes -->
+            <line x1="430" y1="200" x2="485" y2="158" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <line x1="430" y1="200" x2="485" y2="205" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <line x1="430" y1="200" x2="485" y2="248" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Remédios -->
+            <line x1="120" y1="320" x2="42" y2="300" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <line x1="120" y1="320" x2="42" y2="340" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <line x1="120" y1="320" x2="80" y2="365" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Controle -->
+            <line x1="390" y1="320" x2="380" y2="365" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <line x1="390" y1="320" x2="455" y2="340" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <line x1="390" y1="320" x2="455" y2="300" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <!-- Centro -->
+            <circle cx="250" cy="175" r="34" fill="rgba(255,215,0,0.18)" stroke="#FFD700" stroke-width="2"/>
+            <text x="250" y="172" text-anchor="middle" fill="#FFD700" font-size="11" font-weight="bold">CF/88</text>
+            <text x="250" y="185" text-anchor="middle" fill="rgba(255,215,0,0.7)" font-size="7">Constituição Federal</text>
+            <!-- Ramo 1: Princípios -->
+            <circle cx="100" cy="65" r="22" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="100" y="62" text-anchor="middle" fill="#93c5fd" font-size="7" font-weight="bold">Princípios</text>
+            <text x="100" y="73" text-anchor="middle" fill="#93c5fd" font-size="6">Art. 1-4</text>
+            <circle cx="30" cy="25" r="13" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="30" y="28" text-anchor="middle" fill="#aaa" font-size="6">Soberania</text>
+            <circle cx="100" cy="18" r="13" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="100" y="21" text-anchor="middle" fill="#aaa" font-size="6">Cidadania</text>
+            <circle cx="170" cy="25" r="13" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="170" y="28" text-anchor="middle" fill="#aaa" font-size="6">Dignidade</text>
+            <!-- Ramo 2: Dir. Fundamentais -->
+            <circle cx="400" cy="65" r="22" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+            <text x="400" y="62" text-anchor="middle" fill="#86efac" font-size="7" font-weight="bold">Dir. Fund.</text>
+            <text x="400" y="73" text-anchor="middle" fill="#86efac" font-size="6">Art. 5º</text>
+            <circle cx="340" cy="20" r="13" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="340" y="23" text-anchor="middle" fill="#aaa" font-size="6">Vida</text>
+            <circle cx="400" cy="15" r="13" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="400" y="18" text-anchor="middle" fill="#aaa" font-size="6">Liberdade</text>
+            <circle cx="468" cy="22" r="13" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="468" y="25" text-anchor="middle" fill="#aaa" font-size="6">Igualdade</text>
+            <!-- Ramo 3: Org. Estado -->
+            <circle cx="70" cy="200" r="22" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="1.5"/>
+            <text x="70" y="197" text-anchor="middle" fill="#c4b5fd" font-size="7" font-weight="bold">Org. Estado</text>
+            <text x="70" y="208" text-anchor="middle" fill="#c4b5fd" font-size="6">Art. 18+</text>
+            <circle cx="15" cy="160" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="15" y="163" text-anchor="middle" fill="#aaa" font-size="5.5">União</text>
+            <circle cx="15" cy="210" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="15" y="213" text-anchor="middle" fill="#aaa" font-size="5.5">Estados</text>
+            <circle cx="15" cy="250" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="15" y="253" text-anchor="middle" fill="#aaa" font-size="5">Municípios</text>
+            <!-- Ramo 4: Poderes -->
+            <circle cx="430" cy="200" r="22" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="430" y="197" text-anchor="middle" fill="#fcd34d" font-size="7" font-weight="bold">Poderes</text>
+            <text x="430" y="208" text-anchor="middle" fill="#fcd34d" font-size="6">Art. 44+</text>
+            <circle cx="485" cy="158" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="485" y="161" text-anchor="middle" fill="#aaa" font-size="5">Legislativo</text>
+            <circle cx="485" cy="205" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="485" y="208" text-anchor="middle" fill="#aaa" font-size="5">Executivo</text>
+            <circle cx="485" cy="248" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="485" y="251" text-anchor="middle" fill="#aaa" font-size="5">Judiciário</text>
+            <!-- Ramo 5: Remédios -->
+            <circle cx="120" cy="320" r="22" fill="rgba(236,72,153,0.15)" stroke="#ec4899" stroke-width="1.5"/>
+            <text x="120" y="317" text-anchor="middle" fill="#f9a8d4" font-size="7" font-weight="bold">Remédios</text>
+            <text x="120" y="328" text-anchor="middle" fill="#f9a8d4" font-size="6">Constitucionais</text>
+            <circle cx="42" cy="300" r="12" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="42" y="303" text-anchor="middle" fill="#aaa" font-size="5.5">HC</text>
+            <circle cx="42" cy="340" r="12" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="42" y="343" text-anchor="middle" fill="#aaa" font-size="5.5">MS</text>
+            <circle cx="80" cy="365" r="12" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="80" y="368" text-anchor="middle" fill="#aaa" font-size="5.5">HD</text>
+            <!-- Ramo 6: Controle -->
+            <circle cx="390" cy="320" r="22" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+            <text x="390" y="317" text-anchor="middle" fill="#fca5a5" font-size="7" font-weight="bold">Controle</text>
+            <text x="390" y="328" text-anchor="middle" fill="#fca5a5" font-size="6">Fiscalização</text>
+            <circle cx="380" cy="365" r="12" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="380" y="368" text-anchor="middle" fill="#aaa" font-size="5.5">TCU</text>
+            <circle cx="455" cy="340" r="12" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="455" y="343" text-anchor="middle" fill="#aaa" font-size="5.5">STF</text>
+            <circle cx="455" cy="300" r="12" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="455" y="303" text-anchor="middle" fill="#aaa" font-size="5.5">CNJ</text>
           </svg>
         </div>
         <div class="mapa-body">
           <h3>Direito Constitucional</h3>
-          <span>Estrutura da CF/88 · 1 página</span>
+          <span>CF/88 completa · 6 ramos · 18 subtópicos</span>
+          <button class="mapa-download" onclick="downloadMapa(0,'mapa-direito-constitucional')">⬇ Baixar Mapa</button>
         </div>
       </div>
 
+      <!-- ── MAPA 2: DIREITO ADMINISTRATIVO ── -->
       <div class="mapa-card reveal">
         <div class="mapa-preview" style="background:#0a0a0a;">
-          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="110" y="96" width="80" height="36" rx="8" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
-            <text x="150" y="119" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">Adm. Pública</text>
-            <rect x="20" y="40" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="55" y="58" text-anchor="middle" fill="#aaa" font-size="8">Atos Adm.</text>
-            <line x1="90" y1="54" x2="110" y2="100" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <rect x="20" y="156" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="55" y="174" text-anchor="middle" fill="#aaa" font-size="8">Licitação</text>
-            <line x1="90" y1="170" x2="110" y2="128" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <rect x="210" y="40" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="245" y="58" text-anchor="middle" fill="#aaa" font-size="8">Servidores</text>
-            <line x1="210" y1="54" x2="190" y2="100" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <rect x="210" y="156" width="70" height="28" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="245" y="174" text-anchor="middle" fill="#aaa" font-size="8">Controle</text>
-            <line x1="210" y1="170" x2="190" y2="128" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+          <svg class="mapa-svg mapa-svg-detail" viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Linhas centro → ramos -->
+            <line x1="250" y1="190" x2="90" y2="70" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="410" y2="70" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="60" y2="260" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="440" y2="260" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="250" y2="340" stroke="rgba(236,72,153,0.4)" stroke-width="1.5"/>
+            <!-- Sub-linhas LIMPE -->
+            <line x1="90" y1="70" x2="20" y2="22" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="90" y1="70" x2="60" y2="18" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="90" y1="70" x2="100" y2="18" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="90" y1="70" x2="140" y2="22" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="90" y1="70" x2="170" y2="40" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Atos -->
+            <line x1="410" y1="70" x2="350" y2="22" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="410" y1="70" x2="410" y2="18" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="410" y1="70" x2="470" y2="22" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Licitação -->
+            <line x1="60" y1="260" x2="15" y2="295" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="60" y1="260" x2="15" y2="330" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="60" y1="260" x2="55" y2="360" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Servidores -->
+            <line x1="440" y1="260" x2="480" y2="295" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <line x1="440" y1="260" x2="480" y2="330" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <line x1="440" y1="260" x2="440" y2="360" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Poderes adm -->
+            <line x1="250" y1="340" x2="195" y2="370" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <line x1="250" y1="340" x2="250" y2="375" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <line x1="250" y1="340" x2="305" y2="370" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <!-- Centro -->
+            <rect x="210" y="170" width="80" height="40" rx="12" fill="rgba(255,215,0,0.18)" stroke="#FFD700" stroke-width="2"/>
+            <text x="250" y="187" text-anchor="middle" fill="#FFD700" font-size="10" font-weight="bold">Dir. Adm.</text>
+            <text x="250" y="200" text-anchor="middle" fill="rgba(255,215,0,0.7)" font-size="6">Administração Pública</text>
+            <!-- Ramo 1: LIMPE -->
+            <circle cx="90" cy="70" r="22" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="1.5"/>
+            <text x="90" y="67" text-anchor="middle" fill="#c4b5fd" font-size="7" font-weight="bold">Princípios</text>
+            <text x="90" y="78" text-anchor="middle" fill="#c4b5fd" font-size="6">LIMPE</text>
+            <circle cx="20" cy="22" r="11" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="20" y="25" text-anchor="middle" fill="#aaa" font-size="5">Legalidade</text>
+            <circle cx="60" cy="18" r="11" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="60" y="21" text-anchor="middle" fill="#aaa" font-size="5">Impessoal.</text>
+            <circle cx="100" cy="18" r="11" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="100" y="21" text-anchor="middle" fill="#aaa" font-size="5">Moralidade</text>
+            <circle cx="140" cy="22" r="11" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="140" y="25" text-anchor="middle" fill="#aaa" font-size="5">Publicidade</text>
+            <circle cx="170" cy="40" r="11" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="170" y="43" text-anchor="middle" fill="#aaa" font-size="5">Eficiência</text>
+            <!-- Ramo 2: Atos Adm. -->
+            <circle cx="410" cy="70" r="22" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="410" y="67" text-anchor="middle" fill="#93c5fd" font-size="7" font-weight="bold">Atos Adm.</text>
+            <text x="410" y="78" text-anchor="middle" fill="#93c5fd" font-size="6">Elementos</text>
+            <circle cx="350" cy="22" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="350" y="25" text-anchor="middle" fill="#aaa" font-size="5">Competên.</text>
+            <circle cx="410" cy="18" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="410" y="21" text-anchor="middle" fill="#aaa" font-size="5">Forma</text>
+            <circle cx="470" cy="22" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="470" y="25" text-anchor="middle" fill="#aaa" font-size="5">Finalidade</text>
+            <!-- Ramo 3: Licitação -->
+            <circle cx="60" cy="260" r="22" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+            <text x="60" y="257" text-anchor="middle" fill="#86efac" font-size="7" font-weight="bold">Licitação</text>
+            <text x="60" y="268" text-anchor="middle" fill="#86efac" font-size="6">Lei 14.133</text>
+            <circle cx="15" cy="295" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="15" y="298" text-anchor="middle" fill="#aaa" font-size="5">Pregão</text>
+            <circle cx="15" cy="330" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="15" y="333" text-anchor="middle" fill="#aaa" font-size="5">Concorrên.</text>
+            <circle cx="55" cy="360" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="55" y="363" text-anchor="middle" fill="#aaa" font-size="5">Leilão</text>
+            <!-- Ramo 4: Servidores -->
+            <circle cx="440" cy="260" r="22" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="440" y="257" text-anchor="middle" fill="#fcd34d" font-size="7" font-weight="bold">Servidores</text>
+            <text x="440" y="268" text-anchor="middle" fill="#fcd34d" font-size="6">Lei 8.112</text>
+            <circle cx="480" cy="295" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="480" y="298" text-anchor="middle" fill="#aaa" font-size="5">Direitos</text>
+            <circle cx="480" cy="330" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="480" y="333" text-anchor="middle" fill="#aaa" font-size="5">Deveres</text>
+            <circle cx="440" cy="360" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="440" y="363" text-anchor="middle" fill="#aaa" font-size="5">Responsab.</text>
+            <!-- Ramo 5: Poderes Adm. -->
+            <circle cx="250" cy="340" r="22" fill="rgba(236,72,153,0.15)" stroke="#ec4899" stroke-width="1.5"/>
+            <text x="250" y="337" text-anchor="middle" fill="#f9a8d4" font-size="7" font-weight="bold">Poderes</text>
+            <text x="250" y="348" text-anchor="middle" fill="#f9a8d4" font-size="6">Administrativos</text>
+            <circle cx="195" cy="370" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="195" y="373" text-anchor="middle" fill="#aaa" font-size="5">Hierárq.</text>
+            <circle cx="250" cy="375" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="250" y="378" text-anchor="middle" fill="#aaa" font-size="5">Disciplinar</text>
+            <circle cx="305" cy="370" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="305" y="373" text-anchor="middle" fill="#aaa" font-size="5">Polícia</text>
           </svg>
         </div>
         <div class="mapa-body">
           <h3>Direito Administrativo</h3>
-          <span>Tópicos principais · 1 página</span>
+          <span>LIMPE, atos, licitação, servidores · 5 ramos · 19 subtópicos</span>
+          <button class="mapa-download" onclick="downloadMapa(1,'mapa-direito-administrativo')">⬇ Baixar Mapa</button>
         </div>
       </div>
 
+      <!-- ── MAPA 3: RACIOCÍNIO LÓGICO ── -->
       <div class="mapa-card reveal">
         <div class="mapa-preview" style="background:#080808;">
-          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="150" cy="112" rx="36" ry="22" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
-            <text x="150" y="117" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">Lógica</text>
-            <line x1="150" y1="90" x2="80" y2="52" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
-            <ellipse cx="62" cy="44" rx="28" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="62" y="48" text-anchor="middle" fill="#aaa" font-size="8">Proposições</text>
-            <line x1="150" y1="90" x2="220" y2="52" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
-            <ellipse cx="238" cy="44" rx="28" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="238" y="48" text-anchor="middle" fill="#aaa" font-size="8">Conectivos</text>
-            <line x1="114" y1="120" x2="60" y2="170" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
-            <ellipse cx="46" cy="178" rx="30" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="46" y="182" text-anchor="middle" fill="#aaa" font-size="8">Conjuntos</text>
-            <line x1="186" y1="120" x2="240" y2="170" stroke="rgba(255,215,0,0.35)" stroke-width="1" stroke-dasharray="4,2"/>
-            <ellipse cx="254" cy="178" rx="30" ry="16" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <text x="254" y="182" text-anchor="middle" fill="#aaa" font-size="8">Probabilidade</text>
+          <svg class="mapa-svg mapa-svg-detail" viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Linhas centro → ramos -->
+            <line x1="250" y1="190" x2="80" y2="65" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="420" y2="65" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="55" y2="240" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="445" y2="240" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="130" y2="340" stroke="rgba(236,72,153,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="370" y2="340" stroke="rgba(239,68,68,0.4)" stroke-width="1.5"/>
+            <!-- Sub-linhas Proposições -->
+            <line x1="80" y1="65" x2="20" y2="25" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="80" y1="65" x2="80" y2="18" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="80" y1="65" x2="145" y2="25" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Conectivos -->
+            <line x1="420" y1="65" x2="360" y2="22" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="420" y1="65" x2="420" y2="15" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="420" y1="65" x2="478" y2="22" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Tab. Verdade -->
+            <line x1="55" y1="240" x2="12" y2="210" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="55" y1="240" x2="12" y2="270" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Conjuntos -->
+            <line x1="445" y1="240" x2="488" y2="210" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <line x1="445" y1="240" x2="488" y2="270" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Probabilidade -->
+            <line x1="130" y1="340" x2="60" y2="365" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <line x1="130" y1="340" x2="130" y2="373" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Sequências -->
+            <line x1="370" y1="340" x2="370" y2="373" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <line x1="370" y1="340" x2="440" y2="365" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <!-- Centro -->
+            <ellipse cx="250" cy="190" rx="38" ry="26" fill="rgba(255,215,0,0.18)" stroke="#FFD700" stroke-width="2"/>
+            <text x="250" y="187" text-anchor="middle" fill="#FFD700" font-size="10" font-weight="bold">Lógica</text>
+            <text x="250" y="200" text-anchor="middle" fill="rgba(255,215,0,0.7)" font-size="6">Raciocínio Lógico</text>
+            <!-- Ramo 1: Proposições -->
+            <circle cx="80" cy="65" r="22" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+            <text x="80" y="62" text-anchor="middle" fill="#86efac" font-size="7" font-weight="bold">Proposições</text>
+            <text x="80" y="73" text-anchor="middle" fill="#86efac" font-size="6">Base</text>
+            <circle cx="20" cy="25" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="20" y="28" text-anchor="middle" fill="#aaa" font-size="5.5">Simples</text>
+            <circle cx="80" cy="18" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="80" y="21" text-anchor="middle" fill="#aaa" font-size="5">Compostas</text>
+            <circle cx="145" cy="25" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="145" y="28" text-anchor="middle" fill="#aaa" font-size="5">Negação</text>
+            <!-- Ramo 2: Conectivos -->
+            <circle cx="420" cy="65" r="22" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="420" y="62" text-anchor="middle" fill="#93c5fd" font-size="7" font-weight="bold">Conectivos</text>
+            <text x="420" y="73" text-anchor="middle" fill="#93c5fd" font-size="6">Operadores</text>
+            <circle cx="360" cy="22" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="360" y="25" text-anchor="middle" fill="#aaa" font-size="5.5">E (&#x2227;)</text>
+            <circle cx="420" cy="15" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="420" y="18" text-anchor="middle" fill="#aaa" font-size="5.5">OU (&#x2228;)</text>
+            <circle cx="478" cy="22" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="478" y="25" text-anchor="middle" fill="#aaa" font-size="5">SE→ENTÃO</text>
+            <!-- Ramo 3: Tabela-Verdade -->
+            <circle cx="55" cy="240" r="22" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="1.5"/>
+            <text x="55" y="237" text-anchor="middle" fill="#c4b5fd" font-size="6" font-weight="bold">Tabela</text>
+            <text x="55" y="248" text-anchor="middle" fill="#c4b5fd" font-size="6">Verdade</text>
+            <circle cx="12" cy="210" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="12" y="213" text-anchor="middle" fill="#aaa" font-size="5.5">V / F</text>
+            <circle cx="12" cy="270" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="12" y="273" text-anchor="middle" fill="#aaa" font-size="5">Combinaç.</text>
+            <!-- Ramo 4: Conjuntos -->
+            <circle cx="445" cy="240" r="22" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="445" y="237" text-anchor="middle" fill="#fcd34d" font-size="7" font-weight="bold">Conjuntos</text>
+            <text x="445" y="248" text-anchor="middle" fill="#fcd34d" font-size="6">Venn</text>
+            <circle cx="488" cy="210" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="488" y="213" text-anchor="middle" fill="#aaa" font-size="5.5">União</text>
+            <circle cx="488" cy="270" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="488" y="273" text-anchor="middle" fill="#aaa" font-size="5">Interseção</text>
+            <!-- Ramo 5: Probabilidade -->
+            <circle cx="130" cy="340" r="22" fill="rgba(236,72,153,0.15)" stroke="#ec4899" stroke-width="1.5"/>
+            <text x="130" y="337" text-anchor="middle" fill="#f9a8d4" font-size="6" font-weight="bold">Probabilid.</text>
+            <text x="130" y="348" text-anchor="middle" fill="#f9a8d4" font-size="6">Eventos</text>
+            <circle cx="60" cy="365" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="60" y="368" text-anchor="middle" fill="#aaa" font-size="5">Espaço A.</text>
+            <circle cx="130" cy="373" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="130" y="376" text-anchor="middle" fill="#aaa" font-size="5">Complem.</text>
+            <!-- Ramo 6: Sequências -->
+            <circle cx="370" cy="340" r="22" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+            <text x="370" y="337" text-anchor="middle" fill="#fca5a5" font-size="7" font-weight="bold">Sequências</text>
+            <text x="370" y="348" text-anchor="middle" fill="#fca5a5" font-size="6">Padrões</text>
+            <circle cx="370" cy="373" r="11" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="370" y="376" text-anchor="middle" fill="#aaa" font-size="5">PA / PG</text>
+            <circle cx="440" cy="365" r="11" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="440" y="368" text-anchor="middle" fill="#aaa" font-size="5">Fibonacci</text>
           </svg>
         </div>
         <div class="mapa-body">
           <h3>Raciocínio Lógico</h3>
-          <span>Conectivos e conjuntos · 1 página</span>
+          <span>Proposições, conectivos, conjuntos · 6 ramos · 16 subtópicos</span>
+          <button class="mapa-download" onclick="downloadMapa(2,'mapa-raciocinio-logico')">⬇ Baixar Mapa</button>
         </div>
       </div>
 
+      <!-- ── MAPA 4: LÍNGUA PORTUGUESA ── -->
       <div class="mapa-card reveal">
-        <div class="mapa-preview" style="background:#0d0a00;">
-          <svg class="mapa-svg" viewBox="0 0 300 225" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="116" y="98" width="68" height="28" rx="8" fill="rgba(255,215,0,0.2)" stroke="#FFD700" stroke-width="1.5"/>
-            <text x="150" y="117" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">Português</text>
-            <line x1="116" y1="108" x2="76" y2="62" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <rect x="30" y="44" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
-            <text x="64" y="62" text-anchor="middle" fill="#aaa" font-size="8">Concordância</text>
-            <line x1="184" y1="108" x2="224" y2="62" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <rect x="202" y="44" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
-            <text x="236" y="62" text-anchor="middle" fill="#aaa" font-size="8">Regência</text>
-            <line x1="116" y1="118" x2="76" y2="162" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <rect x="30" y="156" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
-            <text x="64" y="174" text-anchor="middle" fill="#aaa" font-size="8">Crase</text>
-            <line x1="184" y1="118" x2="224" y2="162" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
-            <rect x="202" y="156" width="68" height="26" rx="6" fill="rgba(255,215,0,0.08)" stroke="rgba(255,215,0,0.25)" stroke-width="1"/>
-            <text x="236" y="174" text-anchor="middle" fill="#aaa" font-size="8">Interpretação</text>
+        <div class="mapa-preview" style="background:#090806;">
+          <svg class="mapa-svg mapa-svg-detail" viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Linhas centro → ramos -->
+            <line x1="250" y1="190" x2="80" y2="60" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="420" y2="60" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="55" y2="230" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="445" y2="230" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="120" y2="340" stroke="rgba(236,72,153,0.4)" stroke-width="1.5"/>
+            <line x1="250" y1="190" x2="380" y2="340" stroke="rgba(239,68,68,0.4)" stroke-width="1.5"/>
+            <!-- Sub-linhas Concordância -->
+            <line x1="80" y1="60" x2="20" y2="22" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="80" y1="60" x2="80" y2="15" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <line x1="80" y1="60" x2="145" y2="22" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Regência -->
+            <line x1="420" y1="60" x2="360" y2="20" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="420" y1="60" x2="420" y2="15" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <line x1="420" y1="60" x2="480" y2="20" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Crase -->
+            <line x1="55" y1="230" x2="12" y2="200" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="55" y1="230" x2="12" y2="240" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <line x1="55" y1="230" x2="12" y2="275" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Interpretação -->
+            <line x1="445" y1="230" x2="488" y2="200" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <line x1="445" y1="230" x2="488" y2="240" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <line x1="445" y1="230" x2="488" y2="275" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Pontuação -->
+            <line x1="120" y1="340" x2="50" y2="360" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <line x1="120" y1="340" x2="120" y2="375" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <line x1="120" y1="340" x2="185" y2="365" stroke="rgba(236,72,153,0.25)" stroke-width="1"/>
+            <!-- Sub-linhas Morfologia -->
+            <line x1="380" y1="340" x2="320" y2="365" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <line x1="380" y1="340" x2="380" y2="375" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <line x1="380" y1="340" x2="445" y2="365" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+            <!-- Centro -->
+            <rect x="210" y="172" width="80" height="36" rx="12" fill="rgba(255,215,0,0.18)" stroke="#FFD700" stroke-width="2"/>
+            <text x="250" y="187" text-anchor="middle" fill="#FFD700" font-size="10" font-weight="bold">Português</text>
+            <text x="250" y="199" text-anchor="middle" fill="rgba(255,215,0,0.7)" font-size="6">Língua Portuguesa</text>
+            <!-- Ramo 1: Concordância -->
+            <circle cx="80" cy="60" r="22" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="80" y="57" text-anchor="middle" fill="#93c5fd" font-size="6" font-weight="bold">Concordância</text>
+            <text x="80" y="68" text-anchor="middle" fill="#93c5fd" font-size="6">V. e Nom.</text>
+            <circle cx="20" cy="22" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="20" y="25" text-anchor="middle" fill="#aaa" font-size="5">Verbal</text>
+            <circle cx="80" cy="15" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="80" y="18" text-anchor="middle" fill="#aaa" font-size="5">Nominal</text>
+            <circle cx="145" cy="22" r="12" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="145" y="25" text-anchor="middle" fill="#aaa" font-size="5">Especiais</text>
+            <!-- Ramo 2: Regência -->
+            <circle cx="420" cy="60" r="22" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+            <text x="420" y="57" text-anchor="middle" fill="#86efac" font-size="7" font-weight="bold">Regência</text>
+            <text x="420" y="68" text-anchor="middle" fill="#86efac" font-size="6">V. e Nom.</text>
+            <circle cx="360" cy="20" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="360" y="23" text-anchor="middle" fill="#aaa" font-size="5">Aspirar</text>
+            <circle cx="420" cy="15" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="420" y="18" text-anchor="middle" fill="#aaa" font-size="5">Assistir</text>
+            <circle cx="480" cy="20" r="12" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+            <text x="480" y="23" text-anchor="middle" fill="#aaa" font-size="5">Visar</text>
+            <!-- Ramo 3: Crase -->
+            <circle cx="55" cy="230" r="22" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="1.5"/>
+            <text x="55" y="227" text-anchor="middle" fill="#c4b5fd" font-size="7" font-weight="bold">Crase</text>
+            <text x="55" y="238" text-anchor="middle" fill="#c4b5fd" font-size="6">Acento Grave</text>
+            <circle cx="12" cy="200" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="12" y="203" text-anchor="middle" fill="#aaa" font-size="5">Obrigatória</text>
+            <circle cx="12" cy="240" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="12" y="243" text-anchor="middle" fill="#aaa" font-size="5">Proibida</text>
+            <circle cx="12" cy="275" r="12" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <text x="12" y="278" text-anchor="middle" fill="#aaa" font-size="5">Facultativa</text>
+            <!-- Ramo 4: Interpretação -->
+            <circle cx="445" cy="230" r="22" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="445" y="227" text-anchor="middle" fill="#fcd34d" font-size="6" font-weight="bold">Interpretação</text>
+            <text x="445" y="238" text-anchor="middle" fill="#fcd34d" font-size="6">de Texto</text>
+            <circle cx="488" cy="200" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="488" y="203" text-anchor="middle" fill="#aaa" font-size="5">Literal</text>
+            <circle cx="488" cy="240" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="488" y="243" text-anchor="middle" fill="#aaa" font-size="5">Inferência</text>
+            <circle cx="488" cy="275" r="12" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="488" y="278" text-anchor="middle" fill="#aaa" font-size="5">Implícita</text>
+            <!-- Ramo 5: Pontuação -->
+            <circle cx="120" cy="340" r="22" fill="rgba(236,72,153,0.15)" stroke="#ec4899" stroke-width="1.5"/>
+            <text x="120" y="337" text-anchor="middle" fill="#f9a8d4" font-size="7" font-weight="bold">Pontuação</text>
+            <text x="120" y="348" text-anchor="middle" fill="#f9a8d4" font-size="6">Sinais</text>
+            <circle cx="50" cy="360" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="50" y="363" text-anchor="middle" fill="#aaa" font-size="5">Vírgula</text>
+            <circle cx="120" cy="375" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="120" y="378" text-anchor="middle" fill="#aaa" font-size="5">Ponto e V.</text>
+            <circle cx="185" cy="365" r="11" fill="rgba(236,72,153,0.08)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
+            <text x="185" y="368" text-anchor="middle" fill="#aaa" font-size="5">Dois pontos</text>
+            <!-- Ramo 6: Morfologia -->
+            <circle cx="380" cy="340" r="22" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+            <text x="380" y="337" text-anchor="middle" fill="#fca5a5" font-size="7" font-weight="bold">Morfologia</text>
+            <text x="380" y="348" text-anchor="middle" fill="#fca5a5" font-size="6">Classes</text>
+            <circle cx="320" cy="365" r="11" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="320" y="368" text-anchor="middle" fill="#aaa" font-size="5">Substantivo</text>
+            <circle cx="380" cy="375" r="11" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="380" y="378" text-anchor="middle" fill="#aaa" font-size="5">Verbo</text>
+            <circle cx="445" cy="365" r="11" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="445" y="368" text-anchor="middle" fill="#aaa" font-size="5">Advérbio</text>
           </svg>
         </div>
         <div class="mapa-body">
           <h3>Língua Portuguesa</h3>
-          <span>Gramática essencial · 1 página</span>
+          <span>Concordância, crase, regência, pontuação · 6 ramos · 18 subtópicos</span>
+          <button class="mapa-download" onclick="downloadMapa(3,'mapa-lingua-portuguesa')">⬇ Baixar Mapa</button>
         </div>
       </div>
 
@@ -2642,100 +3326,108 @@
   </div>
 </section>
 
-<!-- ═══ DICAS / DEPOIMENTOS ═══════════════════════════════════════ -->
-<section id="dicas">
+<!-- ═══ POMODORO TIMER ═════════════════════════════════════════════ -->
+<section id="pomodoro">
   <div class="container">
-    <div class="reveal" style="margin-bottom:52px;">
-      <div class="section-label">Quem já passou conta</div>
-      <h2 class="section-title">Dicas de <span class="yellow">Aprovados</span></h2>
-      <p class="section-sub">Estratégias reais de quem conquistou a vaga dos sonhos.</p>
+    <div class="section-header reveal">
+      <div class="section-badge">Foco Total</div>
+      <h2>Método <span class="highlight">Pomodoro</span></h2>
+      <p>Estude com foco usando ciclos cronometrados. A técnica Pomodoro aumenta a produtividade em até 40%.</p>
     </div>
-    <div class="dicas-grid">
 
-      <div class="dica-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="dica-quote">
-          Estudei 4 horas por dia durante 8 meses focando nas matérias que mais caem. O mapa mental de Constitucional que baixei aqui foi essencial na reta final — revisei em menos de 30 minutos.
-        </p>
-        <div class="dica-author">
-          <div class="dica-avatar">👩</div>
-          <div class="dica-author-info">
-            <strong>Maria Fernanda S.</strong>
-            <span>Aprovada no INSS 2024 · 89 pontos</span>
+    <div class="pomo-wrap reveal">
+      <!-- Timer Box -->
+      <div class="pomo-timer-box">
+        <div class="pomo-mode-tabs">
+          <button class="pomo-tab active" onclick="pomoSetMode('estudo',this)">Estudo</button>
+          <button class="pomo-tab" onclick="pomoSetMode('pausa',this)">Pausa</button>
+          <button class="pomo-tab" onclick="pomoSetMode('longa',this)">Pausa Longa</button>
+        </div>
+
+        <div class="pomo-ring-wrap">
+          <svg viewBox="0 0 120 120">
+            <circle class="pomo-ring-bg" cx="60" cy="60" r="54"/>
+            <circle class="pomo-ring-fg estudo" id="pomoRing" cx="60" cy="60" r="54"
+              stroke-dasharray="339.29" stroke-dashoffset="0"/>
+          </svg>
+          <div class="pomo-time-display">
+            <div class="pomo-time estudo" id="pomoTime">25:00</div>
+            <div class="pomo-label" id="pomoLabel">Estudo</div>
+          </div>
+        </div>
+
+        <div class="pomo-controls">
+          <button class="pomo-btn" onclick="pomoReset()" title="Resetar">↺</button>
+          <button class="pomo-btn primary" id="pomoBtnPlay" onclick="pomoToggle()" title="Iniciar">▶</button>
+          <button class="pomo-btn" onclick="pomoSkip()" title="Pular">⏭</button>
+        </div>
+
+        <div class="pomo-cycles" id="pomoCycles">
+          <div class="pomo-dot active"></div>
+          <div class="pomo-dot"></div>
+          <div class="pomo-dot"></div>
+          <div class="pomo-dot"></div>
+        </div>
+        <div class="pomo-session-count" id="pomoSessionCount">Sessão 1 de 4</div>
+      </div>
+
+      <!-- Config Panel -->
+      <div class="pomo-config">
+        <div class="pomo-config-title">⚙️ Configurações</div>
+
+        <div class="pomo-config-card">
+          <div class="pomo-field">
+            <label>Tempo de estudo (minutos)</label>
+            <div class="pomo-field-row">
+              <input type="range" min="15" max="60" value="25" step="5" id="pomoEstudoRange" oninput="pomoUpdateConfig()">
+              <span class="pomo-field-val" id="pomoEstudoVal">25</span>
+            </div>
+          </div>
+          <div class="pomo-field">
+            <label>Pausa curta (minutos)</label>
+            <div class="pomo-field-row">
+              <input type="range" min="3" max="15" value="5" step="1" id="pomoPausaRange" oninput="pomoUpdateConfig()">
+              <span class="pomo-field-val" id="pomoPausaVal">5</span>
+            </div>
+          </div>
+          <div class="pomo-field">
+            <label>Pausa longa (minutos)</label>
+            <div class="pomo-field-row">
+              <input type="range" min="10" max="30" value="15" step="5" id="pomoLongaRange" oninput="pomoUpdateConfig()">
+              <span class="pomo-field-val" id="pomoLongaVal">15</span>
+            </div>
+          </div>
+          <div class="pomo-field">
+            <label class="pomo-sound-toggle">
+              <input type="checkbox" id="pomoSoundToggle" checked onchange="pomoUpdateConfig()">
+              <span class="pomo-toggle-track"></span>
+              Som de alarme ativado
+            </label>
+          </div>
+        </div>
+
+        <div class="pomo-config-title">💡 Dicas de Produtividade</div>
+        <div class="pomo-config-card">
+          <div class="pomo-tips">
+            <div class="pomo-tip">
+              <span class="pomo-tip-icon">🎯</span>
+              <span>Defina uma meta clara antes de cada sessão de estudo.</span>
+            </div>
+            <div class="pomo-tip">
+              <span class="pomo-tip-icon">📱</span>
+              <span>Coloque o celular no modo silencioso durante o foco.</span>
+            </div>
+            <div class="pomo-tip">
+              <span class="pomo-tip-icon">💧</span>
+              <span>Use as pausas para hidratar e alongar o corpo.</span>
+            </div>
+            <div class="pomo-tip">
+              <span class="pomo-tip-icon">🏆</span>
+              <span>A cada 4 ciclos, faça uma pausa longa de 15-30 min.</span>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="dica-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="dica-quote">
-          O segredo foi fazer questões todos os dias. Errei muito no começo, mas os comentários explicados me fizeram entender o raciocínio das bancas. Na 3ª tentativa passei na Receita Federal.
-        </p>
-        <div class="dica-author">
-          <div class="dica-avatar">👨</div>
-          <div class="dica-author-info">
-            <strong>Carlos Eduardo M.</strong>
-            <span>Auditor Fiscal — Receita Federal 2023</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dica-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="dica-quote">
-          Não terceirize seu planejamento. Adapte o cronograma à sua realidade. Eu estudava só 2h por dia, mas com consistência e método. Em 11 meses passei na PRF sem pagar cursinho.
-        </p>
-        <div class="dica-author">
-          <div class="dica-avatar">👨‍💼</div>
-          <div class="dica-author-info">
-            <strong>Roberto A. Lima</strong>
-            <span>Policial Rodoviário Federal — PRF 2024</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dica-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="dica-quote">
-          Português foi meu calcanhar de Aquiles. Resolvi mais de 800 questões comentadas e meu índice de acerto saiu de 40% para 78%. Os resumos de gramática daqui foram meu guia.
-        </p>
-        <div class="dica-author">
-          <div class="dica-avatar">👩‍💻</div>
-          <div class="dica-author-info">
-            <strong>Juliana Torres B.</strong>
-            <span>TRT 2ª Região · Analista Judiciário 2024</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dica-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="dica-quote">
-          Dica de ouro: leia o edital do zero e monte seu cronograma pelas matérias com maior peso. Muita gente estuda igual pra todos os concursos. Eu personalizei e acertei na primeira tentativa.
-        </p>
-        <div class="dica-author">
-          <div class="dica-avatar">👨‍🎓</div>
-          <div class="dica-author-info">
-            <strong>Diego Fonseca N.</strong>
-            <span>TCU · Analista de Controle 2023</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dica-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="dica-quote">
-          A comunidade do Clube foi fundamental. Sempre que eu travava num assunto, alguém já tinha passado pelo mesmo problema. Aprendi mais trocando com outros concurseiros do que em vídeos.
-        </p>
-        <div class="dica-author">
-          <div class="dica-avatar">👩‍⚖️</div>
-          <div class="dica-author-info">
-            <strong>Aline Cristina P.</strong>
-            <span>Defensoria Pública — Defensor Público 2024</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -2745,9 +3437,6 @@
   <div class="container">
     <h2>Sua aprovação começa hoje.</h2>
     <p>Junte-se a +47.000 concurseiros que escolheram o caminho certo.</p>
-    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-      <a href="#features" class="btn btn-dark" style="font-size:17px; padding:18px 36px;">🚀 Quero ser Aprovado — Grátis</a>
-    </div>
   </div>
 </section>
 
@@ -2760,7 +3449,7 @@
           <div class="logo-icon">🏆</div>
           Clube dos <span>Aprovados</span>
         </div>
-        <p>A maior plataforma gratuita de estudos para concursos públicos do Brasil. Materiais, estratégias e comunidade para te levar à aprovação.</p>
+        <p>A maior plataforma de estudos para concursos públicos do Brasil. Materiais, estratégias e comunidade para te levar à aprovação.</p>
         <div class="social-links">
           <a href="#" class="social-link" aria-label="YouTube">▶</a>
           <a href="#" class="social-link" aria-label="Instagram">📷</a>
@@ -2772,7 +3461,7 @@
         <h4>Materiais</h4>
         <ul>
           <li><a href="#videoaulas">Videoaulas</a></li>
-          <li><a href="#pdfs">PDFs Gratuitos</a></li>
+          <li><a href="#pdfs">PDFs Atualizados</a></li>
           <li><a href="#mapas">Mapas Mentais</a></li>
           <li><a href="#cronograma">Cronograma</a></li>
           <li><a href="#features">Questões</a></li>
@@ -2800,7 +3489,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Clube dos Aprovados. Todos os direitos reservados.</p>
+      <p>© 2026 Clube dos Aprovados. Todos os direitos reservados.</p>
       <p>Links para materiais de domínio público e fontes externas. Este site não tem vínculo com bancas ou órgãos governamentais.</p>
     </div>
   </div>
@@ -2837,7 +3526,7 @@
     mt: [
       { id: 'QeMmwOmc2i0', title: 'Porcentagem e Juros', ch: 'AlfaCon' },
       { id: '3UwD3tt90T8', title: 'Probabilidade e Combinatória', ch: 'JC Concursos' },
-      { id: '4seOA19rtBE', title: 'O Segredo da Matemática em 2024', ch: 'Direção Concursos' },
+      { id: '4seOA19rtBE', title: 'O Segredo da Matemática em 2026', ch: 'Direção Concursos' },
       { id: '2j3kjH5m4M4', title: 'Estatística — Saindo do Zero', ch: 'Estratégia Concursos' },
     ],
     ti: [
@@ -2908,18 +3597,18 @@
   /* ── SEARCH ENGINE ────────────────────────────────────────── */
   const SEARCH_DB = [
     // ── VIDEOAULAS ────────────────────────────────────────────
-    { tipo:'video', titulo:'Princípios Fundamentais da CF/88', desc:'Aula AlfaCon 2024 · Direito Constitucional do zero', tags:['direito','constitucional','art 1','fundamentos','república','federativa','democrático'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('dc', document.querySelector('.vf-btn')); openModal('hG5TACMZhSw','Princípios Fundamentais da CF/88','AlfaCon','⚖️ Dir. Constitucional','dc',0); },400); } },
+    { tipo:'video', titulo:'Princípios Fundamentais da CF/88', desc:'Aula AlfaCon 2026 · Direito Constitucional do zero', tags:['direito','constitucional','art 1','fundamentos','república','federativa','democrático'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('dc', document.querySelector('.vf-btn')); openModal('hG5TACMZhSw','Princípios Fundamentais da CF/88','AlfaCon','⚖️ Dir. Constitucional','dc',0); },400); } },
     { tipo:'video', titulo:'Direitos e Garantias Fundamentais', desc:'Estratégia Concursos · Art. 5º da CF/88 completo', tags:['direito','constitucional','art 5','habeas corpus','mandado','garantias','fundamentais'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('e_KFS87Ydsw','Direitos e Garantias Fundamentais','Estratégia','⚖️ Dir. Constitucional','dc',1); },400); } },
     { tipo:'video', titulo:'Organização do Estado e Poderes', desc:'Estratégia Concursos · Legislativo, Executivo e Judiciário', tags:['direito','constitucional','poderes','estado','legislativo','executivo','judiciário'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('1ZMIAVX-abI','Organização do Estado e Poderes','Estratégia','⚖️ Dir. Constitucional','dc',2); },400); } },
-    { tipo:'video', titulo:'Princípios e Atos Administrativos', desc:'AlfaCon 2024 · LIMPE e atos administrativos', tags:['direito','administrativo','limpe','legalidade','impessoalidade','moralidade','atos'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('da', document.querySelectorAll('.vf-btn')[1]); openModal('hDRIv5modxY','Princípios e Atos Administrativos','AlfaCon','🏛️ Dir. Administrativo','da',0); },400); } },
+    { tipo:'video', titulo:'Princípios e Atos Administrativos', desc:'AlfaCon 2026 · LIMPE e atos administrativos', tags:['direito','administrativo','limpe','legalidade','impessoalidade','moralidade','atos'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('da', document.querySelectorAll('.vf-btn')[1]); openModal('hDRIv5modxY','Princípios e Atos Administrativos','AlfaCon','🏛️ Dir. Administrativo','da',0); },400); } },
     { tipo:'video', titulo:'Dir. Administrativo do Zero', desc:'Estratégia Concursos · Prof. Herbert Almeida', tags:['direito','administrativo','zero','iniciante','organização','administração','pública'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('53pQJERXK78','Dir. Administrativo do Zero','Estratégia','🏛️ Dir. Administrativo','da',1); },400); } },
     { tipo:'video', titulo:'Licitações e Contratos — Lei 14.133', desc:'Estratégia Concursos · Nova lei de licitações', tags:['licitação','contrato','14133','lei','administrativo','pregão','concorrência','modalidades'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('z7e5sLoJ-zE','Licitações e Contratos','Estratégia','🏛️ Dir. Administrativo','da',2); },400); } },
-    { tipo:'video', titulo:'Interpretação de Texto', desc:'AlfaCon 2024 · Estratégia para gabaritar Português', tags:['português','interpretação','texto','leitura','inferência','cespe','concurso'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('pt', document.querySelectorAll('.vf-btn')[2]); openModal('UQn3lWudBdM','Interpretação de Texto','AlfaCon','✍️ Português','pt',0); },400); } },
-    { tipo:'video', titulo:'Concordância e Regência Verbal', desc:'AlfaCon 2024 · Gramática para concursos', tags:['português','concordância','regência','verbal','nominal','gramática','verbo'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('RjTHVYF69oo','Concordância e Regência','AlfaCon','✍️ Português','pt',1); },400); } },
-    { tipo:'video', titulo:'Proposições Lógicas', desc:'JC Concursos 2022 · Base do Raciocínio Lógico', tags:['raciocínio','lógico','proposição','conectivo','tabela verdade','lógica'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('rl', document.querySelectorAll('.vf-btn')[3]); openModal('7a9ve2MEOWc','Proposições Lógicas','JC Concursos','🧠 Raciocínio Lógico','rl',0); },400); } },
-    { tipo:'video', titulo:'Porcentagem e Juros', desc:'AlfaCon 2024 · Matemática para concursos', tags:['matemática','porcentagem','juros','simples','composto','regra de três','proporção'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('mt', document.querySelectorAll('.vf-btn')[4]); openModal('QeMmwOmc2i0','Porcentagem e Juros','AlfaCon','🔢 Matemática','mt',0); },400); } },
+    { tipo:'video', titulo:'Interpretação de Texto', desc:'AlfaCon 2026 · Estratégia para gabaritar Português', tags:['português','interpretação','texto','leitura','inferência','cespe','concurso'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('pt', document.querySelectorAll('.vf-btn')[2]); openModal('UQn3lWudBdM','Interpretação de Texto','AlfaCon','✍️ Português','pt',0); },400); } },
+    { tipo:'video', titulo:'Concordância e Regência Verbal', desc:'AlfaCon 2026 · Gramática para concursos', tags:['português','concordância','regência','verbal','nominal','gramática','verbo'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('RjTHVYF69oo','Concordância e Regência','AlfaCon','✍️ Português','pt',1); },400); } },
+    { tipo:'video', titulo:'Proposições Lógicas', desc:'JC Concursos 2026 · Base do Raciocínio Lógico', tags:['raciocínio','lógico','proposição','conectivo','tabela verdade','lógica'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('rl', document.querySelectorAll('.vf-btn')[3]); openModal('7a9ve2MEOWc','Proposições Lógicas','JC Concursos','🧠 Raciocínio Lógico','rl',0); },400); } },
+    { tipo:'video', titulo:'Porcentagem e Juros', desc:'AlfaCon 2026 · Matemática para concursos', tags:['matemática','porcentagem','juros','simples','composto','regra de três','proporção'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('mt', document.querySelectorAll('.vf-btn')[4]); openModal('QeMmwOmc2i0','Porcentagem e Juros','AlfaCon','🔢 Matemática','mt',0); },400); } },
     { tipo:'video', titulo:'Estatística — Saindo do Zero', desc:'Estratégia Concursos · Prof. Jhoni Zini', tags:['matemática','estatística','média','mediana','moda','variância','desvio padrão'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('2j3kjH5m4M4','Estatística do Zero','Estratégia','🔢 Matemática','mt',3); },400); } },
-    { tipo:'video', titulo:'Windows e Conceitos Básicos', desc:'AlfaCon 2024 · Informática para concursos', tags:['informática','windows','hardware','software','sistema operacional','computador'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('ti', document.querySelectorAll('.vf-btn')[5]); openModal('T6vOSAqQKwc','Windows e Conceitos Básicos','AlfaCon','💻 Informática','ti',0); },400); } },
+    { tipo:'video', titulo:'Windows e Conceitos Básicos', desc:'AlfaCon 2026 · Informática para concursos', tags:['informática','windows','hardware','software','sistema operacional','computador'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ showMateria('ti', document.querySelectorAll('.vf-btn')[5]); openModal('T6vOSAqQKwc','Windows e Conceitos Básicos','AlfaCon','💻 Informática','ti',0); },400); } },
     { tipo:'video', titulo:'Internet, Redes e Segurança', desc:'Direção Concursos · Prof. César Vianna', tags:['informática','internet','redes','segurança','firewall','antivírus','protocolo','http','https'], acao:()=>{ irPara('videoaulas'); setTimeout(()=>{ openModal('e-w07JpTYvo','Internet, Redes e Segurança','Direção','💻 Informática','ti',2); },400); } },
 
     // ── RESUMOS ───────────────────────────────────────────────
@@ -2957,11 +3646,14 @@
 
     // ── CRONOGRAMA ────────────────────────────────────────────
     { tipo:'cronograma', titulo:'Cronograma de Estudos Personalizado', desc:'Monte seu plano de estudos baseado no seu concurso e horas disponíveis', tags:['cronograma','estudos','planejamento','plano','tempo','organização','semana'], acao:()=>{ irPara('cronograma'); } },
+
+    // ── POMODORO ────────────────────────────────────────────────
+    { tipo:'cronograma', titulo:'Timer Pomodoro — Foco Total', desc:'Cronômetro com ciclos de estudo, pausas e alarme sonoro configurável', tags:['pomodoro','timer','foco','produtividade','cronômetro','ciclo','alarme','estudo'], acao:()=>{ irPara('pomodoro'); } },
   ];
 
   const SUGESTOES = [
     'Direito Constitucional', 'Concordância verbal', 'Crase',
-    'Questões CESPE', 'Raciocínio Lógico', 'Informática', 'PDF gratuito',
+    'Questões CESPE', 'Raciocínio Lógico', 'Informática', 'PDF atualizado',
     'Mapa mental', 'Interpretação de texto', 'Licitações', 'Servidores públicos',
     'Simulado', 'Cronograma', 'Matemática', 'Estatística'
   ];
@@ -3206,6 +3898,392 @@
     const btns = document.querySelectorAll('.cp-btn');
     if (btns[map[val]]) setPerfil(val, btns[map[val]]);
   }
+
+  /* ── DOWNLOAD MAPA MENTAL ─────────────────────────────────── */
+  function downloadMapa(idx, filename) {
+    const svg = document.querySelectorAll('.mapa-svg-detail')[idx];
+    if (!svg) return;
+    const clone = svg.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    bg.setAttribute('width', '100%'); bg.setAttribute('height', '100%');
+    bg.setAttribute('fill', '#0a0a0a');
+    clone.insertBefore(bg, clone.firstChild);
+    const data = new XMLSerializer().serializeToString(clone);
+    const canvas = document.createElement('canvas');
+    canvas.width = 1500; canvas.height = 1140;
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.onload = function() {
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const a = document.createElement('a');
+      a.download = filename + '.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(data)));
+  }
+
+  /* ── DASHBOARD ENGINE ─────────────────────────────────────── */
+  const DASH_KEY = 'clube_dashboard';
+  const TOTAL_CONTENT = 24 + 6 + 4 + 6; // 24 vídeos + 6 pdfs + 4 mapas + 6 questões = 40 itens
+
+  function getDash() {
+    try { return JSON.parse(localStorage.getItem(DASH_KEY)) || createDash(); }
+    catch { return createDash(); }
+  }
+
+  function createDash() {
+    const d = { videos: [], materiais: [], questoes: 0, recentes: [], streak: 0, lastDate: null };
+    localStorage.setItem(DASH_KEY, JSON.stringify(d));
+    return d;
+  }
+
+  function saveDash(d) { localStorage.setItem(DASH_KEY, JSON.stringify(d)); }
+
+  function trackActivity(tipo, titulo, id) {
+    const d = getDash();
+    // Streak
+    const hoje = new Date().toDateString();
+    if (d.lastDate !== hoje) {
+      const ontem = new Date(Date.now() - 86400000).toDateString();
+      d.streak = (d.lastDate === ontem) ? d.streak + 1 : 1;
+      d.lastDate = hoje;
+    }
+    // Track por tipo
+    if (tipo === 'video' && !d.videos.includes(id)) d.videos.push(id);
+    if ((tipo === 'pdf' || tipo === 'mapa' || tipo === 'resumo') && !d.materiais.includes(id)) d.materiais.push(id);
+    if (tipo === 'questao') d.questoes++;
+    // Recentes (máx 6)
+    d.recentes = d.recentes.filter(r => r.id !== id);
+    d.recentes.unshift({ tipo, titulo, id, time: Date.now() });
+    if (d.recentes.length > 6) d.recentes.pop();
+    saveDash(d);
+    renderDashboard();
+  }
+
+  function renderDashboard() {
+    const d = getDash();
+    const total = d.videos.length + d.materiais.length + Math.min(Math.floor(d.questoes / 5), 6);
+    const pct = Math.min(Math.round((total / TOTAL_CONTENT) * 100), 100);
+    // Ring
+    const circ = 326.73;
+    const ring = document.getElementById('dashRing');
+    if (ring) ring.setAttribute('stroke-dashoffset', circ - (circ * pct / 100));
+    const pctEl = document.getElementById('dashPct');
+    if (pctEl) pctEl.textContent = pct + '%';
+    // Stats
+    const el = (id) => document.getElementById(id);
+    if (el('dashStreak')) el('dashStreak').textContent = d.streak;
+    if (el('dashVideos')) el('dashVideos').textContent = d.videos.length;
+    if (el('dashMateriais')) el('dashMateriais').textContent = d.materiais.length;
+    if (el('dashQuestoes')) el('dashQuestoes').textContent = d.questoes;
+    // Greeting
+    const h = new Date().getHours();
+    const saudacao = h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
+    if (el('dashGreeting')) el('dashGreeting').textContent = saudacao + ', Concurseiro!';
+    // Sub message
+    const sub = el('dashSub');
+    if (sub) {
+      if (pct === 0) sub.textContent = 'Comece explorando os materiais abaixo. Cada passo conta!';
+      else if (pct < 25) sub.textContent = 'Bom começo! Continue explorando os materiais.';
+      else if (pct < 50) sub.textContent = 'Mandando bem! Já passou de ' + pct + '% do conteúdo.';
+      else if (pct < 75) sub.textContent = 'Mais da metade concluída! Você está no caminho certo.';
+      else if (pct < 100) sub.textContent = 'Quase lá! Falta pouco para completar tudo.';
+      else sub.textContent = 'Parabéns! Você completou todo o conteúdo disponível! 🏆';
+    }
+    // Recentes
+    const wrap = document.getElementById('dashContinue');
+    if (!wrap) return;
+    if (!d.recentes.length) {
+      wrap.innerHTML = '<div class="dash-empty"><div class="de-icon">📚</div>Você ainda não acessou nenhum material.<br>Explore as seções abaixo para começar!</div>';
+      return;
+    }
+    const icons = { video:'🎥', pdf:'📄', mapa:'🗺️', resumo:'📋', questao:'✏️', cronograma:'📅' };
+    const labels = { video:'Videoaula', pdf:'PDF', mapa:'Mapa Mental', resumo:'Resumo', questao:'Questões', cronograma:'Cronograma' };
+    wrap.innerHTML = d.recentes.slice(0, 3).map(r => {
+      const ago = timeAgo(r.time);
+      return `<div class="dash-continue-card" onclick="replayRecente('${r.id}','${r.tipo}')">
+        <div class="dash-continue-icon t-${r.tipo}">${icons[r.tipo] || '📌'}</div>
+        <div class="dash-continue-info">
+          <strong>${r.titulo}</strong>
+          <span>${labels[r.tipo] || r.tipo}</span>
+        </div>
+        <div class="dash-continue-time">${ago}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function timeAgo(ts) {
+    const diff = Date.now() - ts;
+    const min = Math.floor(diff / 60000);
+    if (min < 1) return 'agora';
+    if (min < 60) return min + ' min atrás';
+    const hrs = Math.floor(min / 60);
+    if (hrs < 24) return hrs + 'h atrás';
+    const dias = Math.floor(hrs / 24);
+    return dias + 'd atrás';
+  }
+
+  function replayRecente(id, tipo) {
+    if (tipo === 'video') {
+      // Procurar vídeo nas playlists e abrir modal
+      for (const [mat, vids] of Object.entries(PLAYLISTS)) {
+        const idx = vids.findIndex(v => v.id === id);
+        if (idx !== -1) {
+          const v = vids[idx];
+          document.getElementById('videoaulas').scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => openModal(v.id, v.title, v.ch, mat, mat, idx), 500);
+          return;
+        }
+      }
+    }
+    // Para outros tipos, scrollar para a seção
+    const secMap = { pdf:'pdfs', mapa:'mapas', resumo:'features', questao:'features', cronograma:'cronograma' };
+    const sec = document.getElementById(secMap[tipo] || 'features');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Integrar tracking nos cliques existentes
+  const _originalOpenModal = openModal;
+  openModal = function(videoId, title, channel, matLabel, materiaKey, idx) {
+    trackActivity('video', title, videoId);
+    _originalOpenModal(videoId, title, channel, matLabel, materiaKey, idx);
+  };
+
+  // Track PDF clicks
+  document.querySelectorAll('.pdf-card .btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const card = this.closest('.pdf-card');
+      const nome = card.querySelector('.pdf-info h3')?.textContent || 'PDF';
+      trackActivity('pdf', nome, 'pdf-' + nome.replace(/\s+/g, '-').toLowerCase());
+    });
+  });
+
+  // Track Mapa Mental clicks
+  document.querySelectorAll('.mapa-card').forEach((card, i) => {
+    card.addEventListener('click', function() {
+      const nome = this.querySelector('.mapa-body h3')?.textContent || 'Mapa Mental';
+      trackActivity('mapa', nome, 'mapa-' + i);
+    });
+    card.style.cursor = 'pointer';
+  });
+
+  // Track Feature card clicks (resumos, questões)
+  document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const nome = this.querySelector('h3')?.textContent || 'Material';
+      const href = this.getAttribute('href') || '';
+      let tipo = 'resumo';
+      if (href.includes('questoes') || nome.toLowerCase().includes('questões')) tipo = 'questao';
+      trackActivity(tipo, nome, tipo + '-' + nome.replace(/\s+/g, '-').toLowerCase());
+    });
+  });
+
+  // Init dashboard on load
+  document.addEventListener('DOMContentLoaded', renderDashboard);
+  renderDashboard();
+
+  /* ── POMODORO TIMER ENGINE ────────────────────────────────── */
+  const POMO_KEY = 'clube_pomodoro_cfg';
+  let pomoState = {
+    mode: 'estudo',       // estudo | pausa | longa
+    running: false,
+    timeLeft: 25 * 60,
+    totalTime: 25 * 60,
+    cycle: 0,             // 0-3 (4 ciclos)
+    totalCycles: 4,
+    cfg: { estudo: 25, pausa: 5, longa: 15, sound: true }
+  };
+  let pomoInterval = null;
+  let pomoAudioCtx = null;
+
+  // Load saved config
+  (function loadPomoCfg() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(POMO_KEY));
+      if (saved) {
+        pomoState.cfg = { ...pomoState.cfg, ...saved };
+        pomoState.timeLeft = pomoState.cfg.estudo * 60;
+        pomoState.totalTime = pomoState.cfg.estudo * 60;
+      }
+    } catch {}
+  })();
+
+  function pomoSaveCfg() {
+    localStorage.setItem(POMO_KEY, JSON.stringify(pomoState.cfg));
+  }
+
+  function pomoUpdateConfig() {
+    const est = parseInt(document.getElementById('pomoEstudoRange').value);
+    const pau = parseInt(document.getElementById('pomoPausaRange').value);
+    const lon = parseInt(document.getElementById('pomoLongaRange').value);
+    const snd = document.getElementById('pomoSoundToggle').checked;
+    document.getElementById('pomoEstudoVal').textContent = est;
+    document.getElementById('pomoPausaVal').textContent = pau;
+    document.getElementById('pomoLongaVal').textContent = lon;
+    pomoState.cfg = { estudo: est, pausa: pau, longa: lon, sound: snd };
+    pomoSaveCfg();
+    // Se não está rodando, atualizar o timer atual
+    if (!pomoState.running) {
+      const mins = pomoState.cfg[pomoState.mode];
+      pomoState.timeLeft = mins * 60;
+      pomoState.totalTime = mins * 60;
+      pomoRenderTime();
+      pomoUpdateRing();
+    }
+  }
+
+  function pomoSetMode(mode, btn) {
+    if (pomoState.running) pomoPause();
+    pomoState.mode = mode;
+    const mins = pomoState.cfg[mode];
+    pomoState.timeLeft = mins * 60;
+    pomoState.totalTime = mins * 60;
+    // Tab UI
+    document.querySelectorAll('.pomo-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    // Ring & time color
+    const ring = document.getElementById('pomoRing');
+    const time = document.getElementById('pomoTime');
+    ring.className = 'pomo-ring-fg ' + mode;
+    time.className = 'pomo-time ' + mode;
+    document.getElementById('pomoLabel').textContent =
+      mode === 'estudo' ? 'Estudo' : mode === 'pausa' ? 'Pausa' : 'Pausa Longa';
+    pomoRenderTime();
+    pomoUpdateRing();
+    document.getElementById('pomoBtnPlay').innerHTML = '▶';
+  }
+
+  function pomoRenderTime() {
+    const m = Math.floor(pomoState.timeLeft / 60);
+    const s = pomoState.timeLeft % 60;
+    document.getElementById('pomoTime').textContent =
+      String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  function pomoUpdateRing() {
+    const circ = 339.29;
+    const pct = pomoState.timeLeft / pomoState.totalTime;
+    document.getElementById('pomoRing').setAttribute('stroke-dashoffset', circ * (1 - pct));
+  }
+
+  function pomoToggle() {
+    if (pomoState.running) pomoPause();
+    else pomoStart();
+  }
+
+  function pomoStart() {
+    if (pomoState.timeLeft <= 0) return;
+    pomoState.running = true;
+    document.getElementById('pomoBtnPlay').innerHTML = '⏸';
+    pomoInterval = setInterval(() => {
+      pomoState.timeLeft--;
+      pomoRenderTime();
+      pomoUpdateRing();
+      if (pomoState.timeLeft <= 0) {
+        clearInterval(pomoInterval);
+        pomoState.running = false;
+        document.getElementById('pomoBtnPlay').innerHTML = '▶';
+        if (pomoState.cfg.sound) pomoPlayAlarm();
+        pomoOnComplete();
+      }
+    }, 1000);
+  }
+
+  function pomoPause() {
+    pomoState.running = false;
+    clearInterval(pomoInterval);
+    document.getElementById('pomoBtnPlay').innerHTML = '▶';
+  }
+
+  function pomoReset() {
+    pomoPause();
+    const mins = pomoState.cfg[pomoState.mode];
+    pomoState.timeLeft = mins * 60;
+    pomoState.totalTime = mins * 60;
+    pomoRenderTime();
+    pomoUpdateRing();
+  }
+
+  function pomoSkip() {
+    pomoPause();
+    pomoOnComplete();
+  }
+
+  function pomoOnComplete() {
+    if (pomoState.mode === 'estudo') {
+      // Marcar ciclo como completo
+      const dots = document.querySelectorAll('.pomo-dot');
+      if (dots[pomoState.cycle]) dots[pomoState.cycle].classList.add('done');
+      pomoState.cycle++;
+      if (pomoState.cycle >= pomoState.totalCycles) {
+        // Pausa longa após 4 ciclos
+        pomoState.cycle = 0;
+        pomoRenderCycles();
+        pomoSetMode('longa', document.querySelectorAll('.pomo-tab')[2]);
+      } else {
+        pomoRenderCycles();
+        pomoSetMode('pausa', document.querySelectorAll('.pomo-tab')[1]);
+      }
+    } else {
+      // Volta para estudo
+      pomoSetMode('estudo', document.querySelectorAll('.pomo-tab')[0]);
+    }
+  }
+
+  function pomoRenderCycles() {
+    const wrap = document.getElementById('pomoCycles');
+    wrap.innerHTML = '';
+    for (let i = 0; i < pomoState.totalCycles; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'pomo-dot';
+      if (i < pomoState.cycle) dot.classList.add('done');
+      if (i === pomoState.cycle) dot.classList.add('active');
+      wrap.appendChild(dot);
+    }
+    document.getElementById('pomoSessionCount').textContent =
+      'Sessão ' + (pomoState.cycle + 1) + ' de ' + pomoState.totalCycles;
+  }
+
+  function pomoPlayAlarm() {
+    try {
+      if (!pomoAudioCtx) pomoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const ctx = pomoAudioCtx;
+      const now = ctx.currentTime;
+      // 3 beeps curtos
+      for (let i = 0; i < 3; i++) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.value = 880;
+        gain.gain.setValueAtTime(0.3, now + i * 0.3);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.3 + 0.25);
+        osc.start(now + i * 0.3);
+        osc.stop(now + i * 0.3 + 0.25);
+      }
+    } catch {}
+  }
+
+  // Init Pomodoro UI on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const cfg = pomoState.cfg;
+    const er = document.getElementById('pomoEstudoRange');
+    const pr = document.getElementById('pomoPausaRange');
+    const lr = document.getElementById('pomoLongaRange');
+    const st = document.getElementById('pomoSoundToggle');
+    if (er) { er.value = cfg.estudo; document.getElementById('pomoEstudoVal').textContent = cfg.estudo; }
+    if (pr) { pr.value = cfg.pausa; document.getElementById('pomoPausaVal').textContent = cfg.pausa; }
+    if (lr) { lr.value = cfg.longa; document.getElementById('pomoLongaVal').textContent = cfg.longa; }
+    if (st) st.checked = cfg.sound;
+    pomoRenderTime();
+    pomoUpdateRing();
+    pomoRenderCycles();
+  });
 
   /* ── Navbar shadow on scroll ──────────────────────────────── */
   window.addEventListener('scroll', () => {
