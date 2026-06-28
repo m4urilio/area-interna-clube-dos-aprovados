@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>Clube dos Aprovados | Materiais, Videoaulas e Estratégias para Concursos Públicos</title>
   <meta name="description" content="Resumos, mapas mentais, questões comentadas, videoaulas e estratégias de quem já passou em concurso público. Junte-se ao Clube dos Aprovados!" />
   <meta name="keywords" content="concurso público, aprovação, resumos, mapas mentais, questões comentadas, videoaulas atualizadas, cronograma de estudos, direito constitucional, português concurso" />
@@ -1506,6 +1507,58 @@
     }
     .pomo-tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 
+    /* ─── PLAYLISTS POR ÁREA ─────────────────────────────────────── */
+    #playlists {
+      padding: 100px 0;
+      background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+    .pl-area-tabs {
+      display: flex; gap: 6px; flex-wrap: wrap;
+      margin-bottom: 32px; justify-content: center;
+    }
+    .pl-area-tab {
+      padding: 8px 16px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--card-bg); color: var(--gray);
+      font-family: var(--font-b); font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: all .2s; white-space: nowrap;
+    }
+    .pl-area-tab.active { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+    .pl-area-tab:hover:not(.active) { border-color: rgba(255,215,0,0.3); color: var(--white); }
+    .pl-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+    .pl-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px;
+      display: flex; align-items: center; gap: 14px;
+      cursor: pointer; transition: all .2s; text-decoration: none; color: inherit;
+    }
+    .pl-card:hover { border-color: rgba(255,215,0,0.35); transform: translateY(-2px); }
+    .pl-card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+      background: rgba(239,68,68,0.12);
+    }
+    .pl-card-icon.playlist { background: rgba(139,92,246,0.12); }
+    .pl-card-info { flex: 1; min-width: 0; }
+    .pl-card-info strong {
+      font-size: 14px; font-weight: 600; display: block; margin-bottom: 3px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pl-card-info span { font-size: 11px; color: var(--gray); line-height: 1.4; display: block; }
+    .pl-card-badge {
+      font-size: 10px; padding: 3px 8px; border-radius: 6px;
+      background: rgba(255,215,0,0.1); color: var(--yellow);
+      font-weight: 600; white-space: nowrap; flex-shrink: 0;
+    }
+    .pl-empty {
+      text-align: center; color: var(--gray); padding: 40px 20px;
+      font-size: 14px;
+    }
+
     /* ─── RESPONSIVE ─────────────────────────────────────────────── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -1539,6 +1592,12 @@
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .features-grid { grid-template-columns: 1fr; }
+      /* Playlists mobile */
+      #playlists { padding: 60px 0; }
+      .pl-area-tabs { gap: 4px; }
+      .pl-area-tab { font-size: 11px; padding: 6px 10px; }
+      .pl-grid { grid-template-columns: 1fr; }
+      .pl-card-badge { display: none; }
       /* Pomodoro mobile */
       #pomodoro { padding: 60px 0; }
       .pomo-wrap { gap: 24px; }
@@ -1564,6 +1623,7 @@
       <li><a href="#videoaulas">Videoaulas</a></li>
       <li><a href="#pdfs">PDFs</a></li>
       <li><a href="#mapas">Mapas Mentais</a></li>
+      <li><a href="#playlists">Playlists</a></li>
       <li><a href="#cronograma">Cronograma</a></li>
       <li><a href="#pomodoro">Pomodoro</a></li>
       <li><a href="#" class="nav-cta">Entrar</a></li>
@@ -1607,6 +1667,7 @@
   <a href="#videoaulas" onclick="toggleMenu()">Videoaulas</a>
   <a href="#pdfs" onclick="toggleMenu()">PDFs</a>
   <a href="#mapas" onclick="toggleMenu()">Mapas Mentais</a>
+  <a href="#playlists" onclick="toggleMenu()">Playlists</a>
   <a href="#cronograma" onclick="toggleMenu()">Cronograma</a>
   <a href="#pomodoro" onclick="toggleMenu()">Pomodoro</a>
   <a href="#">Entrar</a>
@@ -2292,80 +2353,204 @@
       <button class="filter-btn" onclick="filterPDF(this,'direito')">Direito</button>
       <button class="filter-btn" onclick="filterPDF(this,'exatas')">Exatas</button>
       <button class="filter-btn" onclick="filterPDF(this,'lingua')">Línguas</button>
+      <button class="filter-btn" onclick="filterPDF(this,'admin')">Administração</button>
       <button class="filter-btn" onclick="filterPDF(this,'outros')">Outros</button>
     </div>
     <div class="pdf-grid">
 
-      <div class="pdf-card reveal" data-cat="direito">
-        <div class="pdf-header">
-          <div class="pdf-icon">📄</div>
-          <div class="pdf-info"><h3>Constituição Federal Anotada</h3><span>Direito Constitucional</span></div>
-        </div>
-        <p class="pdf-desc">CF/88 completa com anotações doutrinárias e artigos mais cobrados em provas destacados.</p>
-        <div class="pdf-footer">
-          <span class="pdf-pages">📄 198 páginas</span>
-          <a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
-        </div>
-      </div>
-
-      <div class="pdf-card reveal" data-cat="direito">
-        <div class="pdf-header">
-          <div class="pdf-icon">📄</div>
-          <div class="pdf-info"><h3>Lei 8.112/90 Comentada</h3><span>Direito Administrativo</span></div>
-        </div>
-        <p class="pdf-desc">Estatuto dos servidores públicos federais com comentários artigo a artigo e jurisprudência.</p>
-        <div class="pdf-footer">
-          <span class="pdf-pages">📄 86 páginas</span>
-          <a href="https://www.planalto.gov.br/ccivil_03/leis/l8112cons.htm" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
-        </div>
-      </div>
-
-      <div class="pdf-card reveal" data-cat="exatas">
-        <div class="pdf-header">
-          <div class="pdf-icon">📄</div>
-          <div class="pdf-info"><h3>Raciocínio Lógico Essencial</h3><span>Exatas</span></div>
-        </div>
-        <p class="pdf-desc">Apostila completa de lógica proposicional, conjuntos, probabilidade e combinatória para concursos.</p>
-        <div class="pdf-footer">
-          <span class="pdf-pages">📄 112 páginas</span>
-          <a href="https://www.estrategiaconcursos.com.br" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
-        </div>
-      </div>
-
+      <!-- ── LÍNGUA PORTUGUESA ── -->
       <div class="pdf-card reveal" data-cat="lingua">
-        <div class="pdf-header">
-          <div class="pdf-icon">📄</div>
-          <div class="pdf-info"><h3>Gramática Resumida</h3><span>Língua Portuguesa</span></div>
-        </div>
-        <p class="pdf-desc">Resumo de todos os tópicos de gramática que mais aparecem em provas: concordância, regência e crase.</p>
-        <div class="pdf-footer">
-          <span class="pdf-pages">📄 74 páginas</span>
-          <a href="https://www.qconcursos.com" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
-        </div>
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Português — Curso Completo</h3><span>Língua Portuguesa</span></div></div>
+        <p class="pdf-desc">Apostila completa de Língua Portuguesa: gramática, concordância, regência, crase, interpretação de texto.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/t2519cwxlyf2q9z/Curso_Completo_em_PDF_Portugu%C3%AAs%202.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
       </div>
 
-      <div class="pdf-card reveal" data-cat="outros">
-        <div class="pdf-header">
-          <div class="pdf-icon">📄</div>
-          <div class="pdf-info"><h3>Manual de Redação Oficial</h3><span>Redação Oficial</span></div>
-        </div>
-        <p class="pdf-desc">Manual da Presidência da República atualizado — indispensável para qualquer concurso federal.</p>
-        <div class="pdf-footer">
-          <span class="pdf-pages">📄 97 páginas</span>
-          <a href="https://www.planalto.gov.br/ccivil_03/manual/manual.htm" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
-        </div>
-      </div>
-
+      <!-- ── EXATAS ── -->
       <div class="pdf-card reveal" data-cat="exatas">
-        <div class="pdf-header">
-          <div class="pdf-icon">📄</div>
-          <div class="pdf-info"><h3>Informática para Concursos</h3><span>Exatas / TI</span></div>
-        </div>
-        <p class="pdf-desc">Windows, MS Office, Internet, segurança da informação, redes e questões comentadas das bancas.</p>
-        <div class="pdf-footer">
-          <span class="pdf-pages">📄 120 páginas</span>
-          <a href="https://www.grancursosonline.com.br" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a>
-        </div>
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Matemática — Curso Completo</h3><span>Matemática</span></div></div>
+        <p class="pdf-desc">Apostila completa de Matemática para concursos: porcentagem, juros, probabilidade e combinatória.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/n10kyr1ps8i1s0h/Curso%20Completo%20Matematica%20PDF.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="exatas">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Raciocínio Lógico</h3><span>Exatas</span></div></div>
+        <p class="pdf-desc">Lógica proposicional, conjuntos, diagramas, probabilidade e sequências lógicas para concursos.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/kn0khytmvsl1i6i/APOSTILA-RACIOCINIO-LOGICO%20.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="exatas">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Informática para Concursos</h3><span>Exatas / TI</span></div></div>
+        <p class="pdf-desc">Windows, MS Office, Internet, redes, segurança da informação e hardware/software.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/flevscnuxatw9ti/Apostila%20Completa%20de%20Informatica%20para%20Concursos.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="exatas">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Contabilidade Geral Avançada</h3><span>Contabilidade</span></div></div>
+        <p class="pdf-desc">Contabilidade esquematizada: balanço patrimonial, DRE, lançamentos e análise de demonstrações.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/0riie2fchaooz3r/Contabilidade%20Geral%20Avancada%20Esquematizado.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="exatas">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Matemática Financeira</h3><span>Exatas</span></div></div>
+        <p class="pdf-desc">Juros simples e compostos, descontos, anuidades, sistemas de amortização e taxas equivalentes.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/kz3422wz607yqtk/Matematica_financeira.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+
+      <!-- ── DIREITO E LEGISLAÇÃO ── -->
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Constitucional</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Curso completo: princípios fundamentais, direitos e garantias, organização do Estado e dos Poderes.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/o6c8o6ojkmw6p5t/Curso_de_Direito_Constitucional.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Administrativo</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Manual completo: atos administrativos, licitações, contratos, servidores públicos e responsabilidade civil.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/p4nyxo5audbwr00/Manual_de_Direito_Administrativo.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Civil — Parte Geral</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Pessoas, bens, fatos jurídicos, negócios jurídicos, prescrição e decadência.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/jcbzk6cjq3cbpve/Direito_Civil_Parte_Geral.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Processual Civil</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Esquematizado: petição, citação, contestação, recursos, execução e procedimentos especiais.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/g2pyqw06wdm32dr/Direito%20Processual%20Civil%20Esquematizado.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Penal</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Teoria do crime, tipicidade, antijuridicidade, culpabilidade, penas e crimes em espécie.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/1ie6qrz7lf1yhy1/Direito%20penal.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Processual Penal</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Inquérito policial, ação penal, provas, prisão, recursos e procedimentos processuais penais.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/3f5ht37qct5zqfn/Curso_de_Direito_Processual_Penal.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Legislação Penal Especial</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Leis especiais: drogas, armas, crimes hediondos, Maria da Penha, organização criminosa e tortura.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/78lkk83g9zrikex/Legisla%C3%A7%C3%A3o%20Penal%20Especial.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direitos Humanos</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Declaração Universal, tratados internacionais, sistema interamericano e direitos fundamentais.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/9j4h8kbl30s7buq/Direitos%20humanos.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito do Trabalho</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">CLT, contratos de trabalho, jornada, férias, rescisão, FGTS e direito coletivo.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/qvm4qifupc9qgdo/Curso-de-Direito-do-Trabalho-2023-Leite.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Processual do Trabalho</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Processo trabalhista: petição, audiência, recursos, execução e procedimento sumaríssimo.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/j492lvzimcgc7as/Curso_de_Direito_Processual_do_Trabalho_.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Previdenciário</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Seguridade social, benefícios do RGPS, segurados, contribuições e aposentadoria.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/1i36wgyee4qml53/Manual%20de%20Direito%20Previdenci%C3%A1rio.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Eleitoral</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Direitos políticos, partidos, eleições, propaganda eleitoral e ações eleitorais.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/igrbfzwks698tbt/Direito%20Eleitoral%20Completo.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Tributário</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Princípios tributários, tributos em espécie, CTN, obrigação tributária e crédito tributário.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/1r9fo5d0sxwjrdj/Direito%20Tribut%C3%A1rio.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Econômico</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Ordem econômica, livre concorrência, defesa do consumidor e regulação de mercados.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/ehf3ukvcy9uorh1/Manual%20de%20Direito%20Economico.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Empresarial</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Empresário, sociedades, títulos de crédito, falência e recuperação judicial.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/bwr1fayihdh09kf/Manual%20de%20Direito%20Comercial.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Ambiental</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Política nacional do meio ambiente, licenciamento, responsabilidade e unidades de conservação.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/71cdfughwwjdmyt/Direito%20Ambiental%20-%202022%20-%20Caderno%20Sistmatizado.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Direito Internacional Público</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Fontes do direito internacional, tratados, organizações internacionais e solução de controvérsias.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/we757tnee2vitzw/direito%20internacional%20publico.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="direito">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Criminologia</h3><span>Direito</span></div></div>
+        <p class="pdf-desc">Teorias criminológicas, escolas penais, vitimologia e política criminal para concursos.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/2v0zs4o4gbo7234/Criminologia%20.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+
+      <!-- ── ADMINISTRAÇÃO E GESTÃO ── -->
+      <div class="pdf-card reveal" data-cat="admin">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Administração Geral</h3><span>Administração</span></div></div>
+        <p class="pdf-desc">Teoria geral da administração, planejamento, organização, direção e controle para concursos.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/bdlwvrtmsr3p76c/Administra%C3%A7%C3%A3o%20Geral%20Para%20Concursos.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="admin">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Administração Pública</h3><span>Administração</span></div></div>
+        <p class="pdf-desc">Modelos de gestão pública, reforma administrativa, governança e accountability.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/bfjqwbvnja7bq42/Concursos_Administracao_Publica_Apostila.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="admin">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Gestão Pública</h3><span>Administração</span></div></div>
+        <p class="pdf-desc">Gestão de resultados, planejamento estratégico, BSC e gestão de projetos no setor público.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/kf4sc1ttt752wku/Gestao-Publica.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="admin">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Gestão de Pessoas</h3><span>Administração</span></div></div>
+        <p class="pdf-desc">Recrutamento, seleção, treinamento, avaliação de desempenho, liderança e motivação.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/1oajq68xifde2f1/GEST%C3%83O-DE-PESSOAS.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="admin">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>AFO — Adm. Financeira e Orçamentária</h3><span>Administração</span></div></div>
+        <p class="pdf-desc">Orçamento público, PPA, LDO, LOA, créditos adicionais, receitas e despesas públicas.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/f0o0wduf1me55d2/Administra%C3%A7%C3%A3o%20Financeira%20e%20Orcamentaria.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="admin">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Recursos Materiais</h3><span>Administração</span></div></div>
+        <p class="pdf-desc">Gestão de estoques, compras, almoxarifado, patrimônio e logística no setor público.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/74gj177qo55boov/Apostila%20-%20ADM%20Materiais%20.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="admin">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Arquivologia</h3><span>Administração</span></div></div>
+        <p class="pdf-desc">Gestão de documentos, classificação, avaliação, protocolo, arquivo corrente, intermediário e permanente.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/vx12v8x26zj8h0d/Arquivologia%20Facilitada.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+
+      <!-- ── OUTROS ── -->
+      <div class="pdf-card reveal" data-cat="outros">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Redação Oficial</h3><span>Redação Oficial</span></div></div>
+        <p class="pdf-desc">Manual atualizado: ofício, memorando, despacho, parecer, portaria e outros atos oficiais.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/yo108v230xnvoou/Reda%C3%A7%C3%A3o%20Oficial%20para%20Concursos.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="outros">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Ética no Serviço Público</h3><span>Ética</span></div></div>
+        <p class="pdf-desc">Código de Ética do servidor público, regime disciplinar, deveres, proibições e penalidades.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/853vy29ow6g5bje/A%20Etica%20no%20Servico%20Publico.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="outros">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>LDB — Lei de Diretrizes e Bases</h3><span>Educação</span></div></div>
+        <p class="pdf-desc">Entendendo a LDB: estrutura do ensino, níveis, modalidades e princípios da educação nacional.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/uv390458hkx7eto/E-BOOK-ENTENDENDO%20A%20LDB.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="outros">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>ECA — Estatuto da Criança e do Adolescente</h3><span>Legislação</span></div></div>
+        <p class="pdf-desc">Proteção integral, medidas socioeducativas, Conselho Tutelar e direitos fundamentais.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/4tkitv5uuub3jja/ECA.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="outros">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Conhecimentos Pedagógicos</h3><span>Educação</span></div></div>
+        <p class="pdf-desc">Tendências pedagógicas, currículo, avaliação, planejamento e didática para concursos.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/7bsqjp9j6noyagn/Conhecimentos_Pedagogicos.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
+      </div>
+      <div class="pdf-card reveal" data-cat="outros">
+        <div class="pdf-header"><div class="pdf-icon">📄</div><div class="pdf-info"><h3>Medicina Legal</h3><span>Concursos Policiais</span></div></div>
+        <p class="pdf-desc">Traumatologia forense, tanatologia, sexologia, toxicologia e documentos médico-legais.</p>
+        <div class="pdf-footer"><span class="pdf-pages">📄 Apostila PDF</span><a href="https://www.dropbox.com/s/djaicf008th640z/Medicina%20Legal.pdf?dl=1" target="_blank" rel="noopener" class="btn btn-primary btn-sm">⬇ Baixar PDF</a></div>
       </div>
 
     </div>
@@ -3326,6 +3511,19 @@
   </div>
 </section>
 
+<!-- ═══ PLAYLISTS POR ÁREA ══════════════════════════════════════════ -->
+<section id="playlists">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">Videoaulas Completas</div>
+      <h2>Playlists por <span class="highlight">Área</span></h2>
+      <p>Assista às playlists organizadas por concurso diretamente aqui, sem sair do site.</p>
+    </div>
+    <div class="pl-area-tabs reveal" id="plAreaTabs"></div>
+    <div class="pl-grid" id="plGrid"></div>
+  </div>
+</section>
+
 <!-- ═══ POMODORO TIMER ═════════════════════════════════════════════ -->
 <section id="pomodoro">
   <div class="container">
@@ -4085,6 +4283,183 @@
   // Init dashboard on load
   document.addEventListener('DOMContentLoaded', renderDashboard);
   renderDashboard();
+
+  /* ── PLAYLISTS POR ÁREA ──────────────────────────────────── */
+  const PL_AREAS = {
+    tecnicas: { title:'Técnicas de Estudo', icon:'🧠', items:[
+      {t:'Repetição Espaçada',d:'Como fixar conteúdo na memória de longo prazo',v:'Lo8CDQUU_Gw',tp:'video'},
+      {t:'Auto-explicação',d:'A técnica poderosa de ensinar para aprender',v:'v-2cqfN-_Yk',tp:'video'},
+      {t:'Aprendizagem Acelerada',d:'Métodos para aprender mais rápido e com mais qualidade',v:'sZSC_1acGgA',tp:'video'},
+      {t:'Regra de 80/20',d:'Foque no que realmente importa para sua aprovação',v:'QN94pF2uqA8',tp:'video'},
+      {t:'A Melhor Técnica de Estudo',d:'Estratégia definitiva para gabaritar provas',v:'CLunsNKy_HE',tp:'video'}
+    ]},
+    essenciais: { title:'Assuntos Essenciais', icon:'📚', items:[
+      {t:'Português Completo',d:'Gramática, interpretação, concordância e regência',v:'videoseries?list=PLO3hBdfBc4pH9b8iGXGU0Syzogo0PsHBN',tp:'playlist'},
+      {t:'Matemática Completa',d:'Porcentagem, juros, probabilidade e combinatória',v:'videoseries?list=PL-4cMc9KcAt70HvuHSyk82tDDJvvk64kR',tp:'playlist'},
+      {t:'Raciocínio Lógico',d:'Proposições, conjuntos, diagramas e sequências',v:'videoseries?list=PL83s8LGM84J4Uj7Zylll5LTK26wm-q-7K',tp:'playlist'},
+      {t:'Informática',d:'Windows, Office, Internet, redes e segurança',v:'videoseries?list=PLO3hBdfBc4pFjZGW8G3SNXc1emC55qXwR',tp:'playlist'},
+      {t:'Direito Administrativo',d:'Atos, licitações, contratos e servidores',v:'videoseries?list=PLX-4skTGVrWXgb1TlLGExnF9MoIVjSH0M',tp:'playlist'}
+    ]},
+    avancados: { title:'Assuntos Avançados', icon:'🎓', items:[
+      {t:'AFO',d:'Administração Financeira e Orçamentária',v:'videoseries?list=PLoSF-BIhnFxe4fgFf7QeBg9mHtnGSpBuK',tp:'playlist'},
+      {t:'Direito Penal',d:'Teoria do crime, tipicidade e penas',v:'videoseries?list=PLVYkMaaZ-LmISOuPhnSpki9Pc3U9z6TzN',tp:'playlist'},
+      {t:'Direito Processual Penal',d:'Inquérito, ação penal, provas e recursos',v:'videoseries?list=PLlcBAGSoN8MrP3cE3jz_fCOy4zhvTxnzV',tp:'playlist'},
+      {t:'Direito Processual Civil',d:'Petição, citação, contestação e recursos',v:'videoseries?list=PLX-4skTGVrWWhh8mpmaXf6Yn_5IvUAvSC',tp:'playlist'},
+      {t:'Direito Constitucional',d:'CF/88 completa: princípios, direitos e poderes',v:'videoseries?list=PLX-4skTGVrWUz1C9RfjsfliVCf94wbJOw',tp:'playlist'}
+    ]},
+    bancaria: { title:'Área Bancária', icon:'🏦', items:[
+      {t:'Sistema Financeiro Nacional',d:'Estrutura do SFN e suas instituições',v:'videoseries?list=PLER6jHH4LRx1uIxecuzFdV4jWe7SOE00e',tp:'playlist'},
+      {t:'Conhecimentos Bancários',d:'Produtos, serviços e operações bancárias',v:'videoseries?list=PLSkeYJRHX0YnON8kfiAwowkISGltf4KE2',tp:'playlist'},
+      {t:'Garantias do Sistema Financeiro',d:'FGC, garantias reais e fidejussórias',v:'spfYfDmhoCY',tp:'video'},
+      {t:'Mercado de Capitais e Câmbio',d:'Ações, bolsa de valores e mercado cambial',v:'videoseries?list=PLkLJ2rVD2nesPWkMVhsQv1Fs1CAOjhO82',tp:'playlist'},
+      {t:'Atualidades do Mercado Financeiro',d:'Open Banking, PIX e tendências',v:'videoseries?list=PLSkeYJRHX0YnWnP4Bi99LEUAnLg4lWxpD',tp:'playlist'},
+      {t:'Compliance e Ética',d:'Ética bancária, compliance e governança',v:'videoseries?list=PLUQlBjot005mz1MOVIrgwlSaVTp_EZEI4',tp:'playlist'},
+      {t:'Matemática Financeira',d:'Juros, descontos, anuidades e amortização',v:'videoseries?list=PLX-4skTGVrWWTbH72P6u7d_VtgMcxk7dn',tp:'playlist'},
+      {t:'Estatística Simplificada',d:'Média, mediana, moda, variância e desvio padrão',v:'videoseries?list=PLX-4skTGVrWUNh2VGFIyoWVGEVRQq3gkB',tp:'playlist'},
+      {t:'Raciocínio Lógico e Matemático',d:'Proposições, conjuntos e sequências',v:'videoseries?list=PL5fGyrkxsCM2ut--cWA-89ZPDqPfDafYo',tp:'playlist'},
+      {t:'Indicadores Econômicos',d:'PIB, inflação, Selic, câmbio e balança',v:'videoseries?list=PLpDoIofcp9Y6lAwQyp_J9lZtuUy_nYFgx',tp:'playlist'},
+      {t:'Excel Avançado',d:'Fórmulas, PROCV, tabela dinâmica e dashboards',v:'videoseries?list=PL-QAz5R5Rlm4IWX_sDPOwumEhh90-B61N',tp:'playlist'},
+      {t:'Análise de Dados',d:'Conceitos de BI, análise e visualização de dados',v:'videoseries?list=PL70rxKg7qWNX2YJ5FbAoiKYkK9-89tP6V',tp:'playlist'},
+      {t:'Ferramentas de Colaboração',d:'Teams, SharePoint e ferramentas Microsoft',v:'videoseries?list=PLM2kqWhoolXHg0r2loNhuEVYkbZVE6D3A',tp:'playlist'},
+      {t:'Informática para Concursos',d:'Informática básica e avançada',v:'videoseries?list=PLM2kqWhoolXH5vsmK3QLH75xlR4SpoXnE',tp:'playlist'},
+      {t:'LGPD',d:'Lei Geral de Proteção de Dados completa',v:'videoseries?list=PLhTKk53U8pNkiHSUTmN7rNIr84-FHvVkf',tp:'playlist'},
+      {t:'PLD/FT',d:'Prevenção à Lavagem de Dinheiro e Financiamento do Terrorismo',v:'videoseries?list=PLpDoIofcp9Y4l4awQcCywYldHGmHHycRn',tp:'playlist'},
+      {t:'ESG',d:'Ambiental, Social e Governança no contexto bancário',v:'NiRGQYC5VpE',tp:'video'},
+      {t:'CDC e Ética Bancária',d:'Código de Defesa do Consumidor e ética',v:'9dYtJZH0AcE',tp:'video'},
+      {t:'Técnicas de Vendas e Negociação',d:'Vendas, negociação e atendimento ao cliente',v:'videoseries?list=PLf8SnkouFmb1JsJ_BIZuO0gyvSadnQ22j',tp:'playlist'},
+      {t:'Atendimento Bancário',d:'Qualidade no atendimento e satisfação do cliente',v:'videoseries?list=PLgpckLGGkDVnlsxXKejM26MdFmeILvRS9',tp:'playlist'},
+      {t:'Língua Portuguesa',d:'Gramática e interpretação para bancários',v:'videoseries?list=PLO3hBdfBc4pH9b8iGXGU0Syzogo0PsHBN',tp:'playlist'},
+      {t:'Língua Inglesa',d:'Inglês para concursos bancários',v:'videoseries?list=PLf8SnkouFmb0pcJbMIq9aBqelvBxHx7Qn',tp:'playlist'},
+      {t:'ANBIMA: CPA-10, CPA-20, CEA',d:'Certificações ANBIMA completas',v:'videoseries?list=PLSkeYJRHX0YkNgaaucf9J7hcuO08P0Xwq',tp:'playlist'},
+      {t:'ANCORD — Assessor de Investimentos',d:'Certificação ANCORD para assessores',v:'videoseries?list=PLdllcLkCxkgEphx32knCcYsyK_Tpp77Od',tp:'playlist'}
+    ]},
+    tribunais: { title:'Tribunais', icon:'⚖️', items:[
+      {t:'Ética no Serviço Público',d:'Código de ética e conduta do servidor',v:'videoseries?list=PL_aLn_XJnJT6x4Klvqttx2G_X6UHph_0c',tp:'playlist'},
+      {t:'Direito das Pessoas com Deficiência',d:'Estatuto e direitos das PcD',v:'videoseries?list=PL_aLn_XJnJT7V0eFp2cDh8o1N3Wpvg5rE',tp:'playlist'},
+      {t:'Direito Constitucional',d:'CF/88 completa para concursos de tribunais',v:'videoseries?list=PLgxgcEJzPSvyl6sdkfGHdXbU49JXaz4CT',tp:'playlist'},
+      {t:'Direito Administrativo',d:'Atos, licitações e servidores públicos',v:'videoseries?list=PLhTKk53U8pNnMV9eb2NcDF9mmOF1syrRk',tp:'playlist'},
+      {t:'Direito Processual Civil',d:'CPC completo para tribunais',v:'videoseries?list=PLX-4skTGVrWWhh8mpmaXf6Yn_5IvUAvSC',tp:'playlist'},
+      {t:'Direito Processual Penal',d:'CPP para concursos de tribunais',v:'videoseries?list=PLlcBAGSoN8MrP3cE3jz_fCOy4zhvTxnzV',tp:'playlist'},
+      {t:'Direito do Trabalho',d:'CLT e legislação trabalhista',v:'videoseries?list=PLX-4skTGVrWVvoqVeEOlZIRg3EjYJ6xev',tp:'playlist'},
+      {t:'Direito Processual do Trabalho',d:'Processo trabalhista completo',v:'videoseries?list=PLq-zvnmS2GTyZqp_GtsioJG8_xp9wN5Y1',tp:'playlist'},
+      {t:'Direito Eleitoral',d:'Eleições, partidos e propaganda eleitoral',v:'videoseries?list=PLX-4skTGVrWUXG15IlidLIgYIlg50bYH3',tp:'playlist'},
+      {t:'Direito Tributário',d:'Princípios, tributos e obrigação tributária',v:'videoseries?list=PLX-4skTGVrWUg5RAl07SMOX46PfZGXMGM',tp:'playlist'},
+      {t:'Direito Previdenciário',d:'RGPS, benefícios e segurados',v:'videoseries?list=PLbQeIXJbBuGInjNk7tdUG6EiA3rDGVuBE',tp:'playlist'},
+      {t:'Administração Geral',d:'TGA, planejamento e gestão organizacional',v:'videoseries?list=PLX-4skTGVrWUar9j5gRdSbb_cAUJxFP1b',tp:'playlist'},
+      {t:'Administração Pública',d:'Modelos de gestão e reforma administrativa',v:'videoseries?list=PLrslFgzRDDJGFE0Bgv59w0EiDUgjtFzkL',tp:'playlist'},
+      {t:'AFO',d:'Administração Financeira e Orçamentária',v:'videoseries?list=PLoSF-BIhnFxe4fgFf7QeBg9mHtnGSpBuK',tp:'playlist'},
+      {t:'Normas da Corregedoria',d:'Regimentos e normas internas dos tribunais',v:'videoseries?list=PLhTKk53U8pNmOO0_ahLBq463Kwcb8dEvi',tp:'playlist'},
+      {t:'Resoluções CNJ',d:'Resoluções do Conselho Nacional de Justiça',v:'videoseries?list=PLq_dTqrrG6QJVXyG_V4EzEURMO1RFrmFz',tp:'playlist'},
+      {t:'Redação Oficial',d:'Ofício, memorando e atos oficiais',v:'videoseries?list=PLUEG18fygJNIxUsnx5YnkGtKIyRJWsLh-',tp:'playlist'}
+    ]},
+    policiais: { title:'Policiais', icon:'🚔', items:[
+      {t:'Língua Portuguesa',d:'Gramática e interpretação para policiais',v:'videoseries?list=PLO3hBdfBc4pH9b8iGXGU0Syzogo0PsHBN',tp:'playlist'},
+      {t:'Informática',d:'Informática básica e avançada',v:'videoseries?list=PLM2kqWhoolXH5vsmK3QLH75xlR4SpoXnE',tp:'playlist'},
+      {t:'Raciocínio Lógico',d:'Lógica e matemática para policiais',v:'videoseries?list=PL5fGyrkxsCM2ut--cWA-89ZPDqPfDafYo',tp:'playlist'},
+      {t:'Direito Penal',d:'Código Penal e teoria do crime',v:'videoseries?list=PLVYkMaaZ-LmISOuPhnSpki9Pc3U9z6TzN',tp:'playlist'},
+      {t:'Direito Processual Penal',d:'CPP para concursos policiais',v:'videoseries?list=PLlcBAGSoN8MrP3cE3jz_fCOy4zhvTxnzV',tp:'playlist'},
+      {t:'Direito Administrativo',d:'Atos e poder de polícia',v:'videoseries?list=PLhTKk53U8pNnMV9eb2NcDF9mmOF1syrRk',tp:'playlist'},
+      {t:'Direito Constitucional',d:'CF/88 para concursos policiais',v:'videoseries?list=PLgxgcEJzPSvyl6sdkfGHdXbU49JXaz4CT',tp:'playlist'},
+      {t:'Contabilidade Geral (PF)',d:'Contabilidade para Polícia Federal',v:'videoseries?list=PLX-4skTGVrWU_medoaCP99ieEzTvlXIzQ',tp:'playlist'},
+      {t:'Estatística (PF)',d:'Estatística para Polícia Federal',v:'videoseries?list=PLcWTTAIxTYjUROFgZQK203rkaElZsm7mw',tp:'playlist'},
+      {t:'Informática Avançada (PF)',d:'TI avançada para Polícia Federal',v:'videoseries?list=PLUxy2BBNgeQvlH0t9wvbwfaB1D4lVZxLS',tp:'playlist'},
+      {t:'Código de Trânsito Brasileiro (PRF)',d:'CTB completo para PRF',v:'videoseries?list=PL64hzxlE6uup6PnMPerKxQ4Hc4MFYsMaQ',tp:'playlist'},
+      {t:'Física (PRF)',d:'Física aplicada para PRF',v:'videoseries?list=PLNfWNKz4iEr9hteP4DVQ8Nkke01yY1IAP',tp:'playlist'},
+      {t:'Criminologia (PC/PM)',d:'Teorias criminológicas e vitimologia',v:'videoseries?list=PLZvSkVqe_ub4tzEulAKOf6ngvQ4Vggilc',tp:'playlist'},
+      {t:'Medicina Legal (PC/PM)',d:'Traumatologia e tanatologia forense',v:'videoseries?list=PL_3Omi8Qsh0XOHLkFshlGyFTPfeWK54Ow',tp:'playlist'},
+      {t:'Direitos Humanos (PC/PM)',d:'Declaração Universal e tratados',v:'videoseries?list=PL_3Omi8Qsh0WZiMXGqV0kzLwuhNYpRhVo',tp:'playlist'},
+      {t:'Lei de Drogas',d:'Lei 11.343/2006 comentada',v:'qLCZ-blO6Tw',tp:'video'},
+      {t:'Lei de Abuso de Autoridade',d:'Lei 13.869/2019 comentada',v:'tRaMAOv4gyk',tp:'video'},
+      {t:'Estatuto do Desarmamento',d:'Lei 10.826/2003 comentada',v:'sFkHiBzx1s4',tp:'video'},
+      {t:'Lei de Crimes Hediondos',d:'Lei 8.072/1990 comentada',v:'videoseries?list=PLWUi7TpcSqtAaTlZZmNRf0vLHiRnp2Bxb',tp:'playlist'},
+      {t:'Lei Maria da Penha',d:'Lei 11.340/2006 comentada',v:'y9t4JvoGYyI',tp:'video'},
+      {t:'Lei da Tortura',d:'Lei 9.455/1997 comentada',v:'KSOZ0J4-34k',tp:'video'},
+      {t:'Lei de Organização Criminosa',d:'Lei 12.850/2013 comentada',v:'y9Zgu1K8fwE',tp:'video'}
+    ]},
+    fiscal: { title:'Fiscal', icon:'📊', items:[
+      {t:'Contabilidade Geral',d:'Balanço, DRE e demonstrações contábeis',v:'videoseries?list=PLX-4skTGVrWU_medoaCP99ieEzTvlXIzQ',tp:'playlist'},
+      {t:'Direito Tributário',d:'CTN, tributos e obrigação tributária',v:'videoseries?list=PLX-4skTGVrWUg5RAl07SMOX46PfZGXMGM',tp:'playlist'},
+      {t:'Contabilidade Avançada',d:'Consolidação, IFRS e CPC',v:'videoseries?list=PLEe0nmKgw0CVIlXLTa7sGcTuo0LHw2NC4',tp:'playlist'},
+      {t:'Auditoria',d:'Normas de auditoria, procedimentos e pareceres',v:'videoseries?list=PLul52lXn9jZ4iCxiySnVXd9RYy8Rk5utQ',tp:'playlist'},
+      {t:'Língua Portuguesa',d:'Gramática e interpretação para área fiscal',v:'videoseries?list=PLO3hBdfBc4pH9b8iGXGU0Syzogo0PsHBN',tp:'playlist'},
+      {t:'Raciocínio Lógico',d:'Lógica e matemática para fiscais',v:'videoseries?list=PL5fGyrkxsCM2ut--cWA-89ZPDqPfDafYo',tp:'playlist'},
+      {t:'Informática',d:'Informática para concursos fiscais',v:'videoseries?list=PLM2kqWhoolXH5vsmK3QLH75xlR4SpoXnE',tp:'playlist'},
+      {t:'Tecnologia da Informação',d:'TI avançada para área fiscal',v:'videoseries?list=PLbBHtaezfYYF6KmWEBG6EDJlhzeuHYDAR',tp:'playlist'},
+      {t:'Estatística',d:'Estatística para concursos fiscais',v:'videoseries?list=PLcWTTAIxTYjUROFgZQK203rkaElZsm7mw',tp:'playlist'},
+      {t:'Direito Administrativo',d:'Atos, licitações e contratos',v:'videoseries?list=PLhTKk53U8pNnMV9eb2NcDF9mmOF1syrRk',tp:'playlist'},
+      {t:'Direito Constitucional',d:'CF/88 para área fiscal',v:'videoseries?list=PLgxgcEJzPSvyl6sdkfGHdXbU49JXaz4CT',tp:'playlist'},
+      {t:'Direito Empresarial',d:'Empresário, sociedades e títulos de crédito',v:'qCizqZ2cWXo',tp:'video'},
+      {t:'Direito Civil',d:'Parte geral e obrigações',v:'videoseries?list=PLX-4skTGVrWW1A45u8Tia59CpfTG48eYG',tp:'playlist'},
+      {t:'AFO',d:'Orçamento público, PPA, LDO e LOA',v:'videoseries?list=PLoSF-BIhnFxe4fgFf7QeBg9mHtnGSpBuK',tp:'playlist'},
+      {t:'Economia',d:'Microeconomia, macroeconomia e economia brasileira',v:'videoseries?list=PLKC8dCMCSkDI0na4PjH3-eZtKw3bj3GZJ',tp:'playlist'}
+    ]},
+    administrativa: { title:'Administrativa', icon:'🏛️', items:[
+      {t:'Língua Portuguesa',d:'Gramática e interpretação de texto',v:'videoseries?list=PLO3hBdfBc4pH9b8iGXGU0Syzogo0PsHBN',tp:'playlist'},
+      {t:'Raciocínio Lógico',d:'Lógica proposicional e matemática',v:'videoseries?list=PL5fGyrkxsCM2ut--cWA-89ZPDqPfDafYo',tp:'playlist'},
+      {t:'Informática',d:'Informática para concursos administrativos',v:'videoseries?list=PLM2kqWhoolXH5vsmK3QLH75xlR4SpoXnE',tp:'playlist'},
+      {t:'Atualidades',d:'Temas atuais e conhecimentos gerais',v:'videoseries?list=PLSQIEyevifX5fb3fYYya-0h9ZxgUk6zUQ',tp:'playlist'},
+      {t:'Direito Administrativo',d:'Atos, licitações e servidores',v:'videoseries?list=PLhTKk53U8pNnMV9eb2NcDF9mmOF1syrRk',tp:'playlist'},
+      {t:'Direito Constitucional',d:'CF/88 para concursos administrativos',v:'videoseries?list=PLgxgcEJzPSvyl6sdkfGHdXbU49JXaz4CT',tp:'playlist'},
+      {t:'Ética no Serviço Público',d:'Código de ética e conduta do servidor',v:'videoseries?list=PL_aLn_XJnJT6x4Klvqttx2G_X6UHph_0c',tp:'playlist'},
+      {t:'Lei de Acesso à Informação',d:'LAI — Lei 12.527/2011 comentada',v:'videoseries?list=PLhTKk53U8pNkZoy9f8108a16ygI3yn0v6',tp:'playlist'},
+      {t:'Estatuto dos Servidores',d:'Lei 8.112/90 completa',v:'videoseries?list=PLhTKk53U8pNmxilTvy1SUAWXkm-QpdbyP',tp:'playlist'},
+      {t:'Introdução à Administração',d:'Conceitos fundamentais de administração',v:'videoseries?list=PLX-4skTGVrWUar9j5gRdSbb_cAUJxFP1b',tp:'playlist'},
+      {t:'Gestão de Pessoas',d:'RH, liderança, motivação e desempenho',v:'videoseries?list=PLPjPQR5HICvUbpY2HpKUy6IFRHW17Krts',tp:'playlist'},
+      {t:'Gestão de Materiais',d:'Estoques, compras e logística',v:'videoseries?list=PLX-4skTGVrWXoOboRMiSWKfGf3xCQKvVW',tp:'playlist'},
+      {t:'Administração Pública',d:'Modelos de gestão e governança',v:'videoseries?list=PLrslFgzRDDJGFE0Bgv59w0EiDUgjtFzkL',tp:'playlist'},
+      {t:'AFO',d:'Orçamento público e finanças',v:'videoseries?list=PLoSF-BIhnFxe4fgFf7QeBg9mHtnGSpBuK',tp:'playlist'},
+      {t:'Arquivologia',d:'Gestão de documentos e protocolo',v:'videoseries?list=PLX-4skTGVrWVl62FcGjd8zDWT_Bg60b9A',tp:'playlist'},
+      {t:'Redação Oficial',d:'Ofício, memorando e atos oficiais',v:'videoseries?list=PLUEG18fygJNIxUsnx5YnkGtKIyRJWsLh-',tp:'playlist'}
+    ]}
+  };
+
+  let plAreaAtiva = 'tecnicas';
+
+  function plRender(area) {
+    plAreaAtiva = area;
+    const data = PL_AREAS[area];
+    if (!data) return;
+    // Tabs
+    document.querySelectorAll('.pl-area-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.area === area);
+    });
+    // Grid
+    const grid = document.getElementById('plGrid');
+    grid.innerHTML = data.items.map((it, i) => `
+      <div class="pl-card" onclick="plPlay('${it.v.replace(/'/g,"\\'")}','${it.t.replace(/'/g,"\\'")}')">
+        <div class="pl-card-icon ${it.tp === 'playlist' ? 'playlist' : ''}">
+          ${it.tp === 'playlist' ? '📋' : '🎥'}
+        </div>
+        <div class="pl-card-info">
+          <strong>${it.t}</strong>
+          <span>${it.d}</span>
+        </div>
+        <div class="pl-card-badge">${it.tp === 'playlist' ? 'Playlist' : 'Vídeo'}</div>
+      </div>`).join('');
+  }
+
+  function plPlay(videoPath, title) {
+    const overlay = document.getElementById('ytModalOverlay');
+    const iframe = document.getElementById('ytIframe');
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalMeta').textContent = 'Playlist · Clube dos Aprovados';
+    iframe.src = 'https://www.youtube.com/embed/' + videoPath + (videoPath.includes('?') ? '&' : '?') + 'autoplay=1&rel=0';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Esconder sidebar de playlist do modal se existir
+    const plSidebar = document.getElementById('modalPlaylist');
+    if (plSidebar) plSidebar.innerHTML = '';
+  }
+
+  // Init tabs
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabsWrap = document.getElementById('plAreaTabs');
+    if (!tabsWrap) return;
+    tabsWrap.innerHTML = Object.entries(PL_AREAS).map(([key, area]) =>
+      `<button class="pl-area-tab${key === 'tecnicas' ? ' active' : ''}" data-area="${key}" onclick="plRender('${key}')">${area.icon} ${area.title}</button>`
+    ).join('');
+    plRender('tecnicas');
+  });
 
   /* ── POMODORO TIMER ENGINE ────────────────────────────────── */
   const POMO_KEY = 'clube_pomodoro_cfg';
