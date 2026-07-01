@@ -4666,5 +4666,402 @@
     nav.style.boxShadow = window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,0.5)' : '';
   });
 </script>
+
+<!-- ═══ SUPORTE FLUTUANTE ═══ -->
+<style>
+  /* ── Botão flutuante ── */
+  .suporte-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--black);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255,215,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .suporte-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(255,215,0,0.5); }
+  .suporte-fab svg { width: 26px; height: 26px; }
+
+  /* ── Overlay + Popup ── */
+  .suporte-overlay {
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+    padding: 16px;
+  }
+  .suporte-overlay.active { display: flex; }
+
+  .suporte-popup {
+    background: var(--black-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px 24px;
+    position: relative;
+    animation: supPopIn .25s ease;
+  }
+  @keyframes supPopIn { from { opacity: 0; transform: translateY(20px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  .suporte-popup::-webkit-scrollbar { width: 4px; }
+  .suporte-popup::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 2px; }
+
+  .suporte-close {
+    position: absolute; top: 12px; right: 14px;
+    background: none; border: none; color: var(--gray); font-size: 22px; cursor: pointer; line-height: 1;
+  }
+  .suporte-close:hover { color: var(--white); }
+
+  .suporte-title {
+    font-family: var(--font-d);
+    font-size: 22px; font-weight: 700; margin-bottom: 6px;
+  }
+  .suporte-sub {
+    color: var(--gray); font-size: 14px; margin-bottom: 20px;
+  }
+
+  /* ── FAQ items ── */
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .faq-item:hover { border-color: rgba(255,215,0,0.3); }
+
+  .faq-question {
+    width: 100%; background: none; border: none; color: var(--white);
+    padding: 14px 16px; font-family: var(--font-b); font-size: 14px; font-weight: 500;
+    text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .faq-question .faq-arrow { transition: transform .2s; font-size: 12px; color: var(--gray); }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  .faq-answer {
+    max-height: 0; overflow: hidden; transition: max-height .3s ease;
+    padding: 0 16px; color: var(--gray); font-size: 13px; line-height: 1.6;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; padding: 0 16px 14px; }
+
+  /* ── Botão reembolso ── */
+  .suporte-reembolso-btn {
+    width: 100%; margin-top: 6px; padding: 14px;
+    background: rgba(255,80,80,0.1); border: 1px solid rgba(255,80,80,0.3);
+    border-radius: 10px; color: #ff6b6b; font-family: var(--font-b);
+    font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s;
+  }
+  .suporte-reembolso-btn:hover { background: rgba(255,80,80,0.18); border-color: rgba(255,80,80,0.5); }
+
+  /* ── Telas internas ── */
+  .suporte-tela { display: none; }
+  .suporte-tela.active { display: block; }
+
+  .suporte-back {
+    background: none; border: none; color: var(--yellow); font-size: 13px; font-weight: 600;
+    cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; gap: 6px;
+  }
+  .suporte-back:hover { text-decoration: underline; }
+
+  /* ── Formulário reembolso ── */
+  .reembolso-group { margin-bottom: 16px; }
+  .reembolso-group label {
+    display: block; font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 6px;
+  }
+  .reembolso-group select,
+  .reembolso-group textarea {
+    width: 100%; padding: 10px 12px;
+    background: var(--black-3); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--white); font-family: var(--font-b); font-size: 13px;
+    transition: border-color .2s; outline: none;
+  }
+  .reembolso-group select:focus,
+  .reembolso-group textarea:focus { border-color: var(--yellow); }
+  .reembolso-group select option { background: var(--black-2); }
+  .reembolso-group textarea { resize: vertical; min-height: 70px; }
+
+  .reembolso-submit {
+    width: 100%; padding: 14px;
+    background: #ff5555; border: none; border-radius: 10px;
+    color: var(--white); font-family: var(--font-b); font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: background .2s;
+  }
+  .reembolso-submit:hover { background: #e04444; }
+  .reembolso-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+  /* ── Loading ── */
+  .suporte-loading {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    padding: 40px 20px; text-align: center;
+  }
+  .suporte-loading.active { display: flex; }
+  .suporte-spinner {
+    width: 42px; height: 42px; border: 3px solid var(--border);
+    border-top-color: var(--yellow); border-radius: 50%;
+    animation: supSpin .7s linear infinite; margin-bottom: 16px;
+  }
+  @keyframes supSpin { to { transform: rotate(360deg); } }
+
+  /* ── Sucesso ── */
+  .suporte-sucesso {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    padding: 40px 20px; text-align: center;
+  }
+  .suporte-sucesso.active { display: flex; }
+  .suporte-sucesso .check-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(80,200,120,0.15); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .suporte-sucesso .check-icon svg { width: 28px; height: 28px; color: #50c878; }
+  .suporte-sucesso h3 { font-family: var(--font-d); font-size: 20px; margin-bottom: 8px; }
+  .suporte-sucesso p { color: var(--gray); font-size: 14px; line-height: 1.5; }
+  .suporte-sucesso .fechar-btn {
+    margin-top: 20px; padding: 10px 28px;
+    background: var(--yellow); color: var(--black); border: none; border-radius: 8px;
+    font-family: var(--font-b); font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+
+  @media (max-width: 480px) {
+    .suporte-popup { padding: 22px 18px; }
+    .suporte-title { font-size: 20px; }
+  }
+</style>
+
+<!-- Botão flutuante -->
+<button class="suporte-fab" id="suporteFab" aria-label="Suporte">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    <path d="M12 7v1"/><path d="M12 12h.01"/>
+  </svg>
+</button>
+
+<!-- Overlay -->
+<div class="suporte-overlay" id="suporteOverlay">
+  <div class="suporte-popup">
+    <button class="suporte-close" id="suporteClose">&times;</button>
+
+    <!-- TELA 1: FAQ -->
+    <div class="suporte-tela active" id="telaFaq">
+      <h2 class="suporte-title">Central de Ajuda</h2>
+      <p class="suporte-sub">Encontre respostas para as dúvidas mais comuns.</p>
+
+      <div class="faq-item">
+        <button class="faq-question">Como acesso os materiais do Clube? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Após o login, todos os materiais ficam disponíveis na área de membros. Navegue pelas seções no menu para encontrar resumos, mapas mentais, questões e videoaulas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Posso baixar os PDFs e materiais? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Sim! Todos os PDFs, resumos e mapas mentais podem ser baixados para estudo offline. Basta clicar no botão de download disponível em cada material.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">As videoaulas são atualizadas? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Sim, nosso conteúdo é atualizado regularmente de acordo com as mudanças nos editais e legislações. Você sempre terá acesso ao material mais recente.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Por quanto tempo tenho acesso ao Clube? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Seu acesso é válido de acordo com o plano contratado. Você pode verificar a validade do seu plano na seção "Minha Conta" dentro da plataforma.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Esqueci minha senha, como recupero? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Na tela de login, clique em "Esqueci minha senha". Você receberá um e-mail com um link para criar uma nova senha. Verifique também sua caixa de spam.</div>
+      </div>
+
+      <button class="suporte-reembolso-btn" id="btnIrReembolso">Quero entrar com um pedido de reembolso</button>
+    </div>
+
+    <!-- TELA 2: FORMULÁRIO REEMBOLSO -->
+    <div class="suporte-tela" id="telaReembolso">
+      <button class="suporte-back" id="btnVoltarFaq">← Voltar</button>
+      <h2 class="suporte-title">Pedido de Reembolso</h2>
+      <p class="suporte-sub">Preencha as informações abaixo para solicitar seu reembolso.</p>
+
+      <form id="formReembolso">
+        <div class="reembolso-group">
+          <label>Qual o principal motivo do reembolso?</label>
+          <select required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Não atendeu minhas expectativas</option>
+            <option>Conteúdo diferente do anunciado</option>
+            <option>Dificuldade em acessar a plataforma</option>
+            <option>Problemas financeiros</option>
+            <option>Encontrei outro material</option>
+            <option>Outro motivo</option>
+          </select>
+        </div>
+
+        <div class="reembolso-group">
+          <label>Você chegou a acessar o conteúdo?</label>
+          <select required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim, acessei todo o conteúdo</option>
+            <option>Sim, acessei parcialmente</option>
+            <option>Não consegui acessar</option>
+            <option>Não tentei acessar</option>
+          </select>
+        </div>
+
+        <div class="reembolso-group">
+          <label>Há quanto tempo fez a compra?</label>
+          <select required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Menos de 7 dias</option>
+            <option>Entre 7 e 15 dias</option>
+            <option>Entre 15 e 30 dias</option>
+            <option>Mais de 30 dias</option>
+          </select>
+        </div>
+
+        <div class="reembolso-group">
+          <label>Você tentou buscar suporte antes?</label>
+          <select required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim, mas não resolveu</option>
+            <option>Sim, e foi parcialmente resolvido</option>
+            <option>Não tentei</option>
+          </select>
+        </div>
+
+        <div class="reembolso-group">
+          <label>Qual dispositivo utiliza para acessar?</label>
+          <select required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Celular</option>
+            <option>Computador / Notebook</option>
+            <option>Tablet</option>
+            <option>Mais de um dispositivo</option>
+          </select>
+        </div>
+
+        <div class="reembolso-group">
+          <label>Você indicaria a plataforma para alguém?</label>
+          <select required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Talvez</option>
+            <option>Não</option>
+          </select>
+        </div>
+
+        <div class="reembolso-group">
+          <label>Como podemos melhorar?</label>
+          <select required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Mais conteúdo atualizado</option>
+            <option>Melhor organização do material</option>
+            <option>Mais suporte ao aluno</option>
+            <option>Melhorar a plataforma</option>
+            <option>Preço mais acessível</option>
+            <option>Nenhuma sugestão</option>
+          </select>
+        </div>
+
+        <div class="reembolso-group">
+          <label>Informações adicionais (opcional)</label>
+          <textarea placeholder="Se desejar, escreva mais detalhes sobre o motivo do reembolso..."></textarea>
+        </div>
+
+        <button type="submit" class="reembolso-submit">Solicitar Reembolso</button>
+      </form>
+    </div>
+
+    <!-- TELA 3: LOADING -->
+    <div class="suporte-loading" id="telaLoading">
+      <div class="suporte-spinner"></div>
+      <p style="color:var(--gray); font-size:14px;">Processando sua solicitação...</p>
+    </div>
+
+    <!-- TELA 4: SUCESSO -->
+    <div class="suporte-sucesso" id="telaSucesso">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Solicitação Recebida!</h3>
+      <p>Seu pedido de reembolso foi registrado com sucesso. O reembolso será efetuado em até <strong style="color:var(--white)">7 dias úteis</strong>.</p>
+      <button class="fechar-btn" id="btnFecharSucesso">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const fab = document.getElementById('suporteFab');
+  const overlay = document.getElementById('suporteOverlay');
+  const closeBtn = document.getElementById('suporteClose');
+  const telaFaq = document.getElementById('telaFaq');
+  const telaReembolso = document.getElementById('telaReembolso');
+  const telaLoading = document.getElementById('telaLoading');
+  const telaSucesso = document.getElementById('telaSucesso');
+
+  function resetPopup() {
+    [telaFaq, telaReembolso].forEach(t => t.classList.remove('active'));
+    telaLoading.classList.remove('active');
+    telaSucesso.classList.remove('active');
+    telaFaq.classList.add('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    document.getElementById('formReembolso').reset();
+  }
+
+  fab.addEventListener('click', function() {
+    resetPopup();
+    overlay.classList.add('active');
+  });
+
+  function fechar() { overlay.classList.remove('active'); }
+  closeBtn.addEventListener('click', fechar);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) fechar(); });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Ir para reembolso
+  document.getElementById('btnIrReembolso').addEventListener('click', function() {
+    telaFaq.classList.remove('active');
+    telaReembolso.classList.add('active');
+  });
+
+  // Voltar para FAQ
+  document.getElementById('btnVoltarFaq').addEventListener('click', function() {
+    telaReembolso.classList.remove('active');
+    telaFaq.classList.add('active');
+  });
+
+  // Submit reembolso
+  document.getElementById('formReembolso').addEventListener('submit', function(e) {
+    e.preventDefault();
+    telaReembolso.classList.remove('active');
+    telaLoading.classList.add('active');
+    closeBtn.style.display = 'none';
+
+    setTimeout(function() {
+      telaLoading.classList.remove('active');
+      telaSucesso.classList.add('active');
+      closeBtn.style.display = '';
+    }, 5000);
+  });
+
+  // Fechar sucesso
+  document.getElementById('btnFecharSucesso').addEventListener('click', fechar);
+})();
+</script>
 </body>
 </html>
